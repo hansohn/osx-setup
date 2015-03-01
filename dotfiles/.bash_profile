@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# ----- Modify PATH -----
-PATH="/usr/local/bin:${PATH}"                                     # Add HomeBrew to PATH
-eval "$(chef shell-init bash)"                                    # Add ChefDK to PATH
+# ----- Add ChefDK paths to PATH -----
+PATH="/usr/local/bin:${PATH}"
+eval "$(chef shell-init bash)"
 
 # ----- Set Editor -----
 set -o vi
