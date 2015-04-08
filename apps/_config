@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # ----- General -----
-FULL_NAME="Ryan Hansohn";
-EMAIL_ADDRESS="ryan.hansohn@gmail.com";
-PHONE_NUMBER="714-615-6200";
+FULL_NAME="";
+EMAIL_ADDRESS="";
+PHONE_NUMBER="";
 
 # ----- Switches
 WINDOWS_DEV=true;
