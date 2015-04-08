@@ -6,7 +6,7 @@ filetype plugin indent on
 source ~/.vim/bundle.vim
 
 " ----- Text formatting -----
-set shiftwidth=2                            " use four characters for tabs.
+set shiftwidth=2                            " use two characters for tabs.
 set softtabstop=2                           " mindblowing.
 set tabstop=2                               " skullcracking.
 set expandtab                               " expand tabs to spaces.
@@ -28,6 +28,8 @@ set paste                                   " don't suck at pasting
 set backspace=2                             " allow backspace in insert mode
 
 " ----- Syntax and Color -----
+source ~/.vim/dosbatch.vim
+
 syntax on
 set background=dark
 colorscheme solarized
