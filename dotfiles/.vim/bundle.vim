@@ -13,11 +13,13 @@ Plugin 'msanders/snipmate.vim'
 Plugin 'scrooloose/syntastic'
 
 " Syntax
+Plugin 'vim-scripts/applescript'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'PProvost/vim-ps1.git'
 
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
