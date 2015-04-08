@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# ----- General -----
+FULL_NAME="Ryan Hansohn";
+EMAIL_ADDRESS="ryan.hansohn@gmail.com";
+PHONE_NUMBER="714-615-6200";
+
+# ----- Switches
+WINDOWS_DEV=true;
+iterm_install=false;
+
+# ----- Exports -----
+export HOMEBREW_CASK_OPTS="--appdir=/Applications";
