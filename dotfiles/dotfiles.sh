@@ -4,14 +4,15 @@
 bp=".bash_profile";                       # bash
 vrc=".vimrc";                             # vim
 vun=".vim/bundle.vim";                    # vundle
-af=($bp $vrc $vun);                       # all files
+dbv=".vim/dosbatch.vim";                  # dosbatch.vim
+af=($bp $vrc $vun $dbv);                  # all files
 
 # directories (relative to ~)
 dfd=".dotfiles";                          # dotfile dir
 vimd=".vim";                              # vim dir
 dfvd="$dfd/$vimd";                        # dotfile vim dir
 bakd="$dfd/bak/$(date +%Y%m%d)";          # dotfile bak
-bakvd="$bakd/$vimd";                       # dotfile bak vim dir
+bakvd="$bakd/$vimd";                      # dotfile bak vim dir
 ad=($dfd $bakd $bakvd $vimd $dfvd);       # all directories
 
 # create dirs
