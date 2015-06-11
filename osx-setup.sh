@@ -3,7 +3,7 @@
 # scripts
 as=(
   "dotfiles/dotfiles.sh"
-  "apps/apps.sh"
+  "apps/install.sh"
 );
 
 # execute
