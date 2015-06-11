@@ -8,7 +8,7 @@ PATH="/usr/local/bin:${PATH}"                                     # Prefer user 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # ----- Set Editor -----
-set -o vi
+#set -o vi
 
 # ----- Apache -----
 alias apacheRestart='sudo apachectl restart'                      # Restart apache
@@ -17,13 +17,15 @@ alias vhost='sudo vim /etc/apache2/extra/httpd-vhosts.conf'       # Edit apache 
 alias herr='tail /var/log/httpd/error_log'                        # Tail apache error logs
 alias apacheLogs="less +F /var/log/apache2/error_log"             # Show apache error logs
 
+# ----- CACHE -----
+alias flushcache="dscacheutil -flushcache"                        # Flush cache
+
 # ----- Disk -----
 alias disk='du -hd 1'                                             # Disk usage
 alias fs="stat -f '%z bytes'"                                     # File size
 
 # ----- DNS -----
-alias flushdns="dscacheutil -flushcache"                          # Flush DNS cache
-alias reloaddns='sudo killall -HUP mDNSResponder'                 # Reload DNSResponder
+alias flushdns="sudo discoveryutil mdnsflushcache;sudo discoveryutil udnsflushcaches" # Flush DNS cache
 alias hostfile='sudo vim /etc/hosts'                              # Edit Hostfile
 
 # ----- Firewall -----
