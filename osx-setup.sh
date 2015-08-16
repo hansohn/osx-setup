@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-# scripts
-as=(
+# list scripts to be executed
+scripts=(
   "dotfiles/dotfiles.sh"
   "apps/install.sh"
+  "customizations/customizations.sh"
 );
 
-# execute
-for s in ${as[@]}; do
-  source $s;
-done  
+# execute scripts
+for script in ${scripts[@]}; do
+  source $script;
+done
