@@ -20,9 +20,10 @@ apps=(
   "packer"
   "iterm2"
   "atom"
+  "bash"
 )
 
 # install selected apps
 for app in ${apps[@]}; do
-  source ./${app};
+  source ./${app}.sh;
 done
