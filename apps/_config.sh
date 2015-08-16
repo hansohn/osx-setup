@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# ----- General -----
+# ----- general information -----
 FULL_NAME="";
 EMAIL_ADDRESS="";
 PHONE_NUMBER="";
 
-# ----- Switches
+# ----- switches -----
 WINDOWS_DEV=true;
 iterm_install=false;
 
-# ----- Exports -----
+# ----- exports -----
 export HOMEBREW_CASK_OPTS="--appdir=/Applications";
