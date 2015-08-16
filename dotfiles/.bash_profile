@@ -1,37 +1,95 @@
 #!/usr/bin/env bash
 
-# ----- Modify PATH -----
-PATH="/usr/local/bin:${PATH}"                                     # Prefer user defined binaries
-! which chef >> /dev/null 2>&1 || eval "$(chef shell-init bash)"  # Add chefdk binaries to PATH
+# the bash_profile config below is for use with osx and
+# assumes that 3rd party applications were installed with
+# homebrew when available.
 
-# ----- Export -----
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export PATH="/usr/local/bin:${PATH}"
 
-# ----- Set Editor -----
-#set -o vi
+#------------------------------------------------------------------------------
+# APPLICATIONS
+#------------------------------------------------------------------------------
 
-# ----- Apache -----
-alias apacheRestart='sudo apachectl restart'                      # Restart apache
-alias apacheEdit='sudo vim /etc/httpd/httpd.conf'                 # Edit apache conf
-alias vhost='sudo vim /etc/apache2/extra/httpd-vhosts.conf'       # Edit apache vhosts listings
-alias herr='tail /var/log/httpd/error_log'                        # Tail apache error logs
-alias apacheLogs="less +F /var/log/apache2/error_log"             # Show apache error logs
+# -- homebrew --
+# install brew cask application in global /Applications directory
+export HOMEBREW_CASK_OPTS="--appdir=/Applications";
+BREW_PREFIX=$(brew --prefix);
 
-# ----- CACHE -----
+# -- chefdk --
+# populate bash path with chefdk binaries
+if [[ $(echo `brew cask list` | grep -i "chefdk") ]]; then
+  eval "$(chef shell-init bash)";
+fi
+
+# -- go_lang --
+# populate path with go_lang binaries
+if [ -d /usr/local/opt/go/libexec/bin ] ; then
+  export PATH="${PATH}:/usr/local/opt/go/libexec/bin";
+  export GOPATH="/Users/${USER}/Code/go";
+fi
+
+# -- hashicorp --
+#export ATLAS_TOKEN="";
+#export PACKER_LOG="DEBUG";
+
+# -- iterm --
+if [ -f /Users/${USER}/.iterm2_shell_integration.bash ]; then
+  source /Users/${USER}/.iterm2_shell_integration.bash;
+fi
+
+#------------------------------------------------------------------------------
+# BASH COMPLETION
+#------------------------------------------------------------------------------
+
+# -- bash_completion --
+if [ -f ${BREW_PREFIX}/etc/bash_completion ]; then
+  source "${BREW_PREFIX}/etc/bash_completion";
+fi
+
+# -- git --
+if [ -f ${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash ]; then
+  source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash";
+fi
+
+# -- git-flow --
+if [ -f ${BREW_PREFIX}/opt/git-flow/etc/bash_completion.d/git-flow-completion.bash ]; then
+  source "${BREW_PREFIX}/opt/git-flow/etc/bash_completion.d/git-flow-completion.bash";
+fi
+
+#------------------------------------------------------------------------------
+# SHELL MODS
+#------------------------------------------------------------------------------
+
+# git
+# display git branch info within PS1
+if [ -f ${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh ]; then
+  source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh";
+  export GIT_PS1_SHOWDIRTYSTATE=true;
+  export GIT_PS1_SHOWUPSTREAM="verbose";
+  export GIT_PS1_DESCRIBE_STYLE="branch";
+  export GIT_PS1_SHOWCOLORHINTS=true;
+  PROMPT_COMMAND='__git_ps1 "\u@\h[\w]" "\\\$ "';
+fi
+
+#------------------------------------------------------------------------------
+# ALIASES
+#------------------------------------------------------------------------------
+
+# -- cache --
 alias flushcache="dscacheutil -flushcache"                        # Flush cache
 
-# ----- Disk -----
+# -- disk --
 alias disk='du -hd 1'                                             # Disk usage
 alias fs="stat -f '%z bytes'"                                     # File size
 
-# ----- DNS -----
+# -- dns --
 alias flushdns="sudo discoveryutil mdnsflushcache;sudo discoveryutil udnsflushcaches" # Flush DNS cache
 alias hostfile='sudo vim /etc/hosts'                              # Edit Hostfile
 
-# ----- Firewall -----
+# -- firewall --
 alias showBlocked='sudo ipfw list'                                # All ipfw rules inc/ blocked IPs
 
-# ----- Networking -----
+# -- networking --
 alias wmip="dig +short myip.opendns.com @resolver1.opendns.com"   # Get external IP (whats my ip)
 alias ip="ifconfig | awk '/inet / { print \$2 }'"                 # Get all local IPs
 alias netCons='lsof -i'                                           # Show all open TCP/IP sockets
@@ -42,7 +100,7 @@ alias ipInfo0='ipconfig getpacket en0'                            # Get info on 
 alias ipInfo1='ipconfig getpacket en1'                            # Get info on connections for en1
 alias openPorts='sudo lsof -i | grep LISTEN'                      # All listening connections
 
-# ----- Preferred Commands -----
+# -- preferred commands --
 alias cp='cp -iv'                                                 # Preferred 'cp'
 alias df="df -h"                                                  # Preferred ‘df’
 alias grep='grep --color=auto --exclude-dir=\.git'                # Preferred ‘grep’
@@ -52,11 +110,14 @@ alias ls='ls -G'                                                  # Preferred �
 alias mv='mv -iv'                                                 # Preferred ‘mv’
 alias mkdir='mkdir -pv'                                           # Preferred ‘mkdir’
 
-# ----- SSH -----
-alias pubkey="pbcopy < ~/.ssh/id_rsa.pub"                         # Copy my public key to the pasteboard
+# -- ssh --
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy"                    # Copy my public key to the pasteboard
 
-# ----- TIME -----
-alias utc='date -u'                                               # Print UTC time
+# -- time --
+alias utc='date -u'                                               # UTC time
 
-# ----- TRASH -----
+# -- trash --
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl" # Empty the Trash on all mounted volumes and the main HDD
+
+# -- voice --
+alias stfu='say -v Zarvox "You shut your mouth when you are talking to me"'
