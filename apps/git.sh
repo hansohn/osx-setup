@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-# source prerequsites
-source ./_config;
-source ./homebrew;
-source ./openssl;
+# import config vars
+source ./_config.sh;
+
+# install prerequisites
+source ./homebrew.sh;
+source ./openssl.sh;
 
 # install git
 if ! brew ls | grep "^git$" > /dev/null 2>&1; then

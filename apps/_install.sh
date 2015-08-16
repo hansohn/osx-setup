@@ -4,7 +4,7 @@
 sudo -v;
 
 # load config file
-source ./_config
+source ./_config.sh
 
 # list apps to install
 apps=(
@@ -23,6 +23,6 @@ apps=(
 )
 
 # install selected apps
-for a in ${apps[@]}; do
-  source ./${a};
+for app in ${apps[@]}; do
+  source ./${app};
 done

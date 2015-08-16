@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-source ./_config;
-source ./homebrew;
-source ./wget;
+# import config vars
+source ./_config.sh;
+
+# install prerequisites
+source ./homebrew.sh;
+source ./wget.sh;
 
 # Install iTerm2
 if ! brew cask ls | grep "^iterm2$" > /dev/null 2>&1; then

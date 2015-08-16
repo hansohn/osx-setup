@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-source ./_config;
-source ./homebrew;
-source ./wget;
+# import config vars
+source ./_config.sh;
+
+# install prerequisites
+source ./homebrew.sh;
+source ./wget.sh;
 
 # variables
 PACKER_DIR="`readlink $(which packer) | sed 's/\/packer//2'`"
