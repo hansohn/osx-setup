@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-source ./_config;
+# import config vars
+source ./_config.sh;
 
 # check for xcode tools, install if missing
 if ! `xcode-select --version` > /dev/null 2>&1; then
