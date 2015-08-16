@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-source ./_config;
-source ./homebrew;
+# import config vars
+source ./_config.sh;
+
+# install prerequisites
+source ./homebrew.sh;
 
 # install vim
 if ! brew ls | grep '^vim$' > /dev/null 2>&1; then

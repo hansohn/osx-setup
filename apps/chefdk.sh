@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-source ./_config;
-source ./homebrew;
-source ./openssl;
+# import config vars
+source ./_config.sh;
+
+# install prerequisites
+source ./homebrew.sh;
+source ./openssl.sh;
 
 # install chefdk
 if ! brew cask ls | grep "^chefdk$" > /dev/null 2>&1; then

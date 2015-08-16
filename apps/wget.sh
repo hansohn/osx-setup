@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-# Gather config variables
-source ./_config;
-source ./homebrew;
-source ./openssl;
+# import config vars
+source ./_config.sh;
 
-# Install WGET
+# install prerequisites
+source ./homebrew.sh;
+source ./openssl.sh;
+
+# install wget
 if ! brew ls | grep '^wget$' > /dev/null 2>&1; then
   echo "==> Installing Wget";
   brew install wget;
