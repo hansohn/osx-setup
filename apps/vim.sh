@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
+# set vars
+SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+
 # import config vars
-source ./_config.sh;
+source ${SCRIPTPATH}/_config.sh;
 
 # install prerequisites
-source ./homebrew.sh;
+source ${SCRIPTPATH}/homebrew.sh;
 
 # install vim
 if ! brew ls | grep '^vim$' > /dev/null 2>&1; then

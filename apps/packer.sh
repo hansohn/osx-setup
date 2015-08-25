@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
+# set vars
+SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+
 # import config vars
-source ./_config.sh;
+source ${SCRIPTPATH}/_config.sh;
 
 # install prerequisites
-source ./homebrew.sh;
-source ./wget.sh;
+source ${SCRIPTPATH}/homebrew.sh;
+source ${SCRIPTPATH}/wget.sh;
 
 # variables
 PACKER_DIR="`readlink $(which packer) | sed 's/\/packer//2'`"
@@ -26,4 +29,10 @@ if brew cask ls | grep "^packer$" > /dev/null 2>&1; then
     sudo chown -R root:wheel ${PACKER_DIR}/*
     sudo rm -f /tmp/darwin_amd64.zip;
   fi
+fi
+
+# install packer-completions
+if ! brew ls | grep -i -q "packer-completion"; then
+  echo "==> Installing packer-completion";
+  brew install packer-completion;
 fi
