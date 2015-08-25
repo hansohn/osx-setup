@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
 # ask for sudo upfront
-sudo -v;
+# sudo -v;
+
+# set vars
+SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
 
 # load config file
-source ./_config.sh
+source ${SCRIPTPATH}/_config.sh
 
 # list apps to install
 apps=(
@@ -25,5 +28,9 @@ apps=(
 
 # install selected apps
 for app in ${apps[@]}; do
+<<<<<<< HEAD:apps/_install.sh
   source ./${app}.sh;
+=======
+  source ${SCRIPTPATH}/${app}.sh;
+>>>>>>> develop:apps/install.sh
 done

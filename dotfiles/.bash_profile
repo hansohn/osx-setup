@@ -46,16 +46,6 @@ if [ -f ${BREW_PREFIX}/etc/bash_completion ]; then
   source "${BREW_PREFIX}/etc/bash_completion";
 fi
 
-# -- git --
-if [ -f ${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash ]; then
-  source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash";
-fi
-
-# -- git-flow --
-if [ -f ${BREW_PREFIX}/opt/git-flow/etc/bash_completion.d/git-flow-completion.bash ]; then
-  source "${BREW_PREFIX}/opt/git-flow/etc/bash_completion.d/git-flow-completion.bash";
-fi
-
 #------------------------------------------------------------------------------
 # SHELL MODS
 #------------------------------------------------------------------------------

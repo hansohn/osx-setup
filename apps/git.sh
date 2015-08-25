@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
+# set vars
+SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+
 # import config vars
-source ./_config.sh;
+source ${SCRIPTPATH}/_config.sh;
 
 # install prerequisites
-source ./homebrew.sh;
-source ./openssl.sh;
+source ${SCRIPTPATH}/homebrew.sh;
+source ${SCRIPTPATH}/openssl.sh;
 
 # install git
 if ! brew ls | grep "^git$" > /dev/null 2>&1; then
