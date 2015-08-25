@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 
-# import config vars
-source ./_config.sh;
+# set vars
+SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
 
-# check for xcode tools, install if missing
-if ! `xcode-select --version` > /dev/null 2>&1; then
-  echo "==> Installing Xcode Tools";
-  sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "INSERT or REPLACE INTO access VALUES('kTCCServiceAccessibility','com.apple.ScriptEditor.id.xcode-tools-installer',0,1,1,NULL)";
-  open ./xcode-tools-installer.app;
-fi
+# import config vars
+source ${SCRIPTPATH}/_config.sh;
 
 # install homebrew
 if ! which brew > /dev/null 2>&1; then
-  if which ruby > dev/null 2>&1; then
+  if [ `xcode-select --version` > /dev/null 2>&1 ] && [ which ruby > dev/null 2>&1 ]; then
     echo "==> Instaling HomeBrew";
     sudo ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
     echo "==> Updating HomeBrew";
@@ -20,7 +16,7 @@ if ! which brew > /dev/null 2>&1; then
     echo "==> Inspecting HomeBrew for configuration issues";
     brew doctor;
   else
-    echo "==> Error: Need Ruby to continue, please run 'xcode-select --install'";
+    echo "==> Error: You need 'XCode Tools' to continue, please run 'xcode-select --install'";
     exit 1;
   fi
 fi
@@ -34,5 +30,13 @@ if which brew > /dev/null 2>&1; then
     brew cask update && brew cask cleanup;
     echo "== Inspecting Brew-Cask for configuration issues"
     brew cask doctor;
+  fi
+fi
+
+# install taps
+if which brew > /dev/null 2>&1; then
+  if ! brew tap | grep -i -q "homebrew/completions" ; then
+    echo "==> Installing homebrew/completions tap";
+    brew tap homebrew/completions;
   fi
 fi
