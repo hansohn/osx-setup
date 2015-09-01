@@ -18,7 +18,7 @@ apm_packages=(
 # install atom text editor
 if ! which atom > /dev/null 2>&1; then
   echo "==> Installing Atom";
-  brew cask install Atom;
+  brew cask install atom;
 fi
 
 # install atom packages
