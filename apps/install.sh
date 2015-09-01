@@ -27,5 +27,9 @@ apps=(
 
 # install selected apps
 for app in ${apps[@]}; do
+  # install app
   source ${SCRIPTPATH}/${app}.sh;
+
+  # reinitialize sudo grace period
+  sudo -v;
 done
