@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# set vars
+SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+
 # dotfiles (relative to ~)
 bp=".bash_profile";                       # bash
 vrc=".vimrc";                             # vim
@@ -29,7 +32,7 @@ for f in ${af[@]}; do
     mv ~/$f ~/$bakd/$f;
   fi
   # copy
-  cp $(`echo pwd`)/dotfiles/$f ~/$dfd/$f;
+  cp ${SCRIPTPATH}/$f ~/$dfd/$f;
   # symlink
   ln -s "$(echo ~)/$dfd/$f" "$(echo ~)/$f";
 done
