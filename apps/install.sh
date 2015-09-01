@@ -17,6 +17,7 @@ apps=(
   "packer"
   "iterm2"
   "atom"
+  "bash"
 )
 
 # install selected apps
