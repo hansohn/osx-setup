@@ -13,7 +13,7 @@ if ! -f ~/Library/Colors/solarized.clr; then
 fi
 
 # install solarized osx terminal profiles
-if ! defaults read ~/Library/Preferences/com.apple.Terminal.plist | grep -q -E "(solarized-light|solarized-dark)"; then
+if [[ ! `defaults read ~/Library/Preferences/com.apple.Terminal.plist | grep -q -E "(solarized-light|solarized-dark)"` ]]; then
   # install solarized-dark osx terminal color profile
   if ! -f /tmp/solarized-dark.terminal ; then
     echo "==> Instaling solarized-dark osx terminal profile";
