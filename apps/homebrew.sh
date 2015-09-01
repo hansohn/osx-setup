@@ -8,9 +8,9 @@ source ${SCRIPTPATH}/_config.sh;
 
 # install homebrew
 if ! which brew > /dev/null 2>&1; then
-  if [ `xcode-select --version` > /dev/null 2>&1 ] && [ which ruby > dev/null 2>&1 ]; then
+  if [[ `xcode-select --version` ]] && [[ `which ruby` ]]; then
     echo "==> Instaling HomeBrew";
-    sudo ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
     echo "==> Updating HomeBrew";
     brew update && brew cleanup;
     echo "==> Inspecting HomeBrew for configuration issues";
