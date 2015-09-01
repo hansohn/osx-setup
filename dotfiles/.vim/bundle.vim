@@ -13,7 +13,6 @@ Plugin 'msanders/snipmate.vim'
 Plugin 'scrooloose/syntastic'
 
 " Syntax
-Plugin 'vim-scripts/applescript'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
