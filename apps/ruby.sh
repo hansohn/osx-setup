@@ -23,6 +23,6 @@ ruby_gems=(
 for gem in ${ruby_gems[@]}; do
   if ! gem list --local | grep ${gem} > /dev/null 2>&1; then
     echo "Installing ${gem} Ruby Gem";
-    gem install $gem;
+    chef gem install $gem;
   fi
 done
