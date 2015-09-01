@@ -42,7 +42,7 @@ Installation
 ------------
 ```bash
 # clone the repo
-$ git clone git@github.com:audio4ears/osx-setup.git
+$ git clone https://git@github.com:audio4ears/osx-setup.git
 
 # execute the installer
 $ osx-setup/osx-setup.sh
