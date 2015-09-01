@@ -17,6 +17,7 @@ if ! brew cask ls | grep "^chefdk$" > /dev/null 2>&1; then
   echo "==> Update PATH with embedded Chef appliations";
   eval "$(chef shell-init bash)";
   echo "==> Configure Knife SSL";
+  mkdir -p ~/.chef
   openssl genrsa 2048 > ~/.chef/${USER}-local.pem;
   knife configure --defaults --key "`echo ~`/.chef/${USER}-local.pem" --repository "";
 fi
