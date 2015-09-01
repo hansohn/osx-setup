@@ -21,9 +21,5 @@ apps=(
 
 # install selected apps
 for app in ${apps[@]}; do
-  # install app
   source `dirname "${BASH_SOURCE[0]}"`/${app}.sh;
-
-  # reinitialize sudo grace period
-  sudo -v;
 done
