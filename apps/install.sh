@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-# ask for sudo upfront
-# sudo -v;
-
-# set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
-
 # load config file
-source ${SCRIPTPATH}/_config.sh
+source `dirname "${BASH_SOURCE[0]}"`/_config.sh
 
 # list apps to install
 apps=(
@@ -29,7 +23,7 @@ apps=(
 # install selected apps
 for app in ${apps[@]}; do
   # install app
-  source ${SCRIPTPATH}/${app}.sh;
+  source `dirname "${BASH_SOURCE[0]}"`/${app}.sh;
 
   # reinitialize sudo grace period
   sudo -v;
