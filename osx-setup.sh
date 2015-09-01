@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
-
 # start sudo grace period (default: 5 mins)
 sudo -v;
 
@@ -16,7 +13,7 @@ scripts=(
 # execute scripts
 for script in ${scripts[@]}; do
   # run script
-  source ${SCRIPTPATH}/$script;
+  source `dirname "${BASH_SOURCE[0]}"`/$script;
 
   # extend sudo grace period
   sudo -v;
