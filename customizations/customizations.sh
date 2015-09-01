@@ -16,8 +16,8 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 ### com.apple.loginwindow ###
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
-defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 # Disallow Guest account to login
-defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
 # "List of users" (FALSE) or "Name and password" (TRUE) indicated at login screen
-defaults read /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
+sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
