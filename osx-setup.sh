@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# start sudo grace period (default: 5 mins)
-sudo -v;
-
 # list scripts to be executed
 scripts=(
   "dotfiles/dotfiles.sh"
@@ -12,9 +9,5 @@ scripts=(
 
 # execute scripts
 for script in ${scripts[@]}; do
-  # run script
   source `dirname "${BASH_SOURCE[0]}"`/$script;
-
-  # extend sudo grace period
-  sudo -v;
 done
