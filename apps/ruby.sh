@@ -4,7 +4,7 @@
 SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
 
 # import config vars
-source ${SCRIPTPATH}/_config.sh;
+source ${SCRIPTPATH}/../config.sh;
 
 # install prerequisites
 source ${SCRIPTPATH}/homebrew.sh;
@@ -15,8 +15,13 @@ source ${SCRIPTPATH}/chefdk.sh;
 
 # list ruby gems to install
 ruby_gems=(
-  "serverspec"
+  "bundler"
+  "jekyll"
+  "knife-vsphere"
+  "knife-windows"
   "nokogiri"
+  "serverspec"
+  "winrm"
 );
 
 # install ruby gems
