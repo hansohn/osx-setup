@@ -4,7 +4,7 @@
 SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
 
 # import config vars
-source ${SCRIPTPATH}/_config.sh;
+source ${SCRIPTPATH}/../config.sh;
 
 # install prerequisites 
 source ${SCRIPTPATH}/homebrew.sh;
