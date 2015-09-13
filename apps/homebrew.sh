@@ -4,7 +4,7 @@
 SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
 
 # import config vars
-source ${SCRIPTPATH}/_config.sh;
+source ${SCRIPTPATH}/../config.sh;
 
 # install homebrew
 if ! which brew > /dev/null 2>&1; then

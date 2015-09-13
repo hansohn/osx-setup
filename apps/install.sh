@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # load config file
-source `dirname "${BASH_SOURCE[0]}"`/_config.sh
+source `dirname "${BASH_SOURCE[0]}"`/../config.sh
 
 # list apps to install
 apps=(

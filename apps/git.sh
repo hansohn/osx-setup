@@ -4,7 +4,7 @@
 SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
 
 # import config vars
-source ${SCRIPTPATH}/_config.sh;
+source ${SCRIPTPATH}/../config.sh;
 
 # install prerequisites
 source ${SCRIPTPATH}/homebrew.sh;
@@ -25,7 +25,8 @@ fi
 # setup gitconfig
 if [ ! -f ~/.gitconfig ] > /dev/null 2>&1; then
   echo "==> Configuring Git"
-  git config --global user.name $FULL_NAME;
-  git config --global user.email $EMAIL_ADDRESS;
+  git config --global user.name $GIT_USER_NAME;
+  git config --global user.email $GIT_USER_EMAIL;
   git config --global core.editor vim;
+  git config --global credential helper osxkeychain;
 fi
