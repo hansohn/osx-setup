@@ -17,6 +17,7 @@ source ${SCRIPTPATH}/chefdk.sh;
 ruby_gems=(
   "bundler"
   "jekyll"
+  "knife-acl"
   "knife-vsphere"
   "knife-windows"
   "nokogiri"
