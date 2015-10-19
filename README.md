@@ -45,5 +45,5 @@ Installation
 $ git clone https://github.com/audio4ears/osx-setup.git
 
 # execute the installer
-$ osx-setup/osx-setup.sh
+$ osx-setup/bootstrap.sh
 ```
