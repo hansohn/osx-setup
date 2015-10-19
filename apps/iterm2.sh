@@ -4,7 +4,7 @@
 SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
 
 # import config vars
-source ${SCRIPTPATH}/_config.sh;
+source ${SCRIPTPATH}/../config.sh;
 
 # install prerequisites
 source ${SCRIPTPATH}/homebrew.sh;
@@ -26,9 +26,9 @@ if brew cask ls | grep '^iterm2$' > /dev/null 2>&1; then
   if "$iterm_install" = true; then
     echo "==> Installing iTerm2 Solarized Color Dark";
     wget -O /tmp/solarized_dark.itermcolors https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Dark.itermcolors;
-    open --background -a iTerm /tmp/solarized_dark.itermcolors;
+    open --background -a /Applications/iTerm.app /tmp/solarized_dark.itermcolors;
     echo "==> Installing iTerm2 Solarized Color Light";
     wget -O /tmp/solarized_light.itermcolors https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors;
-    open --background -a iTerm /tmp/solarized_light.itermcolors;
+    open --background -a /Applications/iTerm.app /tmp/solarized_light.itermcolors;
   fi
 fi
