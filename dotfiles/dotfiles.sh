@@ -3,7 +3,7 @@
 # dotfiles (relative to ~)
 bp=".bash_profile";                       # bash
 vrc=".vimrc";                             # vim
-vun=".vim/bundle.vim";                    # vundle
+vun=".vim/plugins.vim";                    # vundle
 dbv=".vim/dosbatch.vim";                  # dosbatch.vim
 af=($bp $vrc $vun $dbv);                  # all files
 
