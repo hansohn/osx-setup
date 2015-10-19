@@ -26,6 +26,7 @@ fi
 if [ -d /usr/local/opt/go/libexec/bin ] ; then
   export PATH="${PATH}:/usr/local/opt/go/libexec/bin";
   export GOPATH="/Users/${USER}/Code/go";
+  export GOBIN="${GOPATH}/bin";
 fi
 
 # -- hashicorp --
