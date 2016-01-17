@@ -18,8 +18,8 @@ vagrant_plugins=(
 
 # list vagrant boxes to be installed
 vagrant_boxes=(
-  "opscode_centos-6.5"
-  "opscode_centos-6.6"
+  "opscode_centos-6.7"
+  "opscode_centos-7.1"
 );
 
 # install vagrant
