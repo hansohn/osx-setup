@@ -19,6 +19,7 @@ BREW_PREFIX=$(brew --prefix);
 # populate bash path with chefdk binaries
 if [[ $(echo `brew cask list` | grep -i "chefdk") ]]; then
   eval "$(chef shell-init bash)";
+  export EDITOR="VIM";
 fi
 
 # -- go_lang --
@@ -45,6 +46,16 @@ fi
 # -- bash_completion --
 if [ -f ${BREW_PREFIX}/etc/bash_completion ]; then
   source "${BREW_PREFIX}/etc/bash_completion";
+fi
+
+# -- git --
+if [ -f ${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash ]; then
+  source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash";
+fi
+
+# -- git-flow --
+if [ -f ${BREW_PREFIX}/opt/git-flow/etc/bash_completion.d/git-flow-completion.bash ]; then
+  source "${BREW_PREFIX}/opt/git-flow/etc/bash_completion.d/git-flow-completion.bash";
 fi
 
 #------------------------------------------------------------------------------
@@ -79,6 +90,9 @@ alias hostfile='sudo vim /etc/hosts'                              # Edit Hostfil
 
 # -- firewall --
 alias showBlocked='sudo ipfw list'                                # All ipfw rules inc/ blocked IPs
+
+# -- homebrew --
+alias fixbrew='sudo chown -R ${USER}:admin /usr/local'            # OSX constantly brakes file permissions
 
 # -- networking --
 alias wmip="dig +short myip.opendns.com @resolver1.opendns.com"   # Get external IP (whats my ip)
