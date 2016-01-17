@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.0.3](https://github.com/audio4ears/osx-setup/compare/v0.0.2...v0.0.3) (Jan 17, 2016)
+
+FEATURES:
+
+- added lots 3rd party desktop applications
+- minor OSX config tweaks
+
 ## [0.0.2](https://github.com/audio4ears/osx-setup/compare/v0.0.1...v0.0.2) (Jan 17, 2016)
 
 FEATURES:
