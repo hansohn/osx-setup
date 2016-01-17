@@ -32,7 +32,9 @@ fi
 
 # -- hashicorp --
 #export ATLAS_TOKEN="";
+#export ATLAS_USERNAME="";
 #export PACKER_LOG="DEBUG";
+export VAGRANT_DEFAULT_PROVIDER="virtualbox";
 
 # -- iterm --
 if [ -f /Users/${USER}/.iterm2_shell_integration.bash ]; then

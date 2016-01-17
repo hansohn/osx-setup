@@ -23,6 +23,7 @@ ruby_gems=(
   "knife-windows"
   "nokogiri"
   "serverspec"
+  "rails"
   "winrm"
 );
 
