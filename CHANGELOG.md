@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.0.2](https://github.com/audio4ears/osx-setup/compare/v0.0.1...v0.0.2) (Jan 17, 2016)
+
+FEATURES:
+
+- add knide-ec2 gem to ruby gem list
+- add 'fixbrew' alias to bash_profile
+- add 'powerline font symbols to airline vimrc settings
+- add additional vim bundles to plugins.vim
+
 ## [0.0.1](https://github.com/audio4ears/osx-setup/compare/v0.0.0...v0.0.1) (Oct 18, 2015)
 
 FEATURES:
