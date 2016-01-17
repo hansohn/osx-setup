@@ -19,7 +19,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'powerline/fonts'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
 
 " syntax
 Plugin 'hail2u/vim-css3-syntax'
@@ -28,6 +30,7 @@ Plugin 'elzr/vim-json'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'PProvost/vim-ps1.git'
+Plugin 'fatih/vim-go'
 
 " required, plugin available after.
 call vundle#end()
