@@ -25,3 +25,10 @@ if which vim > /dev/null 2>&1; then
     fi
   fi
 fi
+
+# install powerline fonts
+if [ ! -d ~/.vim/fonts ]; then
+  echo "==> Installing Powerline Fonts";
+  git clone https://github.com/powerline/fonts.git ~/.vim/fonts
+  source ~/.vim/fonts/install.sh
+fi

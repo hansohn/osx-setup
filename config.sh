@@ -15,7 +15,6 @@ GIT_USER_EMAIL="";
 
 # ----- switches -----
 WINDOWS_DEV=true;
-iterm_install=false;
 
 # ----- exports -----
 export HOMEBREW_CASK_OPTS="--appdir=/Applications";
