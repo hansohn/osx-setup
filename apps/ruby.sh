@@ -18,6 +18,7 @@ ruby_gems=(
   "bundler"
   "jekyll"
   "knife-acl"
+  "knife-ec2"
   "knife-vsphere"
   "knife-windows"
   "nokogiri"
