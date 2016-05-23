@@ -26,7 +26,7 @@ fi
 # populate path with go_lang binaries
 if [ -d /usr/local/opt/go/libexec/bin ] ; then
   export PATH="${PATH}:/usr/local/opt/go/libexec/bin";
-  export GOPATH="/Users/${USER}/Code/go";
+  export GOPATH="${HOME}/Code/go";
   export GOBIN="${GOPATH}/bin";
 fi
 
@@ -37,8 +37,14 @@ fi
 export VAGRANT_DEFAULT_PROVIDER="virtualbox";
 
 # -- iterm --
-if [ -f /Users/${USER}/.iterm2_shell_integration.bash ]; then
-  source /Users/${USER}/.iterm2_shell_integration.bash;
+if [ -f ${HOME}/.iterm2_shell_integration.bash ]; then
+  source "${HOME}/.iterm2_shell_integration.bash";
+fi
+
+# -- nodejs --
+if [ -f ${BREW_PREFIX}/opt/nvm.sh ]; then
+  export NVM_DIR="${HOME}/.nvm";
+  source "${BREW_PREFIX}/opt/nvm.sh";
 fi
 
 #------------------------------------------------------------------------------
