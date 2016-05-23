@@ -14,12 +14,7 @@ vagrant_plugins=(
   "vagrant-berkshelf"
   "vagrant-omnibus"
   "vagrant-winrm"
-);
-
-# list vagrant boxes to be installed
-vagrant_boxes=(
-  "opscode_centos-6.7"
-  "opscode_centos-7.1"
+  "vagrant-aws"
 );
 
 # install vagrant
@@ -33,14 +28,6 @@ for plugin in ${vagrant_plugins[@]}; do
   if ! vagrant plugin list | grep "^${plugin}\s.*$" > /dev/null 2>&1; then
     echo "==> Installing ${plugin}";
     vagrant plugin install ${plugin};
-  fi
-done
-
-# install vagrant boxes
-for box in ${vagrant_boxes[@]}; do
-  if ! vagrant box list | grep "^${box}\s.*$" > /dev/null 2>&1; then
-    echo "==> Installing ${box} vagrant box";
-    vagrant box add --name ${box} https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/${box}_chef-provisionerless.box;
   fi
 done
 
