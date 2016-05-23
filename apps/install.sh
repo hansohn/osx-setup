@@ -22,30 +22,47 @@ custom_install=(
   "python"
   "aws"
   "firefox"
+  "nodejs"
 )
 
-# install selected apps
-for app in ${custom_install[@]}; do
-  source `dirname "${BASH_SOURCE[0]}"`/${app}.sh;
-done
+# list cask apps for basic install
+basic_brew_install=(
+  "awscli"
+  "csshx"
+  "htop-osx"
+)
 
-# list apps for basic install
-basic_install=(
+# list cask apps for basic install
+basic_cask_install=(
   "adobe-reader"
   "appcleaner"
   "box-sync"
   "dropbox"
   "flash"
+  "flux"
   "google-chrome"
   "google-drive"
   "hyperdock"
   "lastpass"
+  "java"
   "transmission"
 )
 
-# install selected apps
-for app in ${basic_install[@]}; do
-  if ! brew cask ls | grep "^${app}$" > /dev/null 2>&1; then
-    brew cask install ${app};
+# install selected custom apps
+for app in ${custom_install[@]}; do
+  source `dirname "${BASH_SOURCE[0]}"`/${app}.sh;
+done
+
+# install selected brew apps
+for brew in ${basic_brew_install[@]}; do
+  if ! brew ls | grep "^${brew}$" > /dev/null 2>&1; then
+    brew install ${brew};
+  fi
+done
+
+# install selected cask apps
+for cask in ${basic_cask_install[@]}; do
+  if ! brew cask ls | grep "^${cask}$" > /dev/null 2>&1; then
+    brew cask install ${cask};
   fi
 done
