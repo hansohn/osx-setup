@@ -21,20 +21,12 @@ if ! which brew > /dev/null 2>&1; then
   fi
 fi
 
-# install brew-cask
-if which brew > /dev/null 2>&1; then
-  if ! brew ls | grep '^brew-cask$' > /dev/null 2>&1; then
-    echo "==> Installing Brew-Cask"
-    brew install caskroom/cask/brew-cask;
-    echo "==> Updating Brew-Cask"
-    brew cask update && brew cask cleanup;
-    echo "== Inspecting Brew-Cask for configuration issues"
-    brew cask doctor;
-  fi
-fi
-
 # install taps
 if which brew > /dev/null 2>&1; then
+  if ! brew tap | grep -i -q "caskroom/cask" ; then
+    echo "==> Installing caskroom/cask tap";
+    brew tap caskroom/cask;
+  fi
   if ! brew tap | grep -i -q "homebrew/completions" ; then
     echo "==> Installing homebrew/completions tap";
     brew tap homebrew/completions;

@@ -29,6 +29,7 @@ fi
 # install powerline fonts
 if [ ! -d ~/.vim/fonts ]; then
   echo "==> Installing Powerline Fonts";
-  git clone https://github.com/powerline/fonts.git ~/.vim/fonts
-  source ~/.vim/fonts/install.sh
+  git clone https://github.com/powerline/fonts.git ~/.vim/fonts;
+  chmod 755 ${HOME}/.vim/fonts/install.sh;
+  source ${HOME}/.vim/fonts/install.sh;
 fi
