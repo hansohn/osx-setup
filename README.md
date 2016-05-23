@@ -1,6 +1,6 @@
 # osx-setup
 
-Welcome to my [osx-setup](https://github.com/audio4ears/osx-setup). Since I am a Systems Administrator by trade, this osx-setup reflects the various tools I use to support a multitude of applications and operating systems on a daily basis. As with most osx-setup repos, this is a continuous work in progress and is updated as the systems/applications I work on evolve or my tool preferences change.
+Welcome to my [osx-setup](https://github.com/audio4ears/osx-setup). Since I am a DevOps Engineer by trade, this osx-setup reflects the various tools I use to support a multitude of applications and operating systems on a daily basis. As with most osx-setup repos, this is a continuous work in progress and is updated as the systems/applications I work on evolve or my tool preferences change.
 
 Whats Included
 --------------
@@ -17,13 +17,16 @@ This script will install and configure the following applications:
 - [chefdk](https://downloads.chef.io/chef-dk/)
 - [dropbox](https://www.dropbox.com/)
 - [firefox](https://www.mozilla.org/en-US/firefox/products/)
+- [flux](https://justgetflux.com/)
 - [git](https://git-scm.com/)
 - [google chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - [google drive](https://www.google.com/drive/)
 - [homebrew](http://brew.sh/)
 - [hyperdock](https://bahoom.com/hyperdock/)
 - [iterm2](https://www.iterm2.com/)
+- [java](https://java.com/en/download/)
 - [lastpass](https://lastpass.com/getlastpass.php)
+- [nodejs](https://nodejs.org/en/)
 - [openssl](https://www.openssl.org/)
 - [packer](https://www.packer.io/)
 - [python](https://www.python.org/)
