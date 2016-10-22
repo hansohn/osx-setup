@@ -30,6 +30,7 @@ basic_brew_install=(
   "awscli"
   "csshx"
   "htop-osx"
+  "tmux"
 )
 
 # list cask apps for basic install
@@ -42,9 +43,9 @@ basic_cask_install=(
   "flux"
   "google-chrome"
   "google-drive"
-  "hyperdock"
   "lastpass"
   "java"
+  "spectacle"
   "transmission"
 )
 
