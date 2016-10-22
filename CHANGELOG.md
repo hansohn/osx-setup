@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.2.0](https://github.com/audio4ears/osx-setup/compare/v0.1.0...v0.2.0) (Oct 22, 2016)
+
+FEATURES:
+
+- replace hyperdock with spectacle
+- add tmux
+
 ## [0.1.0](https://github.com/audio4ears/osx-setup/compare/v0.0.3...v0.1.0) (May 22, 2016)
 
 FEATURES:
