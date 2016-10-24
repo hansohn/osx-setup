@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.3.0](https://github.com/audio4ears/osx-setup/compare/v0.2.0...v0.3.0) (Oct 24, 2016)
+
+FEATURES:
+- brew cask install alfred
+- add salt, scala, and jinja functionality to vim
+- update flushdns bash alias for el capitan and newer os versions
+
 ## [0.2.0](https://github.com/audio4ears/osx-setup/compare/v0.1.0...v0.2.0) (Oct 22, 2016)
 
 FEATURES:

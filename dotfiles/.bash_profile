@@ -4,7 +4,7 @@
 # assumes that 3rd party applications were installed with
 # homebrew when available.
 
-export PATH="/usr/local/bin:${PATH}"
+export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
 
 #------------------------------------------------------------------------------
 # APPLICATIONS
@@ -93,7 +93,7 @@ alias disk='du -hd 1'                                             # Disk usage
 alias fs="stat -f '%z bytes'"                                     # File size
 
 # -- dns --
-alias flushdns="sudo discoveryutil mdnsflushcache;sudo discoveryutil udnsflushcaches" # Flush DNS cache
+alias flushdns="dscacheutil -flushcache;sudo killall -HUP mDNSResponder" # Flush DNS cache
 alias hostfile='sudo vim /etc/hosts'                              # Edit Hostfile
 
 # -- firewall --
