@@ -10,6 +10,7 @@ Whats Included
 This script will install and configure the following applications:
 - [adobe flash](https://get.adobe.com/flashplayer/)
 - [adobe reader](https://get.adobe.com/reader/?promoid=KLXME)
+- [alfred](https://www.alfredapp.com/)
 - [appcleaner](https://freemacsoft.net/appcleaner/)
 - [atom](https://atom.io/)
 - [awscli](https://aws.amazon.com/cli/)
@@ -22,7 +23,6 @@ This script will install and configure the following applications:
 - [google chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - [google drive](https://www.google.com/drive/)
 - [homebrew](http://brew.sh/)
-- [hyperdock](https://bahoom.com/hyperdock/)
 - [iterm2](https://www.iterm2.com/)
 - [java](https://java.com/en/download/)
 - [lastpass](https://lastpass.com/getlastpass.php)
@@ -31,6 +31,7 @@ This script will install and configure the following applications:
 - [packer](https://www.packer.io/)
 - [python](https://www.python.org/)
 - [ruby](https://www.ruby-lang.org/en/)
+- [spectacle](https://www.spectacleapp.com/)
 - [transmission](http://www.transmissionbt.com/)
 - [vagrant](https://www.vagrantup.com/)
 - [vim](http://www.vim.org/)
