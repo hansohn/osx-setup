@@ -36,6 +36,7 @@ basic_brew_install=(
 # list cask apps for basic install
 basic_cask_install=(
   "adobe-reader"
+  "alfred"
   "appcleaner"
   "box-sync"
   "dropbox"

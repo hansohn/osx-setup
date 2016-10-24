@@ -33,6 +33,9 @@ Plugin 'StanAngeloff/php.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'PProvost/vim-ps1.git'
 Plugin 'fatih/vim-go'
+Plugin 'saltstack/salt-vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'lepture/vim-jinja'
 
 " required, plugin available after.
 call vundle#end()
