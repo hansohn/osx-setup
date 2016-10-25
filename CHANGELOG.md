@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.3.1](https://github.com/audio4ears/osx-setup/compare/v0.3.0...v0.3.1) (Oct 25, 2016)
+
+FEATURES:
+
+- add vim pastetoggle vim functionality
+- add bash pclip function
+
+BUG FIXES:
+
+- remove set paste functionality. its not working correctly
+
 ## [0.3.0](https://github.com/audio4ears/osx-setup/compare/v0.2.0...v0.3.0) (Oct 24, 2016)
 
 FEATURES:
