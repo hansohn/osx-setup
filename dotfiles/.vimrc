@@ -23,7 +23,8 @@ set laststatus=2                            " show the status line
 set statusline=%F[%L][%{&ff}][%p%%][%l,%v]  " configure the status line
 set colorcolumn=80                          " mark the 80 char column.
 
-set paste                                   " don't suck at pasting
+"set paste                                   " don't suck at pasting
+set pastetoggle=<F2>                        " set pastetoggle
 set backspace=2                             " make backspace work like most other apps
 
 " error bells
