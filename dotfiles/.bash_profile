@@ -113,6 +113,9 @@ alias ipInfo0='ipconfig getpacket en0'                            # Get info on 
 alias ipInfo1='ipconfig getpacket en1'                            # Get info on connections for en1
 alias openPorts='sudo lsof -i | grep LISTEN'                      # All listening connections
 
+# -- paste commands --
+pclip() { cat $1 | pbcopy; }
+
 # -- preferred commands --
 alias cp='cp -iv'                                                 # Preferred 'cp'
 alias df="df -h"                                                  # Preferred ‘df’
