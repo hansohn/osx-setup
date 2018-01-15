@@ -6,7 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
-## [0.3.1](https://github.com/audio4ears/osx-setup/compare/v0.3.0...v0.3.1) (Oct 25, 2016)
+## [0.4.0](https://github.com/audio4ears/osx-setup/compare/0.3.1...0.4.0) (Feb 2, 2017)
+
+FEATURES:
+
+- 
+
+## [0.3.1](https://github.com/audio4ears/osx-setup/compare/0.3.0...0.3.1) (Oct 25, 2016)
 
 FEATURES:
 
@@ -17,21 +23,21 @@ BUG FIXES:
 
 - remove set paste functionality. its not working correctly
 
-## [0.3.0](https://github.com/audio4ears/osx-setup/compare/v0.2.0...v0.3.0) (Oct 24, 2016)
+## [0.3.0](https://github.com/audio4ears/osx-setup/compare/0.2.0...0.3.0) (Oct 24, 2016)
 
 FEATURES:
 - brew cask install alfred
 - add salt, scala, and jinja functionality to vim
 - update flushdns bash alias for el capitan and newer os versions
 
-## [0.2.0](https://github.com/audio4ears/osx-setup/compare/v0.1.0...v0.2.0) (Oct 22, 2016)
+## [0.2.0](https://github.com/audio4ears/osx-setup/compare/0.1.0...0.2.0) (Oct 22, 2016)
 
 FEATURES:
 
 - replace hyperdock with spectacle
 - add tmux
 
-## [0.1.0](https://github.com/audio4ears/osx-setup/compare/v0.0.3...v0.1.0) (May 22, 2016)
+## [0.1.0](https://github.com/audio4ears/osx-setup/compare/0.0.3...0.1.0) (May 22, 2016)
 
 FEATURES:
 
@@ -50,14 +56,14 @@ BUG FIXES:
 - fix awscli installation
 - fix gitconfig osxkeychain helper stanza 
 
-## [0.0.3](https://github.com/audio4ears/osx-setup/compare/v0.0.2...v0.0.3) (Jan 17, 2016)
+## [0.0.3](https://github.com/audio4ears/osx-setup/compare/0.0.2...0.0.3) (Jan 17, 2016)
 
 FEATURES:
 
 - added lots 3rd party desktop applications
 - minor OSX config tweaks
 
-## [0.0.2](https://github.com/audio4ears/osx-setup/compare/v0.0.1...v0.0.2) (Jan 17, 2016)
+## [0.0.2](https://github.com/audio4ears/osx-setup/compare/0.0.1...0.0.2) (Jan 17, 2016)
 
 FEATURES:
 
@@ -66,7 +72,7 @@ FEATURES:
 - add 'powerline font symbols to airline vimrc settings
 - add additional vim bundles to plugins.vim
 
-## [0.0.1](https://github.com/audio4ears/osx-setup/compare/v0.0.0...v0.0.1) (Oct 18, 2015)
+## [0.0.1](https://github.com/audio4ears/osx-setup/compare/0.0.0...0.0.1) (Oct 18, 2015)
 
 FEATURES:
 
