@@ -30,6 +30,7 @@ basic_brew_install=(
   "awscli"
   "csshx"
   "htop-osx"
+  "sbt"
   "tmux"
 )
 
