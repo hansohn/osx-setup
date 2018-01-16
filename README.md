@@ -14,7 +14,6 @@ This script will install and configure the following applications:
 - [appcleaner](https://freemacsoft.net/appcleaner/)
 - [atom](https://atom.io/)
 - [awscli](https://aws.amazon.com/cli/)
-- [box sync](https://sites.box.com/sync4/)
 - [caffeine](http://lightheadsw.com/caffeine/)
 - [chefdk](https://downloads.chef.io/chef-dk/)
 - [curl](https://curl.haxx.se/)
@@ -31,6 +30,7 @@ This script will install and configure the following applications:
 - [java](https://java.com/en/download/)
 - [jq](https://stedolan.github.io/jq/)
 - [lastpass](https://lastpass.com/getlastpass.php)
+- [meld](http://meldmerge.org/)
 - [nodejs](https://nodejs.org/en/)
 - [openssl](https://www.openssl.org/)
 - [packer](https://www.packer.io/)
@@ -54,6 +54,8 @@ This script will install and configure the following applications:
 Prerequisites
 -------------
 
+[Command line Tools for Xcode](https://developer.apple.com/xcode/) are required by [Homebrew](https://brew.sh/) and various other applications. You can install them using the commands below or let Homebrew install them for you during its installation process.
+
 ```bash
 # install xcode tools
 $ xcode-select --install
@@ -61,6 +63,8 @@ $ xcode-select --install
 
 Installation
 ------------
+
+You will need Administrator level permissions to complete this setup and will most likely be prompted for your password multiple times during the installation process. Enjoy!
 
 ```bash
 # clone the repo

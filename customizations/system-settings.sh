@@ -7,41 +7,74 @@ SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
 source ${SCRIPTPATH}/../config.sh;
 
 
-# -- NSGlobalDomain --
+# ----------------------------------------------
+# Date & Time
+# ----------------------------------------------
 
-# Disable “natural” (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-
-# Finder: show all filename extensions
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
-# Disable smart quotes
-defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-
-# Disable smart dashes
-defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-
-# Save to disk (not to iCloud) by default
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+sudo systemsetup -settimezone "${TIMEZONE}";
+sudo systemsetup -setnetworktimeserver "${TIMESERVER}";
+sudo systemsetup -setusingnetworktime "on";
 
 
-# -- com.apple.loginwindow --
+# ----------------------------------------------
+# Application layer firewall
+# ----------------------------------------------
+
+# Enable ALF
+sudo defaults write /Library/Preferences/com.apple.alf.plist globalstate -int 1;
+
+# Allow signed apps
+sudo defaults write /Library/Preferences/com.apple.alf.plist allowsignedenabled -bool true;
+
+# Enable logging
+sudo defaults write /Library/Preferences/com.apple.alf.plist loggingenabled -bool true;
+
+# Disable stealth mode
+sudo defaults write /Library/Preferences/com.apple.alf.plist stealthenabled -bool false;
+
+
+# ----------------------------------------------
+# Login window
+# ----------------------------------------------
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
-sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+sudo defaults write /Library/Preferences/com.apple.loginwindow.plist AdminHostInfo -string 'HostName';
 
 # Disallow Guest account to login
-sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+sudo defaults write /Library/Preferences/com.apple.loginwindow.plist GuestEnabled -bool false;
 
 # Show a message when the screen is locked
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found please contact ${EMAIL_ADDRESS}. Thank you!"
+sudo defaults write /Library/Preferences/com.apple.loginwindow.plist LoginwindowText \
+  -string "If found please contact ${EMAIL_ADDRESS}. Thank you!";
 
-# "List of users" (FALSE) or "Name and password" (TRUE) indicated at login screen
-sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
+# Display login window as: Name and password
+sudo defaults write /Library/Preferences/com.apple.loginwindow.plist SHOWFULLNAME -bool true;
+
+# Don't show any password hints
+sudo defaults write /Library/Preferences/com.apple.loginwindow.plist RetriesUntilHint -int 0;
+
+# Allow fast user switching
+sudo defaults write /Library/Preferences/.GlobalPreferences.plist MultipleSessionEnabled -bool true;
 
 
-# -- systemsetup --
+# ----------------------------------------------
+# NSGlobalDomain
+# ----------------------------------------------
 
-# Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "${TIMEZONE}"
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true;
 
+# Disable smart dashes
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false;
+
+# Disable smart quotes
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false;
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false;
+
+# Disable “natural” (Lion-style) scrolling
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false;
+
+# set keyboard to to fn keys
+defaults write NSGlobalDomain com.apple.keyboard.fnState -int 1;
