@@ -13,7 +13,7 @@ source ${SCRIPTPATH}/openssl.sh;
 # install git
 if ! brew ls | grep "^git$" > /dev/null 2>&1; then
   echo "==> Installing Git";
-  brew install git --with-brewed-openssl;
+  brew install git --with-openssl;
 fi
 
 # install git-flow

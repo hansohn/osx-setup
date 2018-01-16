@@ -20,9 +20,10 @@ custom_install=(
   "bash"
   "osx-terminal"
   "python"
-  "aws"
   "nodejs"
   "docker"
+  "java"
+  "hadoop"
 )
 
 # list cask apps for basic install
@@ -45,9 +46,8 @@ basic_cask_install=(
   "flux"
   "google-backup-and-sync"
   "google-chrome"
-  "hadoop"
-  "java"
   "lastpass"
+  "meld"
   "postman"
   "slack"
   "spectacle"
@@ -64,6 +64,7 @@ done
 # install selected brew apps
 for brew in ${basic_brew_install[@]}; do
   if ! brew ls | grep "^${brew}$" > /dev/null 2>&1; then
+    echo "==> Installing ${brew}";
     brew install ${brew};
   fi
 done
@@ -71,6 +72,7 @@ done
 # install selected cask apps
 for cask in ${basic_cask_install[@]}; do
   if ! brew cask ls | grep "^${cask}$" > /dev/null 2>&1; then
+    echo "==> Installing ${cask}";
     brew cask install ${cask};
   fi
 done
