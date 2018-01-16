@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.5.1](https://github.com/audio4ears/osx-setup/compare/0.5.0...0.5.1) (Jan 16, 2018)
+
+BUG FIXES:
+
+- fix atom installation
+- fix docker installation
+- fix hadoop installation
+- fix nodejs installation
+- fix packer installation
+- fix python installation
+
+APPLICATIONS ADDED:
+
+- [meld](http://meldmerge.org/)
+
 ## [0.5.0](https://github.com/audio4ears/osx-setup/compare/0.4.0...0.5.0) (Jan 15, 2018)
 
 FEATURES:
