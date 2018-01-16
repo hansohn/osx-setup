@@ -13,7 +13,6 @@ source ${SCRIPTPATH}/homebrew.sh;
 vagrant_plugins=(
   "vagrant-berkshelf"
   "vagrant-omnibus"
-  "vagrant-winrm"
   "vagrant-aws"
 );
 
