@@ -29,7 +29,7 @@ fi
 
 # install atom packages
 for package in ${apm_packages[@]}; do
-  if ! apm list | grep -i -q "${package}"; then
+  if ! apm list --installed --bare | grep -i "${package}" > /dev/null 2>&1; then
     echo "==> Installing atom package: ${package}";
     apm --color install ${package};
   fi

@@ -12,9 +12,9 @@ source ${SCRIPTPATH}/wget.sh;
 
 
 # Install Packer
-if ! brew cask ls | grep "^packer$" > /dev/null 2>&1; then
+if ! brew ls | grep "^packer$" > /dev/null 2>&1; then
     echo "==> Installing Packer";
-    brew cask install packer;
+    brew install packer;
 fi
 
 # install packer-completions
