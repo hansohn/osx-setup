@@ -21,34 +21,39 @@ custom_install=(
   "osx-terminal"
   "python"
   "aws"
-  "firefox"
   "nodejs"
+  "docker"
 )
 
 # list cask apps for basic install
 basic_brew_install=(
   "awscli"
   "csshx"
-  "htop-osx"
-  "sbt"
+  "curl"
+  "jq"
   "tmux"
 )
 
 # list cask apps for basic install
 basic_cask_install=(
-  "adobe-reader"
-  "alfred"
+  "adobe-acrobat-reader"
+  "aerial"
   "appcleaner"
-  "box-sync"
+  "caffeine"
   "dropbox"
-  "flash"
+  "firefox"
   "flux"
+  "google-backup-and-sync"
   "google-chrome"
-  "google-drive"
-  "lastpass"
+  "hadoop"
   "java"
+  "lastpass"
+  "postman"
+  "slack"
   "spectacle"
+  "spotify"
   "transmission"
+  "wireshark"
 )
 
 # install selected custom apps

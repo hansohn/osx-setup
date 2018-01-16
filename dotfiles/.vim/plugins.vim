@@ -8,6 +8,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " colorschemes
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'dracula/vim'
 
 " utilities
 Plugin 'kien/ctrlp.vim'
@@ -24,6 +25,8 @@ Plugin 'powerline/fonts'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'nvie/vim-flake8'
 
 " syntax
 Plugin 'hail2u/vim-css3-syntax'
@@ -36,6 +39,7 @@ Plugin 'fatih/vim-go'
 Plugin 'saltstack/salt-vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'lepture/vim-jinja'
+Plugin 'elubow/cql-vim'
 
 " required, plugin available after.
 call vundle#end()
