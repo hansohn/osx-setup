@@ -6,11 +6,46 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.5.0](https://github.com/audio4ears/osx-setup/compare/0.4.0...0.5.0) (Jan 15, 2018)
+
+FEATURES:
+
+- updated atom apm_packages list
+- updated bash_profile
+- updated vimrc
+- updated vundle plugins
+- add extension pack to virtualbox install
+
+APPLICATIONS ADDED:
+
+- [aerial](https://github.com/JohnCoates/Aerial)
+- [caffeine](http://lightheadsw.com/caffeine/)
+- [curl](https://curl.haxx.se/)
+- [docker](https://www.docker.com/docker-mac)
+- [hadoop](http://hadoop.apache.org/)
+- [jq](https://stedolan.github.io/jq/)
+- [postman](https://www.getpostman.com/)
+- [spotify](https://www.spotify.com/us/)
+- [slack](https://slack.com/)
+- [wireshark](https://www.wireshark.org/)
+
+APPLICATIONS REMOVED:
+
+- [adobe flash](https://get.adobe.com/flashplayer/)
+- [alfred](https://www.alfredapp.com/)
+- [box sync](https://sites.box.com/sync4/)
+- [htop](http://hisham.hm/htop/)
+- [sbt](https://www.scala-sbt.org/)
+
 ## [0.4.0](https://github.com/audio4ears/osx-setup/compare/0.3.1...0.4.0) (Feb 2, 2017)
 
 FEATURES:
 
-- 
+- add sbt to install list
+
+BUG FIXES:
+
+- fix changelog links
 
 ## [0.3.1](https://github.com/audio4ears/osx-setup/compare/0.3.0...0.3.1) (Oct 25, 2016)
 

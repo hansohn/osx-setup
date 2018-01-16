@@ -15,6 +15,12 @@ export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications";
 BREW_PREFIX=$(brew --prefix);
 
+# -- cassandra --
+# populate bash path with cassandra binaries
+if [ -d "/opt/dsc-cassandra/current/bin" ]; then
+  export PATH="/opt/dsc-cassandra/current/bin:${PATH}"
+fi
+
 # -- chefdk --
 # populate bash path with chefdk binaries
 if [[ $(echo `brew cask list` | grep -i "chefdk") ]]; then
@@ -22,12 +28,24 @@ if [[ $(echo `brew cask list` | grep -i "chefdk") ]]; then
   export EDITOR="VIM";
 fi
 
+# -- curl --
+if [ -d "/usr/local/opt/curl/bin" ]; then
+  export PATH="/usr/local/opt/curl/bin:${PATH}"
+fi
+
 # -- go_lang --
 # populate path with go_lang binaries
-if [ -d /usr/local/opt/go/libexec/bin ] ; then
+if [ -d "/usr/local/opt/go/libexec/bin" ] ; then
   export PATH="${PATH}:/usr/local/opt/go/libexec/bin";
   export GOPATH="${HOME}/Code/go";
   export GOBIN="${GOPATH}/bin";
+fi
+
+# -- hadoop --
+if [ -d "/usr/local/Cellar/hadoop" ]; then
+  export HADOOP_VERSION="$(brew list --versions hadoop | awk '{ print $2 }')";
+  export HADOOP_HOME="/usr/local/Cellar/hadoop/${HADOOP_VERSION}";
+  export HADOOP_CONF_DIR="${HADOOP_HOME}/libexec/etc/hadoop";
 fi
 
 # -- hashicorp --
@@ -37,12 +55,12 @@ fi
 export VAGRANT_DEFAULT_PROVIDER="virtualbox";
 
 # -- iterm --
-if [ -f ${HOME}/.iterm2_shell_integration.bash ]; then
+if [ -f "${HOME}/.iterm2_shell_integration.bash" ]; then
   source "${HOME}/.iterm2_shell_integration.bash";
 fi
 
 # -- nodejs --
-if [ -f ${BREW_PREFIX}/opt/nvm.sh ]; then
+if [ -f "${BREW_PREFIX}/opt/nvm.sh" ]; then
   export NVM_DIR="${HOME}/.nvm";
   source "${BREW_PREFIX}/opt/nvm.sh";
 fi
@@ -114,7 +132,8 @@ alias ipInfo1='ipconfig getpacket en1'                            # Get info on 
 alias openPorts='sudo lsof -i | grep LISTEN'                      # All listening connections
 
 # -- paste commands --
-pclip() { cat $1 | pbcopy; }
+fun_clip() { cat $1 | pbcopy; }
+alias clip=fun_clip
 
 # -- preferred commands --
 alias cp='cp -iv'                                                 # Preferred 'cp'

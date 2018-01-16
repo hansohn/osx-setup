@@ -1,11 +1,11 @@
 filetype off
 filetype plugin indent on
 
-" load plugins from vundle
-source ~/.vim/plugins.vim
-
 " be iMproved
 set nocompatible
+
+" load plugins from vundle
+source ~/.vim/plugins.vim
 
 
 " ----- UI settings -----
@@ -79,6 +79,9 @@ set encoding=utf8
 " explicitly tell vim that the terminal supports 256 colors
 set t_Co=256
 
+" python syntax
+let python_highlight_all=1
+
 
 " -----  Plugins -----
 
@@ -92,6 +95,9 @@ let NERDTreeIgnore = ['\.js.map$']
 nmap <silent> <leader>k :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
 nmap <silent> <leader>y :NERDTreeFind<cr>
+" vim-nerdtree-tabs
+"let g:nerdtree_tabs_open_on_console_startup=1
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 " map fuzzyfinder (CtrlP) plugin
 " nmap <silent> <leader>t :CtrlP<cr>
@@ -116,3 +122,15 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_theme='base16'
+
+" YouCompleteMe
+"let g:ycm_autoclose_preview_windows_after_completion=1
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<cr>
+
+" split
+set splitbelow
+set splitright
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>

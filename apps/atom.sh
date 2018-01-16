@@ -11,8 +11,14 @@ source ${SCRIPTPATH}/homebrew.sh;
 
 # list atom packages to be installed
 apm_packages=(
+  "atom-jinja2"
+  "autocomplete-python"
+  "compare-files"
+  "file-icons"
   "language-batch"
   "language-powershell"
+  "pretty-json"
+  "sort-lines"
 );
 
 # install atom text editor
