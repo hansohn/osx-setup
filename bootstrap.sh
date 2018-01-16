@@ -3,8 +3,8 @@
 # list scripts to be executed
 scripts=(
   "dotfiles/dotfiles.sh"
-  "apps/install.sh"
   "customizations/customizations.sh"
+  "apps/install.sh"
 );
 
 # execute scripts
