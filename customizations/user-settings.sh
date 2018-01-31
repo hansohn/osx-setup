@@ -50,12 +50,15 @@ defaults write ~/Library/Preferences/com.apple.finder.plist ShowExternalHardDriv
 # Show these items on the Desktop: cd's, dvd's, and ipods
 defaults write ~/Library/Preferences/com.apple.finder.plist ShowRemovableMediaOnDesktop -bool true;
 
+# Show these items on the Desktop: user
+defaults write ~/Library/Preferences/com.apple.finder.plist SidebarPlacesSectionDisclosedState -bool true;
+
 # new finder windows show:
-defaults write ~/Library/Preferences/com.apple.finder.plist NewWindowTarget -string 'PfVo';
-defaults write ~/Library/Preferences/com.apple.finder.plist NewWindowTargetPath -string 'file:///';
+defaults write ~/Library/Preferences/com.apple.finder.plist NewWindowTarget -string 'PfHm';
+defaults write ~/Library/Preferences/com.apple.finder.plist NewWindowTargetPath -string 'file:///Users/${USER}/';
 
 # view | show recent tags
-defaults write ~/Library/Preferences/com.apple.finder.plist ShowRecentTags -bool true;
+defaults write ~/Library/Preferences/com.apple.finder.plist ShowRecentTags -bool false;
 
 # view | show path par
 defaults write ~/Library/Preferences/com.apple.finder.plist ShowPathbar -bool true;

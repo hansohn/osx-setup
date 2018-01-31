@@ -29,8 +29,10 @@ custom_install=(
 # list cask apps for basic install
 basic_brew_install=(
   "awscli"
+  "cmake"
   "csshx"
   "curl"
+  "go"
   "jq"
   "tmux"
 )
