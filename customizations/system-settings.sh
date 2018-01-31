@@ -54,7 +54,7 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow.plist SHOWFULLNAM
 sudo defaults write /Library/Preferences/com.apple.loginwindow.plist RetriesUntilHint -int 0;
 
 # Allow fast user switching
-sudo defaults write /Library/Preferences/.GlobalPreferences.plist MultipleSessionEnabled -bool true;
+sudo defaults write /Library/Preferences/.GlobalPreferences.plist MultipleSessionEnabled -bool false;
 
 
 # ----------------------------------------------
