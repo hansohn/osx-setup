@@ -31,5 +31,17 @@ if [ ! -d ~/.vim/fonts ]; then
   echo "==> Installing Powerline Fonts";
   git clone https://github.com/powerline/fonts.git ~/.vim/fonts;
   chmod 755 ${HOME}/.vim/fonts/install.sh;
-  source ${HOME}/.vim/fonts/install.sh;
+  ${HOME}/.vim/fonts/install.sh;
+fi
+
+# compile YouCompleteMe
+if ! brew ls | grep '^cmake$' > /dev/null 2>&1; then
+  echo "==> Installing CMake";
+  brew install cmake;
+fi
+if [-d "~/.vim/bundle/YouCompleteMe" ]; then
+  echo "==> Compiling YouCompleteMe";
+  pushd ~/.vim/bundle/YouCompleteMe;
+  ./install.py --clang-completer --go-completer --js-completer;
+  popd;
 fi

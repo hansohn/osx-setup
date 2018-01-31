@@ -60,9 +60,9 @@ if [ -f "${HOME}/.iterm2_shell_integration.bash" ]; then
 fi
 
 # -- nodejs --
-if [ -f "${BREW_PREFIX}/opt/nvm.sh" ]; then
+if [ -f "${BREW_PREFIX}/opt/nvm/nvm.sh" ]; then
   export NVM_DIR="${HOME}/.nvm";
-  source "${BREW_PREFIX}/opt/nvm.sh";
+  source "${BREW_PREFIX}/opt/nvm/nvm.sh";
 fi
 
 #------------------------------------------------------------------------------
