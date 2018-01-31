@@ -33,8 +33,13 @@ if nvm --version > /dev/null 2>&1; then
   source "$(brew --prefix nvm)/nvm.sh";
   if ! which node > /dev/null 2>&1; then
     echo "==> Installing nodejs";
-    nvm install stable;
-    nvm use default;
+    if [ -n ${NODE_VERSION} ]; then
+      nvm install ${NODE_VERSION};
+      nvm use v${NODE_VERSION};
+    else
+      nvm install stable;
+      nvm use default;
+    fi
   fi
 fi
 

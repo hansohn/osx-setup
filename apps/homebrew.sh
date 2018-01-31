@@ -26,5 +26,7 @@ if which brew > /dev/null 2>&1; then
   if ! brew tap | grep -i -q "caskroom/cask" ; then
     echo "==> Installing caskroom/cask tap";
     brew tap caskroom/cask;
+    echo "==> Installing caskroom/versions tap";
+    brew tap caskroom/versions
   fi
 fi
