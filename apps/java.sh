@@ -10,7 +10,11 @@ source ${SCRIPTPATH}/../config.sh;
 source ${SCRIPTPATH}/homebrew.sh;
 
 # install java
-if ! brew cask ls | grep "^java$" > /dev/null 2>&1; then
+if ! brew cask ls | grep -E "^java([1-9]{1})?$" > /dev/null 2>&1; then
   echo "==> Installing Java";
-  brew cask install java;
+  if [ -n ${JAVA_VERSION} ]; then
+    brew cask install java${JAVA_VERSION};
+  else
+    brew cask install java;
+  fi
 fi
