@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.5.2](https://github.com/audio4ears/osx-setup/compare/0.5.1...0.5.2) (Jan 31, 2018)
+
+BUG FIXES:
+
+- disable fast user switching
+- disable show resent tags in finder
+- fix java installation
+- fix hadoop installation
+- fix node installation
+- fix nvm sourcing
+- fix powerline fonts installation
+
+KNOWN BUGS:
+
+- virtualbox will not install without user interaction due to kext issues
+
+APPLICATIONS ADDED:
+
+- [Go](https://golang.org/)
+- [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
+
 ## [0.5.1](https://github.com/audio4ears/osx-setup/compare/0.5.0...0.5.1) (Jan 16, 2018)
 
 BUG FIXES:

@@ -14,6 +14,7 @@ vagrant_plugins=(
   "vagrant-berkshelf"
   "vagrant-omnibus"
   "vagrant-aws"
+  "vagrant-vbguest"
 );
 
 # install vagrant
@@ -31,7 +32,7 @@ for plugin in ${vagrant_plugins[@]}; do
 done
 
 # install vagrant-completion
-if brew tap | grep -i -q "homebrew/completions" && ! brew ls | grep -i -q "vagrant-completion"; then
+if ! brew ls | grep -i -q "vagrant-completion"; then
   echo "==> Installing vagrant-completion";
   brew install vagrant-completion;
 fi
