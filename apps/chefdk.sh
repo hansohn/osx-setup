@@ -10,10 +10,16 @@ source ${SCRIPTPATH}/../config.sh;
 source ${SCRIPTPATH}/homebrew.sh;
 source ${SCRIPTPATH}/openssl.sh;
 
+# brew tap chefdk
+if ! brew tap | grep -i -q "chef/chef"; then
+  echo "==> Installing Chef Brew Taps";
+  brew tap 'chef/chef'
+fi
+
 # install chefdk
 if ! brew cask ls | grep "^chefdk$" > /dev/null 2>&1; then
   echo "==> Installing Chef Development Kit";
-  brew cask install chefdk;
+  brew cask install 'chef/chef/chefdk';
   echo "==> Update PATH with embedded Chef appliations";
   eval "$(chef shell-init bash)";
   echo "==> Configure Knife SSL";
