@@ -22,6 +22,7 @@ This script will install and configure the following applications:
 - [firefox](https://www.mozilla.org/en-US/firefox/products/)
 - [flux](https://justgetflux.com/)
 - [git](https://git-scm.com/)
+- [go](https://golang.org/)
 - [google chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - [google drive](https://www.google.com/drive/)
 - [hadoop](http://hadoop.apache.org/)
@@ -64,7 +65,7 @@ $ xcode-select --install
 Installation
 ------------
 
-You will need Administrator level permissions to complete this setup and will most likely be prompted for your password multiple times during the installation process. Enjoy!
+You will need Administrator level permissions to complete this setup. Enjoy!
 
 ```bash
 # clone the repo
