@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.5.23](https://github.com/audio4ears/osx-setup/compare/0.5.2...0.5.3) (Jan 31, 2018)
+
+BUG FIXES:
+
+- updated readme application list
+
 ## [0.5.2](https://github.com/audio4ears/osx-setup/compare/0.5.1...0.5.2) (Jan 31, 2018)
 
 BUG FIXES:
