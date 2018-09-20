@@ -33,6 +33,7 @@ basic_brew_install=(
   "csshx"
   "curl"
   "go"
+  "dep"
   "jq"
   "tmux"
 )
