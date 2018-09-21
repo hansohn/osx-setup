@@ -23,10 +23,10 @@ fi
 
 # install taps
 if which brew > /dev/null 2>&1; then
-  if ! brew tap | grep -i -q "caskroom/cask" ; then
-    echo "==> Installing caskroom/cask tap";
-    brew tap caskroom/cask;
-    echo "==> Installing caskroom/versions tap";
-    brew tap caskroom/versions
+  if ! brew tap | grep -i -q "homebrew/cask" ; then
+    echo "==> Installing homebrew/cask tap";
+    brew tap homebrew/cask;
+    echo "==> Installing homebrew/cask-versions tap";
+    brew tap homebrew/cask-versions
   fi
 fi
