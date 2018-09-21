@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
-## [0.6.0](https://github.com/audio4ears/osx-setup/compare/0.5.3..0.6.0) (Sep 21, 2018)
+## [0.6.0](https://github.com/hansohn/osx-setup/compare/0.5.3..0.6.0) (Sep 21, 2018)
 
 APPLICATIONS ADDED:
 
@@ -28,13 +28,13 @@ KNOWN ISSUES:
 
 - virtualbox will not install without user interaction due to kext issues
 
-## [0.5.3](https://github.com/audio4ears/osx-setup/compare/0.5.2..0.5.3) (Jan 31, 2018)
+## [0.5.3](https://github.com/hansohn/osx-setup/compare/0.5.2..0.5.3) (Jan 31, 2018)
 
 BUG FIXES:
 
 - update readme application list
 
-## [0.5.2](https://github.com/audio4ears/osx-setup/compare/0.5.1..0.5.2) (Jan 31, 2018)
+## [0.5.2](https://github.com/hansohn/osx-setup/compare/0.5.1..0.5.2) (Jan 31, 2018)
 
 BUG FIXES:
 
@@ -55,7 +55,7 @@ APPLICATIONS ADDED:
 - [Go](https://golang.org/)
 - [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
 
-## [0.5.1](https://github.com/audio4ears/osx-setup/compare/0.5.0..0.5.1) (Jan 16, 2018)
+## [0.5.1](https://github.com/hansohn/osx-setup/compare/0.5.0..0.5.1) (Jan 16, 2018)
 
 BUG FIXES:
 
@@ -70,7 +70,7 @@ APPLICATIONS ADDED:
 
 - [meld](http://meldmerge.org/)
 
-## [0.5.0](https://github.com/audio4ears/osx-setup/compare/0.4.0..0.5.0) (Jan 15, 2018)
+## [0.5.0](https://github.com/hansohn/osx-setup/compare/0.4.0..0.5.0) (Jan 15, 2018)
 
 FEATURES:
 
@@ -101,7 +101,7 @@ APPLICATIONS REMOVED:
 - [htop](http://hisham.hm/htop/)
 - [sbt](https://www.scala-sbt.org/)
 
-## [0.4.0](https://github.com/audio4ears/osx-setup/compare/0.3.1..0.4.0) (Feb 2, 2017)
+## [0.4.0](https://github.com/hansohn/osx-setup/compare/0.3.1..0.4.0) (Feb 2, 2017)
 
 FEATURES:
 
@@ -111,7 +111,7 @@ BUG FIXES:
 
 - fix changelog links
 
-## [0.3.1](https://github.com/audio4ears/osx-setup/compare/0.3.0..0.3.1) (Oct 25, 2016)
+## [0.3.1](https://github.com/hansohn/osx-setup/compare/0.3.0..0.3.1) (Oct 25, 2016)
 
 FEATURES:
 
@@ -122,21 +122,21 @@ BUG FIXES:
 
 - remove set paste functionality. its not working correctly
 
-## [0.3.0](https://github.com/audio4ears/osx-setup/compare/0.2.0..0.3.0) (Oct 24, 2016)
+## [0.3.0](https://github.com/hansohn/osx-setup/compare/0.2.0..0.3.0) (Oct 24, 2016)
 
 FEATURES:
 - brew cask install alfred
 - add salt, scala, and jinja functionality to vim
 - update flushdns bash alias for el capitan and newer os versions
 
-## [0.2.0](https://github.com/audio4ears/osx-setup/compare/0.1.0..0.2.0) (Oct 22, 2016)
+## [0.2.0](https://github.com/hansohn/osx-setup/compare/0.1.0..0.2.0) (Oct 22, 2016)
 
 FEATURES:
 
 - replace hyperdock with spectacle
 - add tmux
 
-## [0.1.0](https://github.com/audio4ears/osx-setup/compare/0.0.3..0.1.0) (May 22, 2016)
+## [0.1.0](https://github.com/hansohn/osx-setup/compare/0.0.3..0.1.0) (May 22, 2016)
 
 FEATURES:
 
@@ -155,14 +155,14 @@ BUG FIXES:
 - fix awscli installation
 - fix gitconfig osxkeychain helper stanza 
 
-## [0.0.3](https://github.com/audio4ears/osx-setup/compare/0.0.2..0.0.3) (Jan 17, 2016)
+## [0.0.3](https://github.com/hansohn/osx-setup/compare/0.0.2..0.0.3) (Jan 17, 2016)
 
 FEATURES:
 
 - added lots 3rd party desktop applications
 - minor OSX config tweaks
 
-## [0.0.2](https://github.com/audio4ears/osx-setup/compare/0.0.1..0.0.2) (Jan 17, 2016)
+## [0.0.2](https://github.com/hansohn/osx-setup/compare/0.0.1..0.0.2) (Jan 17, 2016)
 
 FEATURES:
 
@@ -171,7 +171,7 @@ FEATURES:
 - add 'powerline font symbols to airline vimrc settings
 - add additional vim bundles to plugins.vim
 
-## [0.0.1](https://github.com/audio4ears/osx-setup/compare/0.0.0..0.0.1) (Oct 18, 2015)
+## [0.0.1](https://github.com/hansohn/osx-setup/compare/0.0.0..0.0.1) (Oct 18, 2015)
 
 FEATURES:
 
