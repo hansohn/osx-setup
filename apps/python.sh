@@ -10,15 +10,15 @@ source ${SCRIPTPATH}/../config.sh;
 source ${SCRIPTPATH}/homebrew.sh;
 
 # install python2
-if ! brew ls | grep "^python$" > /dev/null 2>&1; then
+if ! brew ls | grep "^python@2$" > /dev/null 2>&1; then
   echo "==> Installing Python2";
   brew install python;
-  pip2 install --upgrade pip setuptools;
+  python2 -m pip install --upgrade pip setuptools wheel;
 fi
 
 # install python3
-if ! brew ls | grep "^python3$" > /dev/null 2>&1; then
+if ! brew ls | grep "^python$" > /dev/null 2>&1; then
   echo "==> Installing Python3";
   brew install python3;
-  pip3 install --upgrade pip setuptools;
+  python3 -m pip install --upgrade pip setuptools wheel;
 fi
