@@ -6,16 +6,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
-## [0.6.0](https://github.com/audio4ears/osx-setup/compare/0.5.3..0.6.0) (Sep 20, 2018)
+## [0.6.0](https://github.com/audio4ears/osx-setup/compare/0.5.3..0.6.0) (Sep 21, 2018)
 
 FEATURES:
 
-- add go dep
+- install go dep
+- remove lastpass
+- remove vim youcompleteme
 
 BUG FIXES:
 
-- update brew chefdk install
-- update docker completions install 
+- fix brew taps
+- fix brew chefdk install
+- fix docker completions install 
+- fix python install
+
+KNOWN BUGS:
+
+- virtualbox will not install without user interaction due to kext issues
 
 ## [0.5.3](https://github.com/audio4ears/osx-setup/compare/0.5.2..0.5.3) (Jan 31, 2018)
 

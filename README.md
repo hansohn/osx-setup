@@ -30,7 +30,6 @@ This script will install and configure the following applications:
 - [iterm2](https://www.iterm2.com/)
 - [java](https://java.com/en/download/)
 - [jq](https://stedolan.github.io/jq/)
-- [lastpass](https://lastpass.com/getlastpass.php)
 - [meld](http://meldmerge.org/)
 - [nodejs](https://nodejs.org/en/)
 - [openssl](https://www.openssl.org/)
