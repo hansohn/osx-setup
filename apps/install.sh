@@ -49,7 +49,6 @@ basic_cask_install=(
   "flux"
   "google-backup-and-sync"
   "google-chrome"
-  "lastpass"
   "meld"
   "postman"
   "slack"
