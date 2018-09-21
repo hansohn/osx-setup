@@ -8,11 +8,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.6.0](https://github.com/audio4ears/osx-setup/compare/0.5.3..0.6.0) (Sep 21, 2018)
 
-FEATURES:
+APPLICATIONS ADDED:
 
-- install go dep
-- remove lastpass
-- remove vim youcompleteme
+- [dep](https://github.com/golang/dep)
+
+APPLICATIONS REMOVED:
+
+- [lastpass](https://www.lastpass.com/)
+- [YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
 
 BUG FIXES:
 
@@ -21,7 +24,7 @@ BUG FIXES:
 - fix docker completions install 
 - fix python install
 
-KNOWN BUGS:
+KNOWN ISSUES:
 
 - virtualbox will not install without user interaction due to kext issues
 
@@ -29,7 +32,7 @@ KNOWN BUGS:
 
 BUG FIXES:
 
-- updated readme application list
+- update readme application list
 
 ## [0.5.2](https://github.com/audio4ears/osx-setup/compare/0.5.1..0.5.2) (Jan 31, 2018)
 
@@ -43,7 +46,7 @@ BUG FIXES:
 - fix nvm sourcing
 - fix powerline fonts installation
 
-KNOWN BUGS:
+KNOWN ISSUES:
 
 - virtualbox will not install without user interaction due to kext issues
 
