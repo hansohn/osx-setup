@@ -39,7 +39,7 @@ if ! brew ls | grep '^cmake$' > /dev/null 2>&1; then
   echo "==> Installing CMake";
   brew install cmake;
 fi
-if [-d "~/.vim/bundle/YouCompleteMe" ]; then
+if [ -d "~/.vim/bundle/YouCompleteMe" ]; then
   echo "==> Compiling YouCompleteMe";
   pushd ~/.vim/bundle/YouCompleteMe;
   ./install.py --clang-completer --go-completer --js-completer;
