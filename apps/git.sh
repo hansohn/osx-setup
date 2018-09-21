@@ -25,8 +25,8 @@ fi
 # setup gitconfig
 if [ ! -f ~/.gitconfig ] > /dev/null 2>&1; then
   echo "==> Configuring Git"
-  git config --global user.name $GIT_USER_NAME;
-  git config --global user.email $GIT_USER_EMAIL;
+  git config --global user.name "$GIT_USER_NAME";
+  git config --global user.email "$GIT_USER_EMAIL";
   git config --global core.editor vim;
   git config --global credential.helper osxkeychain;
 fi
