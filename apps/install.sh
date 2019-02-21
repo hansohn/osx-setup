@@ -35,6 +35,7 @@ basic_brew_install=(
   "go"
   "dep"
   "jq"
+  "sbt"
   "tmux"
 )
 
@@ -42,6 +43,8 @@ basic_brew_install=(
 basic_cask_install=(
   "adobe-acrobat-reader"
   "aerial"
+  "anaconda"
+  "apache-directory-studio"
   "appcleaner"
   "caffeine"
   "dropbox"
@@ -49,8 +52,10 @@ basic_cask_install=(
   "flux"
   "google-backup-and-sync"
   "google-chrome"
+  "intellij-idea-ce"
   "meld"
   "postman"
+  "pycharm-ce"
   "slack"
   "spectacle"
   "spotify"
