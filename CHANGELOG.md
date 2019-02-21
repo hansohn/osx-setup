@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.7.0](https://github.com/hansohn/osx-setup/compare/0.6.0..0.7.0) (Feb 20, 2019)
+
+APPLICATIONS ADDED:
+
+- [anaconda](https://www.anaconda.com/)
+- [apache-directory-studio](https://directory.apache.org/studio/)
+- [intellij-idea-ce](https://www.jetbrains.com/idea/)
+- [pycharm-ce](https://www.jetbrains.com/pycharm/)
+- [sbt](https://www.scala-sbt.org/)
+
 ## [0.6.0](https://github.com/hansohn/osx-setup/compare/0.5.3..0.6.0) (Sep 21, 2018)
 
 APPLICATIONS ADDED:
