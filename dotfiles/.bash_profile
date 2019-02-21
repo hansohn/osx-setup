@@ -15,6 +15,14 @@ export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications";
 BREW_PREFIX=$(brew --prefix);
 
+# -- anaconda --
+# populate bash path with anaconda binaries
+if [ -d "/usr/local/anaconda3" ]; then
+  export PATH="${PATH}:/usr/local/anaconda3/bin";
+  eval "$(register-python-argcomplete conda)";
+  #source "${BREW_PREFIX}/anaconda3/etc/profile.d/conda.sh";
+fi
+
 # -- cassandra --
 # populate bash path with cassandra binaries
 if [ -d "/opt/dsc-cassandra/current/bin" ]; then
@@ -121,7 +129,8 @@ alias showBlocked='sudo ipfw list'                                # All ipfw rul
 alias fixbrew='sudo chown -R ${USER}:admin /usr/local'            # OSX constantly brakes file permissions
 
 # -- networking --
-alias wmip="dig +short myip.opendns.com @resolver1.opendns.com"   # Get external IP (whats my ip)
+#alias wmip="dig +short myip.opendns.com @resolver1.opendns.com"   # Get external IP (whats my ip)
+alias wmip='curl ipinfo.io'                                       # Get external IP (whats my ip)
 alias ip="ifconfig | awk '/inet / { print \$2 }'"                 # Get all local IPs
 alias netCons='lsof -i'                                           # Show all open TCP/IP sockets
 alias lsock='sudo /usr/sbin/lsof -i -P'                           # Display open sockets
