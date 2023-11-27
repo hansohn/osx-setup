@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/../config.sh;
+source "${SCRIPTPATH}/../config.sh";
 
 # install prerequisites
-source ${SCRIPTPATH}/homebrew.sh;
-source ${SCRIPTPATH}/chefdk.sh;
+source "${SCRIPTPATH}/homebrew.sh";
+source "${SCRIPTPATH}/chefdk.sh";
 
 # @TODO For now I am installing Ruby Gems in Embedded Ruby provided by ChefDK.
 # I will look into transitioning to RVM in the future.
@@ -28,9 +28,9 @@ ruby_gems=(
 );
 
 # install ruby gems
-for gem in ${ruby_gems[@]}; do
-  if ! chef gem list --local | grep ${gem} > /dev/null 2>&1; then
+for gem in "${ruby_gems[@]}"; do
+  if ! chef gem list --local | grep -qe "^${gem}$"; then
     echo "Installing ${gem} Ruby Gem";
-    chef gem install $gem;
+    chef gem install "${gem}";
   fi
 done

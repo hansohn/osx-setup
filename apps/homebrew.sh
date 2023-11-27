@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/../config.sh;
+source "${SCRIPTPATH}/../config.sh";
 
 # install homebrew
 if ! which brew > /dev/null 2>&1; then
-  if [[ `xcode-select --version` ]] && [[ `which ruby` ]]; then
+  if [[ $(xcode-select --version) ]] && [[ $(which ruby) ]]; then
     echo "==> Instaling HomeBrew";
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash;
     echo "==> Updating HomeBrew";

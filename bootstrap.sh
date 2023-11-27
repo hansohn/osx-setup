@@ -4,13 +4,13 @@
 SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/config.sh;
+source "${SCRIPTPATH}/config.sh";
 
 # ----- dotfiles -----
 
-dotfile_dir="$HOME/.dotfiles";
-backup_dir="$dotfile_dir/bak/$(date +%s)";
-vim_dir="$HOME/.vim";
+dotfile_dir="${HOME}/.dotfiles";
+backup_dir="${dotfile_dir}/bak/$(date +%s)";
+vim_dir="${HOME}/.vim";
 
 dotfiles=(
   '.bash_profile'
@@ -20,39 +20,39 @@ dotfiles=(
 );
 
 # create dirs
-for dir in $dotfile_dir $backup_dir $vim_dir; do
-  if [ ! -d $dir ]; then
-    echo "==> Creating directory: $dir"
-    mkdir -p "$HOME/$dir";
+for dir in "${dotfile_dir}" "${backup_dir}" "${vim_dir}"; do
+  if [ ! -d "${dir}" ]; then
+    echo "==> Creating directory: ${dir}";
+    mkdir -p "${HOME}/${dir}";
   fi
 done
 
 # copy dotfile contents
-if [ -z "$(ls -A $dotfile_dir)" ]; then
-  echo "==> Populating dotfile directory"
-  cp -R ${SCRIPTPATH}/dotfiles $HOME/$dotfile_dir
+if [ -z "$(ls -A "${dotfile_dir}")" ]; then
+  echo "==> Populating dotfile directory";
+  cp -R "${SCRIPTPATH}/dotfiles" "${HOME}/${dotfile_dir}";
 fi
 
 
 # manage dotfile
-for dotfile in ${dotfiles[@]}; do
+for dotfile in "${dotfiles[@]}"; do
   # backup if not symlink
-  if [ -f ~/$dotfile ] && [ ! -L  ~/$dotfile ]; then
-    echo "==> Archiving: $HOME/$dotfile to $backup_dir"
-    mv ~/$dotfile ~/$backup_dir/$dotfile;
+  if [ -f "${HOME}/${dotfile}" ] && [ ! -L  "${HOME}/${dotfile}" ]; then
+    echo "==> Archiving: ${HOME}/${dotfile} to ${backup_dir}";
+    mv "${HOME}/${dotfile}" "${HOME}/${backup_dir}/${dotfile}";
   fi
 
   # symlink
-  if [ ! -L  ~/$dotfile ]; then
-    echo "==> Linking: $dotfile_dir/$dotfile to $HOME/$dotfile" 
-    ln -s "$dotfile_dir/$dotfile" "$HOME/$dotfile";
+  if [ ! -L "${HOME}/${dotfile}" ]; then
+    echo "==> Linking: ${dotfile_dir}/${dotfile} to ${HOME}/${dotfile}"; 
+    ln -s "${dotfile_dir}/${dotfile}" "${HOME}/${dotfile}";
   fi
 done
 
 # ----- personalization -----
 
-source $SCRIPTPATH/customizations/system-settings.sh
-source $SCRIPTPATH/customizations/user-settings.sh
+source "${SCRIPTPATH}/customizations/system-settings.sh";
+source "${SCRIPTPATH}/customizations/user-settings.sh";
 
 # ----- apps -----
 
@@ -69,7 +69,7 @@ apps=(
   "bash"
   "osx-terminal"
   "python"
-)
+);
 
 # list cask apps for basic install
 brew_formulae=(
@@ -99,7 +99,7 @@ brew_formulae=(
   "tmux"
   "wget"
   "yamllint"
-)
+);
 
 # list cask apps for basic install
 brew_casks=(
@@ -130,25 +130,26 @@ brew_casks=(
   "visual-studio-code"
   "wireshark"
   "zoom"
-)
+);
 
 # install selected custom apps
-for app in ${apps[@]}; do
-  source ${SCRIPTPATH}/apps/${app}.sh;
+# shellcheck disable=SC1090
+for app in "${apps[@]}"; do
+  source "${SCRIPTPATH}/apps/${app}.sh";
 done
 
 # install selected brew apps
-for formula in ${brew_formulae[@]}; do
+for formula in "${brew_formulae[@]}"; do
   if ! brew ls | grep "^${formula}$" > /dev/null 2>&1; then
     echo "==> Installing ${formula}";
-    brew install ${formula};
+    brew install "${formula}";
   fi
 done
 
 # install selected cask apps
-for cask in ${brew_casks[@]}; do
+for cask in "${brew_casks[@]}"; do
   if ! brew ls | grep "^${cask}$" > /dev/null 2>&1; then
     echo "==> Installing ${cask}";
-    brew install --cask ${cask};
+    brew install --cask "${cask}";
   fi
 done
