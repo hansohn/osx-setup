@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/../config.sh;
+source "${SCRIPTPATH}/../config.sh";
 
 # install prerequisites
-source ${SCRIPTPATH}/homebrew.sh;
+source "${SCRIPTPATH}/homebrew.sh";
 
 # install bash
 if ! brew ls | grep -qe '^bash$'; then
@@ -24,7 +24,8 @@ if [[ "${SHELL##*/}" == 'bash' ]]; then
   fi
 
   # source bash_profile
-  if [ -f ~/.bash_profile ]; then
-    source ~/.bash_profile
+  # shellcheck disable=SC1091
+  if [ -f "${HOME}/.bash_profile" ]; then
+    source "${HOME}/.bash_profile"
   fi
 fi

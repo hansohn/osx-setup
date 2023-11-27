@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/../config.sh;
+source "${SCRIPTPATH}/../config.sh";
 
 # install prerequisites
-source ${SCRIPTPATH}/homebrew.sh;
-source ${SCRIPTPATH}/python.sh;
+source "${SCRIPTPATH}/homebrew.sh";
+source "${SCRIPTPATH}/python.sh";
 
 # list global npms to be installed
 npms=(
@@ -19,23 +19,25 @@ npms=(
 );
 
 # install nvm
+# shellcheck disable=SC1091
 if ! brew ls | grep -qe '^nvm$'; then
   echo "==> Installing nvm";
   brew install nvm;
-  mkdir ~/.nvm;
+  mkdir "${HOME}/.nvm";
   export NVM_DIR="${HOME}/.nvm";
   source "$(brew --prefix nvm)/nvm.sh";
 fi
 
 # install node
+# shellcheck disable=SC1091
 if nvm --version > /dev/null 2>&1; then
   export NVM_DIR="${HOME}/.nvm";
   source "$(brew --prefix nvm)/nvm.sh";
   if ! which node > /dev/null 2>&1; then
     echo "==> Installing nodejs";
-    if [ -n ${NODE_VERSION} ]; then
-      nvm install ${NODE_VERSION};
-      nvm use v${NODE_VERSION};
+    if [ -n "${NODE_VERSION}" ]; then
+      nvm install "${NODE_VERSION}";
+      nvm use "v${NODE_VERSION}";
     else
       nvm install stable;
       nvm use default;
@@ -44,11 +46,12 @@ if nvm --version > /dev/null 2>&1; then
 fi
 
 # install global npms
-for npm in ${npms[@]}; do
+# shellcheck disable=SC1091
+for npm in "${npms[@]}"; do
   if ! npm list -g | grep "\s${npm}@" > /dev/null 2>&1; then
     echo "==> Installing ${npm}";
     export NVM_DIR="${HOME}/.nvm";
     source "$(brew --prefix nvm)/nvm.sh";
-    npm install -g ${npm};
+    npm install -g "${npm}";
   fi
 done

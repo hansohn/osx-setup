@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/../config.sh;
+source "${SCRIPTPATH}/../config.sh";
 
 # install prerequisites
-source ${SCRIPTPATH}/homebrew.sh;
+source "${SCRIPTPATH}/homebrew.sh";
 
 # list vagrant plugins to be installed
 vagrant_plugins=(
@@ -22,10 +22,10 @@ if ! brew ls | grep -qe '^vagrant$'; then
 fi
 
 # install vagrant plugins
-for plugin in ${vagrant_plugins[@]}; do
+for plugin in "${vagrant_plugins[@]}"; do
   if ! vagrant plugin list | grep -qe "^${plugin}\s+.*$"; then
     echo "==> Installing ${plugin}";
-    vagrant plugin install ${plugin};
+    vagrant plugin install "${plugin}";
   fi
 done
 

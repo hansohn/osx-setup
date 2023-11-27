@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/../config.sh;
+source "${SCRIPTPATH}/../config.sh";
 
 # install prerequisites
-source ${SCRIPTPATH}/homebrew.sh;
-source ${SCRIPTPATH}/openssl.sh;
+source "${SCRIPTPATH}/homebrew.sh";
+source "${SCRIPTPATH}/openssl.sh";
 
 # brew tap chefdk
 if ! brew tap | grep -i -q "chef/chef"; then
@@ -24,8 +24,8 @@ if ! brew ls | grep "^chefdk$" > /dev/null 2>&1; then
   eval "$(chef shell-init bash)";
   echo "==> Configure Knife SSL";
   mkdir -p ~/.chef
-  openssl genrsa 2048 > ~/.chef/${USER}-local.pem;
-  knife configure --defaults --key "`echo ~`/.chef/${USER}-local.pem" --repository "";
+  openssl genrsa 2048 > "${HOME}/.chef/${USER}-local.pem";
+  knife configure --defaults --key "${HOME}/.chef/${USER}-local.pem" --repository "";
 fi
 
 # install kitchen-completion
