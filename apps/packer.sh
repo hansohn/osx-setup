@@ -12,13 +12,13 @@ source ${SCRIPTPATH}/wget.sh;
 
 
 # Install Packer
-if ! brew ls | grep "^packer$" > /dev/null 2>&1; then
+if ! brew ls | grep -qe '^packer$'; then
     echo "==> Installing Packer";
     brew install packer;
 fi
 
 # install packer-completions
-if ! brew ls | grep -i -q "packer-completion"; then
+if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls | grep -qe '^packer-completion$'; then
   echo "==> Installing packer-completion";
   brew install packer-completion;
 fi

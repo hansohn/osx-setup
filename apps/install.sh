@@ -1,85 +1,104 @@
 #!/usr/bin/env bash
 
-# load config file
-source `dirname "${BASH_SOURCE[0]}"`/../config.sh
+# set vars
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
+
+# import config vars
+source ${SCRIPTPATH}/../config.sh;
 
 # list apps for customized install
-custom_install=(
+apps=(
   "homebrew"
   "openssl"
   "wget"
   "vim"
   "git"
-  "virtualbox"
-  "chefdk"
-  "ruby"
   "vagrant"
   "packer"
   "iterm2"
-  "atom"
   "bash"
   "osx-terminal"
   "python"
-  "nodejs"
-  "docker"
-  "java"
-  "hadoop"
 )
 
 # list cask apps for basic install
-basic_brew_install=(
+brew_formulae=(
   "awscli"
   "cmake"
-  "csshx"
   "curl"
+  "doctl"
+  "gh"
   "go"
-  "dep"
+  "golangci-lint"
+  "grep"
+  "ipcalc"
   "jq"
-  "sbt"
+  "jsonlint"
+  "kubernetes-cli"
+  "macvim"
+  "mas"
+  "nmap"
+  "shellcheck"
+  "speedtest"
+  "terraform"
+  "terraform-docs"
+  "terragrunt"
+  "tfenv"
+  "tflint"
+  "tfswitch"
   "tmux"
+  "wget"
+  "yamllint"
 )
 
 # list cask apps for basic install
-basic_cask_install=(
+brew_casks=(
+  "1password"
   "adobe-acrobat-reader"
-  "aerial"
-  "anaconda"
-  "apache-directory-studio"
   "appcleaner"
-  "caffeine"
-  "dropbox"
+  "aws-vault"
+  "burp-suite"
+  "dash6"
+  "discord"
+  "docker"
   "firefox"
-  "flux"
-  "google-backup-and-sync"
+  "geekbench"
   "google-chrome"
-  "intellij-idea-ce"
+  "google-cloud-sdk"
+  "gpg-suite-no-mail"
+  "keybase"
   "meld"
   "postman"
   "pycharm-ce"
+  "rectangle"
   "slack"
-  "spectacle"
   "spotify"
-  "transmission"
+  "tor-browser"
+  "ubiquiti-unifi-controller"
+  "virtualbox"
+  "virtualbox-extension-pack"
+  "visual-studio-code"
   "wireshark"
+  "zoom"
 )
 
 # install selected custom apps
-for app in ${custom_install[@]}; do
-  source `dirname "${BASH_SOURCE[0]}"`/${app}.sh;
+for app in ${apps[@]}; do
+  source ${SCRIPTPATH}/apps/${app}.sh;
 done
 
 # install selected brew apps
-for brew in ${basic_brew_install[@]}; do
-  if ! brew ls | grep "^${brew}$" > /dev/null 2>&1; then
-    echo "==> Installing ${brew}";
-    brew install ${brew};
+for formula in ${brew_formulae[@]}; do
+  if ! brew ls | grep "^${formula}$" > /dev/null 2>&1; then
+    echo "==> Installing ${formula}";
+    brew install ${formula};
   fi
 done
 
 # install selected cask apps
-for cask in ${basic_cask_install[@]}; do
-  if ! brew cask ls | grep "^${cask}$" > /dev/null 2>&1; then
+for cask in ${brew_casks[@]}; do
+  if ! brew ls | grep "^${cask}$" > /dev/null 2>&1; then
     echo "==> Installing ${cask}";
-    brew cask install ${cask};
+    brew install --cask ${cask};
   fi
 done

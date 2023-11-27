@@ -1,35 +1,45 @@
 #!/usr/bin/env bash
 
-# dotfiles (relative to ~)
-bp=".bash_profile";                       # bash
-vrc=".vimrc";                             # vim
-vun=".vim/plugins.vim";                    # vundle
-dbv=".vim/dosbatch.vim";                  # dosbatch.vim
-af=($bp $vrc $vun $dbv);                  # all files
+# set vars
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
-# directories (relative to ~)
-dfd=".dotfiles";                          # dotfile dir
-vimd=".vim";                              # vim dir
-dfvd="$dfd/$vimd";                        # dotfile vim dir
-bakd="$dfd/bak/$(date +%Y%m%d)";          # dotfile bak
-bakvd="$bakd/$vimd";                      # dotfile bak vim dir
-ad=($dfd $bakd $bakvd $vimd $dfvd);       # all directories
+# dotfiles
+dotfiles=(
+  '.bash_profile'
+  '.vimrc'
+  '.vim/plugins.vim'
+  '.zshrc'
+);
+
+# dirs
+dotfile_dir=".dotfiles";                     # dotfile dir
+backup_dir="$dotfile_dir/bak/$(date +%s)";   # dotfile bak
+vim_dir=".vim";                              # vim dir
+dirs=(
+  "$backup_dir"
+  "$dotfile_dir"
+  "$dotfile_dir/$vim_dir"
+  "$dotfile_dir/bak/$(date +%s)"
+  "$vim_dir"
+);
 
 # create dirs
-for d in ${ad[@]}; do
-  if [ ! -d $d ]; then
-    mkdir -p "$(echo ~)/$d";
+for dir in ${dirs[@]}; do
+  if [ ! -d $dir ]; then
+    mkdir -p "$HOME/$dir";
   fi
 done
 
 # manage dotfiles
-for f in ${af[@]}; do
+for dotfile in ${dotfiles[@]}; do
   # backup
-  if [ -f ~/$f ]; then
-    mv ~/$f ~/$bakd/$f;
+  if [ -f ~/$dotfile ]; then
+    mv ~/$dotfile ~/$backup_dir/$dotfile;
   fi
+
   # copy
-  cp `dirname "${BASH_SOURCE[0]}"`/$f ~/$dfd/$f;
+  cp ${SCRIPTPATH}/$dotfile $HOME/$dotfile_dir/$dotfile;
+
   # symlink
-  ln -s "$(echo ~)/$dfd/$f" "$(echo ~)/$f";
+  ln -s "$HOME/$dotfile_dir/$dotfile" "$HOME/$dotfile";
 done

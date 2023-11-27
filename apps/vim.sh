@@ -10,7 +10,7 @@ source ${SCRIPTPATH}/../config.sh;
 source ${SCRIPTPATH}/homebrew.sh;
 
 # install vim
-if ! brew ls | grep '^vim$' > /dev/null 2>&1; then
+if ! brew ls | grep -qe '^vim$'; then
   echo "==> Installing Vim";
   brew install vim;
 fi
@@ -35,10 +35,11 @@ if [ ! -d ~/.vim/fonts ]; then
 fi
 
 # compile YouCompleteMe
-if ! brew ls | grep '^cmake$' > /dev/null 2>&1; then
+if ! brew ls | grep -qe '^cmake$'; then
   echo "==> Installing CMake";
   brew install cmake;
 fi
+
 if [ -d "~/.vim/bundle/YouCompleteMe" ]; then
   echo "==> Compiling YouCompleteMe";
   pushd ~/.vim/bundle/YouCompleteMe;

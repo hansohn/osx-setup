@@ -11,15 +11,9 @@ source ${SCRIPTPATH}/homebrew.sh;
 source ${SCRIPTPATH}/openssl.sh;
 
 # install git
-if ! brew ls | grep "^git$" > /dev/null 2>&1; then
+if ! brew ls | grep -qe '^git$'; then
   echo "==> Installing Git";
   brew install git --with-openssl;
-fi
-
-# install git-flow
-if ! brew ls | grep "^git-flow$" > /dev/null 2>&1; then
-  echo "==> Installing Git-Flow";
-  brew install git-flow;
 fi
 
 # setup gitconfig
@@ -29,4 +23,5 @@ if [ ! -f ~/.gitconfig ] > /dev/null 2>&1; then
   git config --global user.email "$GIT_USER_EMAIL";
   git config --global core.editor vim;
   git config --global credential.helper osxkeychain;
+  git config --global init.defaultBranch main;
 fi

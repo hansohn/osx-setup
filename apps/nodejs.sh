@@ -19,7 +19,7 @@ npms=(
 );
 
 # install nvm
-if ! brew ls | grep "^nvm$" > /dev/null 2>&1; then
+if ! brew ls | grep -qe '^nvm$'; then
   echo "==> Installing nvm";
   brew install nvm;
   mkdir ~/.nvm;
