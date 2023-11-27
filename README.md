@@ -1,4 +1,27 @@
-# osx-setup
+<div align="center">
+  <h3>osx-setup</h3>
+  <p>OSX Setup Utility</p>
+  <p>
+    <!-- Build Status -->
+    <a href="https://actions-badge.atrox.dev/hansohn/osx-setup/goto?ref=main">
+      <img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fhansohn%2Fosx-setup%2Fbadge%3Fref%3Dmain&style=for-the-badge">
+    </a>
+    <!-- Github Tag -->
+    <a href="https://gitHub.com/hansohn/osx-setup/tags/">
+      <img src="https://img.shields.io/github/tag/hansohn/osx-setup.svg?style=for-the-badge">
+    </a>
+    <!-- License -->
+    <a href="https://github.com/hansohn/osx-setup/blob/main/LICENSE">
+      <img src="https://img.shields.io/github/license/hansohn/osx-setup.svg?style=for-the-badge">
+    </a>
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com/in/ryanhansohn">
+      <img src="https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555">
+    </a>
+  </p>
+</div>
+
+## Description
 
 Welcome to my [osx-setup](https://github.com/hansohn/osx-setup). I am a DevOps Engineer by trade and this repo reflects the various tools I use on a daily basis. As with most osx-setup repos, this is a continuous work in progress and is updated as the systems and applications I work on evolve or my tool preferences change.
 
