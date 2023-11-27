@@ -11,7 +11,7 @@ source ${SCRIPTPATH}/homebrew.sh;
 source ${SCRIPTPATH}/openssl.sh;
 
 # install wget
-if ! brew ls | grep '^wget$' > /dev/null 2>&1; then
+if ! brew ls | grep -qe '^wget$'; then
   echo "==> Installing Wget";
   brew install wget;
 fi

@@ -6,13 +6,13 @@ SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
 # import config vars
 source ${SCRIPTPATH}/../config.sh;
 
-# list customizations to install
-customs=(
-  "system-settings"
-  "user-settings"
+# scripts
+scripts=(
+  "system-settings.sh"
+  "user-settings.sh"
 )
 
 # execute selected customizations
-for custom in ${customs[@]}; do
-  source `dirname "${BASH_SOURCE[0]}"`/${custom}.sh;
+for script in ${scripts[@]}; do
+  source $SCRIPTPATH/$script;
 done

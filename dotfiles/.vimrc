@@ -80,7 +80,7 @@ set encoding=utf8
 set t_Co=256
 
 " python syntax
-let python_highlight_all=1
+autocmd BufRead,BufNewFile *.py let python_highlight_all=1
 
 
 " -----  Plugins -----
@@ -92,12 +92,10 @@ let NERDTreeShowHidden=1
 " remove some files by extension
 let NERDTreeIgnore = ['\.js.map$']
 " Toggle NERDTree
-nmap <silent> <leader>k :NERDTreeToggle<cr>
-" expand to the path of the file in the current buffer
-nmap <silent> <leader>y :NERDTreeFind<cr>
-" vim-nerdtree-tabs
-"let g:nerdtree_tabs_open_on_console_startup=1
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+nmap <leader>n :NERDTreeFocus<CR>
+nmap <C-n> :NERDTree<CR>
+nmap <C-t> :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
 
 " map fuzzyfinder (CtrlP) plugin
 " nmap <silent> <leader>t :CtrlP<cr>
@@ -134,3 +132,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Spell-check Markdown files and Git Commit Messages
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell

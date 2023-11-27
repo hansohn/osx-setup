@@ -7,6 +7,13 @@
 export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
 
 #------------------------------------------------------------------------------
+# LOCALE
+#------------------------------------------------------------------------------
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+#------------------------------------------------------------------------------
 # APPLICATIONS
 #------------------------------------------------------------------------------
 
@@ -23,6 +30,13 @@ if [ -d "/usr/local/anaconda3" ]; then
   #source "${BREW_PREFIX}/anaconda3/etc/profile.d/conda.sh";
 fi
 
+# -- miniconda --
+# populate bash path with anaconda binaries
+if [ -d "${BREW_PREFIX}/Caskroom/miniconda" ]; then
+  eval "$(register-python-argcomplete conda)";
+  source "${BREW_PREFIX}/Caskroom/miniconda/base/etc/profile.d/conda.sh";
+fi
+
 # -- cassandra --
 # populate bash path with cassandra binaries
 if [ -d "/opt/dsc-cassandra/current/bin" ]; then
@@ -31,7 +45,7 @@ fi
 
 # -- chefdk --
 # populate bash path with chefdk binaries
-if [[ $(echo `brew cask list` | grep -i "chefdk") ]]; then
+if brew ls | grep -qe '^chefdk$'; then
   eval "$(chef shell-init bash)";
   export EDITOR="VIM";
 fi
@@ -67,10 +81,22 @@ if [ -f "${HOME}/.iterm2_shell_integration.bash" ]; then
   source "${HOME}/.iterm2_shell_integration.bash";
 fi
 
+# -- java --
+if [ -f "/usr/libexec/java_home" ]; then
+  export JAVA_HOME=$(/usr/libexec/java_home);
+  export JRE_HOME="${JAVA_HOME}/jre";
+  export PATH="${JAVA_HOME}/bin:${PATH}";
+fi
+
 # -- nodejs --
 if [ -f "${BREW_PREFIX}/opt/nvm/nvm.sh" ]; then
   export NVM_DIR="${HOME}/.nvm";
   source "${BREW_PREFIX}/opt/nvm/nvm.sh";
+fi
+
+# -- openssl --
+if [ -d "/usr/local/opt/openssl" ]; then
+  export OPENSSL_ROOT_DIR="/usr/local/opt/openssl"
 fi
 
 #------------------------------------------------------------------------------
@@ -162,6 +188,3 @@ alias utc='date -u'                                               # UTC time
 
 # -- trash --
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl" # Empty the Trash on all mounted volumes and the main HDD
-
-# -- voice --
-alias stfu='say -v Zarvox "You shut your mouth when you are talking to me"'
