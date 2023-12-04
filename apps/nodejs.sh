@@ -20,7 +20,7 @@ npms=(
 
 # install nvm
 # shellcheck disable=SC1091
-if ! brew ls | grep -qe '^nvm$'; then
+if ! brew ls | grep -e '^nvm$' > /dev/null 2>&1; then
   echo "==> Installing nvm";
   brew install nvm;
   mkdir "${HOME}/.nvm";

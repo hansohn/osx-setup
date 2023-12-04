@@ -11,7 +11,7 @@ source "${SCRIPTPATH}/homebrew.sh";
 source "${SCRIPTPATH}/wget.sh";
 
 # Install iTerm2
-if ! brew ls | grep -qe '^iterm2$'; then
+if ! brew ls | grep -e '^iterm2$' > /dev/null 2>&1; then
   echo "==> Installing iTerm2";
   brew install --cask iterm2;
   echo "==> Installing iTerm2 Shell Integration";

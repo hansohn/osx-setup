@@ -10,7 +10,7 @@ source "${SCRIPTPATH}/../config.sh";
 source "${SCRIPTPATH}/homebrew.sh";
 
 # install zsh
-if ! brew ls | grep -qe '^zsh$'; then
+if ! brew ls | grep -e '^zsh$' > /dev/null 2>&1; then
   echo "==> Installing Zsh";
   brew install zsh;
 fi

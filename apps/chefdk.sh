@@ -17,7 +17,7 @@ if ! brew tap | grep -i -q "chef/chef"; then
 fi
 
 # install chefdk
-if ! brew ls | grep "^chefdk$" > /dev/null 2>&1; then
+if ! brew ls | grep -e "^chefdk$" > /dev/null 2>&1; then
   echo "==> Installing Chef Development Kit";
   brew install --cask 'chef/chef/chefdk';
   echo "==> Update PATH with embedded Chef appliations";
@@ -29,7 +29,7 @@ if ! brew ls | grep "^chefdk$" > /dev/null 2>&1; then
 fi
 
 # install kitchen-completion
-if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls | grep -qe '^kitchen-completion$'; then
+if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls | grep -e '^kitchen-completion$' > /dev/null 2>&1; then
   echo "==> Installing kitchen-completion";
   brew install kitchen-completion;
 fi
