@@ -10,7 +10,7 @@ source "${SCRIPTPATH}/../config.sh";
 source "${SCRIPTPATH}/homebrew.sh";
 
 # install virtualbox
-if ! brew ls | grep "^virtualbox$" > /dev/null 2>&1; then
+if ! brew ls | grep -e "^virtualbox$" > /dev/null 2>&1; then
   echo "==> Installing VirtualBox"
   brew install --cask virtualbox;
   echo "==> Installing VirtualBox Extension Pack"

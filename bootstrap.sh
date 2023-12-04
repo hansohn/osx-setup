@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
+BOOTSCRIPT_PATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source "${SCRIPTPATH}/config.sh";
+source "${BOOTSCRIPT_PATH}/config.sh";
 
 # ----- dotfiles -----
 
 dotfile_dir="${HOME}/.dotfiles";
-backup_dir="${dotfile_dir}/bak/$(date +%s)";
+backup_dir="${dotfile_dir}/bak/$(date +%Y%m%d)";
 vim_dir="${HOME}/.vim";
 
 dotfiles=(
@@ -23,23 +23,20 @@ dotfiles=(
 for dir in "${dotfile_dir}" "${backup_dir}" "${vim_dir}"; do
   if [ ! -d "${dir}" ]; then
     echo "==> Creating directory: ${dir}";
-    mkdir -p "${HOME}/${dir}";
+    mkdir -p "${dir}";
   fi
 done
 
 # copy dotfile contents
-if [ -z "$(ls -A "${dotfile_dir}")" ]; then
-  echo "==> Populating dotfile directory";
-  cp -R "${SCRIPTPATH}/dotfiles" "${HOME}/${dotfile_dir}";
-fi
-
+echo "==> Populating dotfile directory";
+rsync -ah "${BOOTSCRIPT_PATH}/dotfiles/" "${dotfile_dir}/";
 
 # manage dotfile
 for dotfile in "${dotfiles[@]}"; do
   # backup if not symlink
   if [ -f "${HOME}/${dotfile}" ] && [ ! -L  "${HOME}/${dotfile}" ]; then
     echo "==> Archiving: ${HOME}/${dotfile} to ${backup_dir}";
-    mv "${HOME}/${dotfile}" "${HOME}/${backup_dir}/${dotfile}";
+    mv "${HOME}/${dotfile}" "${backup_dir}/${dotfile}";
   fi
 
   # symlink
@@ -51,8 +48,8 @@ done
 
 # ----- personalization -----
 
-source "${SCRIPTPATH}/customizations/system-settings.sh";
-source "${SCRIPTPATH}/customizations/user-settings.sh";
+source "${BOOTSCRIPT_PATH}/customizations/system-settings.sh";
+source "${BOOTSCRIPT_PATH}/customizations/user-settings.sh";
 
 # ----- apps -----
 
@@ -73,7 +70,10 @@ apps=(
 
 # list cask apps for basic install
 brew_formulae=(
+  "ansible"
+  "ansible-lint"
   "awscli"
+  "cfn-lint"
   "cmake"
   "curl"
   "doctl"
@@ -89,14 +89,14 @@ brew_formulae=(
   "mas"
   "nmap"
   "shellcheck"
-  "speedtest"
+  "teamookla/speedtest/speedtest"
   "terraform"
   "terraform-docs"
   "terragrunt"
-  "tfenv"
   "tflint"
   "tfswitch"
   "tmux"
+  "tree"
   "wget"
   "yamllint"
 );
@@ -107,20 +107,23 @@ brew_casks=(
   "adobe-acrobat-reader"
   "appcleaner"
   "aws-vault"
+  "brooklyn"
   "burp-suite"
-  "dash6"
+  "dash"
   "discord"
   "docker"
   "firefox"
   "geekbench"
   "google-chrome"
   "google-cloud-sdk"
+  "google-drive"
   "gpg-suite-no-mail"
   "keybase"
   "meld"
   "postman"
   "pycharm-ce"
   "rectangle"
+  "session-manager-plugin"
   "slack"
   "spotify"
   "tor-browser"
@@ -132,10 +135,17 @@ brew_casks=(
   "zoom"
 );
 
+# mas apps
+mas_apps=(
+  "937984704"     # Amphetamine
+  "1292198261"    # iMazing HEIC Converter
+  "1033480833"    # Decompressor
+)
+
 # install selected custom apps
 # shellcheck disable=SC1090
 for app in "${apps[@]}"; do
-  source "${SCRIPTPATH}/apps/${app}.sh";
+  source "${BOOTSCRIPT_PATH}/apps/${app}.sh";
 done
 
 # install selected brew apps
@@ -151,5 +161,12 @@ for cask in "${brew_casks[@]}"; do
   if ! brew ls | grep "^${cask}$" > /dev/null 2>&1; then
     echo "==> Installing ${cask}";
     brew install --cask "${cask}";
+  fi
+done
+
+# install mas apps
+for app in "${mas_apps[@]}"; do
+  if ! mas list | grep -e "^${app}$" > /dev/null 2>&1; then
+    mas install "${app}";
   fi
 done
