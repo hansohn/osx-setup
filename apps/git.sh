@@ -11,9 +11,9 @@ source "${SCRIPTPATH}/homebrew.sh";
 source "${SCRIPTPATH}/openssl.sh";
 
 # install git
-if ! brew ls | grep -qe '^git$'; then
+if ! brew ls | grep -e '^git$' > /dev/null 2>&1; then
   echo "==> Installing Git";
-  brew install git --with-openssl;
+  brew install git;
 fi
 
 # setup gitconfig

@@ -10,7 +10,7 @@ source "${SCRIPTPATH}/../config.sh";
 source "${SCRIPTPATH}/homebrew.sh";
 
 # install bash
-if ! brew ls | grep -qe '^bash$'; then
+if ! brew ls | grep -e '^bash$' > /dev/null 2>&1; then
   echo "==> Installing Bash";
   brew install bash;
 fi
@@ -18,7 +18,7 @@ fi
 # if shell is bash
 if [[ "${SHELL##*/}" == 'bash' ]]; then
   # install bash-completions
-  if ! brew ls | grep -qe "^bash-completion$"; then
+  if ! brew ls | grep -e "^bash-completion$" > /dev/null 2>&1; then
     echo "==> Installing Bash-Completion";
     brew install bash-completion;
   fi

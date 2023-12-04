@@ -11,7 +11,7 @@ source "${SCRIPTPATH}/homebrew.sh";
 source "${SCRIPTPATH}/java.sh";
 
 # install hadoop
-if ! brew ls | grep -qe '^hadoop$'; then
+if ! brew ls | grep -e '^hadoop$' > /dev/null 2>&1; then
   echo "==> Installing Hadoop";
   brew install hadoop;
 fi

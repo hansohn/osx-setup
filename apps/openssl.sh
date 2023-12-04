@@ -10,7 +10,7 @@ source "${SCRIPTPATH}/../config.sh";
 source "${SCRIPTPATH}/homebrew.sh";
 
 # Install OpenSSL dependency
-if ! brew ls | grep -qe '^openssl$'; then
+if ! brew ls | grep -e '^openssl$' > /dev/null 2>&1; then
   echo "==> Installing OpenSSL";
   brew install openssl;
 fi
