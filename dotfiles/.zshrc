@@ -215,7 +215,7 @@ export VAGRANT_DEFAULT_PROVIDER="virtualbox";
 #fi
 
 # -- java --
-if [ -f "/usr/libexec/java_home" ]; then
+if [ -f "/usr/libexec/java_home" ] && java -version > /dev/null 2>&1; then
   export JAVA_HOME=$(/usr/libexec/java_home);
   export JRE_HOME="${JAVA_HOME}/jre";
   export PATH="${JAVA_HOME}/bin:${PATH}";

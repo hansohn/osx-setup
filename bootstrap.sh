@@ -14,6 +14,8 @@ vim_dir="${HOME}/.vim";
 
 dotfiles=(
   '.bash_profile'
+  '.tmux.conf'
+  '.tmux.conf.local'
   '.vimrc'
   '.vim/plugins.vim'
   '.zshrc'
@@ -58,6 +60,7 @@ apps=(
   "homebrew"
   "openssl"
   "wget"
+  "nerdfonts"
   "vim"
   "git"
   "vagrant"
@@ -85,7 +88,6 @@ brew_formulae=(
   "jq"
   "jsonlint"
   "kubernetes-cli"
-  "macvim"
   "mas"
   "nmap"
   "shellcheck"
@@ -94,7 +96,7 @@ brew_formulae=(
   "terraform-docs"
   "terragrunt"
   "tflint"
-  "tfswitch"
+  "warrensbox/tap/tfswitch"
   "tmux"
   "tree"
   "wget"
@@ -109,7 +111,7 @@ brew_casks=(
   "aws-vault"
   "brooklyn"
   "burp-suite"
-  "dash"
+  "dash6"
   "discord"
   "docker"
   "firefox"
@@ -119,10 +121,11 @@ brew_casks=(
   "google-drive"
   "gpg-suite-no-mail"
   "keybase"
-  "meld"
+  "obsidian"
   "postman"
   "pycharm-ce"
   "rectangle"
+  "raycast"
   "session-manager-plugin"
   "slack"
   "spotify"
