@@ -15,6 +15,13 @@ if ! brew ls | grep -e '^vim$' > /dev/null 2>&1; then
   brew install vim;
 fi
 
+# install vim
+if ! brew ls | grep -e '^macvim$' > /dev/null 2>&1; then
+  echo "==> Installing MacVim";
+  brew unlink vim;
+  brew install macvim;
+fi
+
 # install vundle
 if which vim > /dev/null 2>&1; then
   if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
