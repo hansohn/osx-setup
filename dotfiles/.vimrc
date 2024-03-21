@@ -63,6 +63,18 @@ set softtabstop=2                           " edit as if the tabs are 4 characte
 set shiftwidth=2                            " number of spaces to use for indent and unindent
 set shiftround                              " round indent to a multiple of 'shiftwidth'
 
+" split
+set splitbelow
+set splitright
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Spell-check Markdown files and Git Commit Messages
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+
 
 " ----- Syntax and Color -----
 
@@ -70,14 +82,11 @@ set shiftround                              " round indent to a multiple of 'shi
 syntax on
 
 " set colorscheme
-colorscheme solarized
+colorscheme gruvbox
 set background=dark
 
 " set encoding
 set encoding=utf8
-
-" explicitly tell vim that the terminal supports 256 colors
-set t_Co=256
 
 " python syntax
 autocmd BufRead,BufNewFile *.py let python_highlight_all=1
@@ -85,17 +94,16 @@ autocmd BufRead,BufNewFile *.py let python_highlight_all=1
 
 " -----  Plugins -----
 
-" close NERDTree after a file is opened
+" lsp
+nmap <leader>K :LspHover<CR>
+
+" NERDTree
 let g:NERDTreeQuitOnOpen=0
-" show hidden files in NERDTree
-let NERDTreeShowHidden=1
-" remove some files by extension
-let NERDTreeIgnore = ['\.js.map$']
-" Toggle NERDTree
-nmap <leader>n :NERDTreeFocus<CR>
-nmap <C-n> :NERDTree<CR>
-nmap <C-t> :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
+let g:NERDTreeShowHidden=1
+nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
 
 " map fuzzyfinder (CtrlP) plugin
 " nmap <silent> <leader>t :CtrlP<cr>
@@ -119,20 +127,9 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_theme='base16'
+let g:airline_theme='gruvbox'
 
 " YouCompleteMe
 "let g:ycm_autoclose_preview_windows_after_completion=1
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<cr>
-
-" split
-set splitbelow
-set splitright
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" Spell-check Markdown files and Git Commit Messages
-autocmd FileType markdown setlocal spell
-autocmd FileType gitcommit setlocal spell
+nnoremap <silent> <localleader>h <Plug>(YCMToggleInlayHints)
