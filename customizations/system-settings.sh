@@ -74,6 +74,3 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false;
 
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false;
-
-# set keyboard to to fn keys
-defaults write NSGlobalDomain com.apple.keyboard.fnState -int 1;

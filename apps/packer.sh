@@ -8,11 +8,10 @@ source "${SCRIPTPATH}/../config.sh";
 
 # install prerequisites
 source "${SCRIPTPATH}/homebrew.sh";
-source "${SCRIPTPATH}/wget.sh";
 
 
 # Install Packer
-if ! brew ls | grep -e '^packer$' > /dev/null 2>&1; then
+if ! brew ls packer > /dev/null 2>&1; then
     echo "==> Installing Packer";
     brew install packer;
 fi

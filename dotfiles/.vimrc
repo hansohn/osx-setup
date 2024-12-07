@@ -100,7 +100,6 @@ nmap <leader>K :LspHover<CR>
 " NERDTree
 let g:NERDTreeQuitOnOpen=0
 let g:NERDTreeShowHidden=1
-nnoremap <C-f> :NERDTreeFind<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>

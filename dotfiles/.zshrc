@@ -70,7 +70,16 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws docker doctl git terraform vagrant)
+plugins=(
+  ansible
+  aws
+  docker
+  doctl
+  git
+  helm
+  kubectl
+  terraform
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -131,8 +140,8 @@ export LANG=en_US.UTF-8
 # enable/disable applications
 ANACONDA_SHELL=false
 CHEF_SHELL=false
-MINICONDA_SHELL=true
-NVM_SHELL=true
+MINICONDA_SHELL=false
+NVM_SHELL=false
 RUBY_USE_BREW=false
 
 
@@ -184,9 +193,20 @@ if [ -d "/usr/local/opt/curl/bin" ]; then
   export PATH="/usr/local/opt/curl/bin:${PATH}"
 fi
 
-# -- docker --
-if [ -d "/usr/local/Caskroom/docker" ]; then
-  export PATH="${HOME}/.docker/bin:${PATH}";
+# -- fzf --
+if [ -f "/usr/local/bin/fzf" ]; then
+  source <(fzf --zsh)
+  export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/' --sort=path"
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+  _fzf_compgen_path() {
+    fd --hidden --follow --exclude ".git" . "$1"
+  }
+
+  # Use fd to generate the list for directory completion
+  _fzf_compgen_dir() {
+    fd --type d --hidden --follow --exclude ".git" . "$1"
+  }
 fi
 
 # -- go_lang --
@@ -208,11 +228,6 @@ fi
 # -- hashicorp --
 #export PACKER_LOG="DEBUG";
 export VAGRANT_DEFAULT_PROVIDER="virtualbox";
-
-# -- iterm --
-#if [ -f "${HOME}/.iterm2_shell_integration.bash" ]; then
-#  source "${HOME}/.iterm2_shell_integration.bash";
-#fi
 
 # -- java --
 if [ -f "/usr/libexec/java_home" ] && java -version > /dev/null 2>&1; then
@@ -237,13 +252,17 @@ if [ -d "/usr/local/opt/openssl" ]; then
   export OPENSSL_ROOT_DIR="/usr/local/opt/openssl"
 fi
 
+# -- pyenv --
+if type pyenv > /dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+fi
+
 # -- ruby --
 if [ "${RUBY_USE_BREW}" = "true" ] && [ -d "/usr/local/opt/ruby/bin" ]; then
   export PATH="/usr/local/opt/ruby/bin:${PATH}"
 fi
-
-# -- vault --
-export VAULT_ADDR=https://vault.hrt.io;
 
 # -- gnu-getopt --
 # populate bash path the gnu-getopt
@@ -255,11 +274,6 @@ fi
 # BASH COMPLETION
 #------------------------------------------------------------------------------
 
-# -- bash_completion --
-#if [ -f ${BREW_PREFIX}/etc/bash_completion ]; then
-#  source "${BREW_PREFIX}/etc/bash_completion";
-#fi
-
 if [ -d ${BREW_PREFIX}/share/zsh-completions ]; then
   fpath=(/usr/local/share/zsh-completions $fpath)
 fi
@@ -268,11 +282,6 @@ fi
 if [ -f ${BREW_PREFIX}/opt/azure-cli/etc/bash_completion.d/az ]; then
   source "${BREW_PREFIX}/opt/azure-cli/etc/bash_completion.d/az";
 fi
-
-# -- git --
-#if [ -f ${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash ]; then
-#  source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash";
-#fi
 
 #------------------------------------------------------------------------------
 # SHELL MODS
@@ -340,6 +349,3 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy"                    # Copy my publ
 
 # -- time --
 alias utc='date -u'                                               # UTC time
-
-# -- trash --
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl" # Empty the Trash on all mounted volumes and the main HDD

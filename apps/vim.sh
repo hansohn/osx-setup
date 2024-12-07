@@ -10,47 +10,11 @@ source "${SCRIPTPATH}/../config.sh";
 source "${SCRIPTPATH}/homebrew.sh";
 
 # install vim
-if ! brew ls | grep -e '^vim$' > /dev/null 2>&1; then
-  echo "==> Installing Vim";
-  brew install vim;
-fi
-
-# install vim
-if ! brew ls | grep -e '^macvim$' > /dev/null 2>&1; then
+if ! brew ls macvim > /dev/null 2>&1; then
   echo "==> Installing MacVim";
-  brew unlink vim;
   brew install macvim;
 fi
 
-# install vundle
-if which vim > /dev/null 2>&1; then
-  if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
-    echo "==> Installing Vundle";
-    git clone https://github.com/gmarik/Vundle.vim.git "${HOME}/.vim/bundle/Vundle.vim";
-    if [ -f "${HOME}/.vimrc" ]; then
-      vim +PluginInstall "+source ${HOME}/.vimrc" +qall;
-    fi
-  fi
-fi
-
-# install powerline fonts
-# shellcheck disable=SC1091
-if [ ! -d "${HOME}/.vim/fonts" ]; then
-  echo "==> Installing Powerline Fonts";
-  git clone https://github.com/powerline/fonts.git "${HOME}/.vim/fonts";
-  chmod 755 "${HOME}/.vim/fonts/install.sh";
-  source "${HOME}/.vim/fonts/install.sh";
-fi
-
-# compile YouCompleteMe
-if ! brew ls | grep -e '^cmake$' > /dev/null 2>&1; then
-  echo "==> Installing CMake";
-  brew install cmake;
-fi
-
-if [ -d "${HOME}/.vim/bundle/YouCompleteMe" ]; then
-  echo "==> Compiling YouCompleteMe";
-  pushd "${HOME}/.vim/bundle/YouCompleteMe" || exit;
-  ./install.py --clang-completer --go-completer --js-completer;
-  popd || return;
-fi
+# install vim-plug
+[ -d "${HOME}/.vim/autoload" ] || mkdir -p "${HOME}/.vim/autoload"
+curl -fsSL 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' -o "${HOME}/.vim/autoload/plug.vim"

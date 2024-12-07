@@ -31,6 +31,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " languages
+Plug 'pearofducks/ansible-vim'
 Plug 'sheerun/vim-polyglot'
 
 " linting

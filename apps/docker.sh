@@ -16,7 +16,7 @@ if ! brew ls | grep -e '^docker$' > /dev/null 2>&1; then
 fi
 
 # install docker-completion
-if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls | grep -e '^docker-completion$' > /dev/null 2>&1; then
+if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls docker-completion > /dev/null 2>&1; then
   echo "==> Install Docker-Completion";
   brew install docker-completion;
 fi

@@ -34,10 +34,16 @@ if ! which brew > /dev/null 2>&1; then
   fi
 fi
 
+taps=(
+  "homebrew/cask-versions"
+)
+
 # install taps
 if which brew > /dev/null 2>&1; then
-  if ! brew tap | grep -i -q "homebrew/cask" ; then
-    echo "==> Installing homebrew/cask-versions tap";
-    brew tap homebrew/cask-versions
-  fi
+  for tap in "${taps[@]}"; do
+    if ! brew tap | grep -q "${tap}" ; then
+      echo "==> Installing ${tap} tap";
+      brew tap "${tap}";
+    fi
+  done
 fi

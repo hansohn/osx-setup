@@ -9,20 +9,20 @@ source "${SCRIPTPATH}/../config.sh";
 # install prerequisites
 source "${SCRIPTPATH}/homebrew.sh";
 
-nerdfonts=(
+fonts=(
   'font-hack-nerd-font'
 )
 
-# install nerdfont tap
+# install fonts tap
 if ! brew tap | grep -i -q "homebrew/cask-fonts" ; then
   echo "==> Installing homebrew/cask-fonts tap";
   brew tap homebrew/cask-fonts
 fi
 
-# install nerdfonts
-for font in "${nerdfonts[@]}"; do
-  if ! brew ls | grep -e "^${font}$" > /dev/null 2>&1; then
+# install fonts
+for font in "${fonts[@]}"; do
+  if ! brew ls "^${font}$" > /dev/null 2>&1; then
     echo "==> Installing ${font}";
-    brew install "${font}";
+    brew install --cask "${font}";
   fi
 done

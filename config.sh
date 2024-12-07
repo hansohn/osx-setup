@@ -15,6 +15,4 @@ GIT_USER_NAME="Foo Bar";
 GIT_USER_EMAIL="foo.bar@users.noreply.github.com";
 
 # ----- exports -----
-export HOMEBREW_CASK_OPTS="--appdir=/Applications";
-
 # ----- apps -----

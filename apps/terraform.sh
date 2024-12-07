@@ -9,12 +9,29 @@ source "${SCRIPTPATH}/../config.sh";
 # install prerequisites
 source "${SCRIPTPATH}/homebrew.sh";
 
-formulae=(
-  "pyenv"
-  "pyenv-virtualenv"
+taps=(
+  "hashicorp/tap/terraform"
+  "warrensbox/tap"
 )
 
-# install pyenv
+formulae=(
+  "terraform"
+  "terraform-docs"
+  "terraform-ls"
+  "terragrunt"
+  "tflint"
+  "tfsec"
+  "tfswitch"
+)
+
+# install taps
+for tap in "${taps[@]}"; do
+  if ! brew tap | grep "${tap}" > /dev/null 2>&1; then
+    brew tap "${tap}";
+  fi
+done
+
+# install formulae
 for formula in "${formulae[@]}"; do
   if ! brew ls "${formula}" > /dev/null 2>&1; then
     echo "==> Installing ${formula}";
