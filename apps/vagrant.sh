@@ -10,13 +10,10 @@ source "${SCRIPTPATH}/../config.sh";
 source "${SCRIPTPATH}/homebrew.sh";
 
 # list vagrant plugins to be installed
-vagrant_plugins=(
-  "vagrant-aws"
-  "vagrant-vbguest"
-);
+vagrant_plugins=();
 
 # install vagrant
-if ! brew ls | grep -e '^vagrant$' > /dev/null 2>&1; then
+if ! brew ls vagrant > /dev/null 2>&1; then
   echo "==> Installing vagrant";
   brew install --cask vagrant;
 fi
@@ -30,7 +27,7 @@ for plugin in "${vagrant_plugins[@]}"; do
 done
 
 # install vagrant-completion
-if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls | grep -e '^vagrant-completion$' > /dev/null 2>&1; then
+if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls vagrant-completion > /dev/null 2>&1; then
   echo "==> Installing vagrant-completion";
   brew install vagrant-completion;
 fi

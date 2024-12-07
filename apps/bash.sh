@@ -18,7 +18,7 @@ fi
 # if shell is bash
 if [[ "${SHELL##*/}" == 'bash' ]]; then
   # install bash-completions
-  if ! brew ls | grep -e "^bash-completion$" > /dev/null 2>&1; then
+  if ! brew ls bash-completion > /dev/null 2>&1; then
     echo "==> Installing Bash-Completion";
     brew install bash-completion;
   fi

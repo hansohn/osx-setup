@@ -45,7 +45,7 @@ fi
 
 # -- chefdk --
 # populate bash path with chefdk binaries
-if brew ls | grep -qe '^chefdk$'; then
+if brew ls chefdk > /dev/null 2>&1; then
   eval "$(chef shell-init bash)";
   export EDITOR="VIM";
 fi
@@ -71,8 +71,6 @@ if [ -d "/usr/local/Cellar/hadoop" ]; then
 fi
 
 # -- hashicorp --
-#export ATLAS_TOKEN="";
-#export ATLAS_USERNAME="";
 #export PACKER_LOG="DEBUG";
 export VAGRANT_DEFAULT_PROVIDER="virtualbox";
 
@@ -88,7 +86,7 @@ if [ -f "/usr/libexec/java_home" ]; then
   export PATH="${JAVA_HOME}/bin:${PATH}";
 fi
 
-# -- nodejs --
+# -- nvm --
 if [ -f "${BREW_PREFIX}/opt/nvm/nvm.sh" ]; then
   export NVM_DIR="${HOME}/.nvm";
   source "${BREW_PREFIX}/opt/nvm/nvm.sh";
@@ -104,18 +102,13 @@ fi
 #------------------------------------------------------------------------------
 
 # -- bash_completion --
-if [ -f ${BREW_PREFIX}/etc/bash_completion ]; then
+if [ -f "${BREW_PREFIX}/etc/bash_completion" ]; then
   source "${BREW_PREFIX}/etc/bash_completion";
 fi
 
 # -- git --
-if [ -f ${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash ]; then
+if [ -f "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash" ]; then
   source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash";
-fi
-
-# -- git-flow --
-if [ -f ${BREW_PREFIX}/opt/git-flow/etc/bash_completion.d/git-flow-completion.bash ]; then
-  source "${BREW_PREFIX}/opt/git-flow/etc/bash_completion.d/git-flow-completion.bash";
 fi
 
 #------------------------------------------------------------------------------
@@ -124,7 +117,7 @@ fi
 
 # git
 # display git branch info within PS1
-if [ -f ${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh ]; then
+if [ -f "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh" ]; then
   source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh";
   export GIT_PS1_SHOWDIRTYSTATE=true;
   export GIT_PS1_SHOWUPSTREAM="verbose";
