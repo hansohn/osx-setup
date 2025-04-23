@@ -34,9 +34,7 @@ if ! which brew > /dev/null 2>&1; then
   fi
 fi
 
-taps=(
-  "homebrew/cask-versions"
-)
+taps=()
 
 # install taps
 if which brew > /dev/null 2>&1; then

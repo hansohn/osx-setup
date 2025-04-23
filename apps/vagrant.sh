@@ -1,33 +1,33 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}")
 
 # import config vars
-source "${SCRIPTPATH}/../config.sh";
+source "${SCRIPTPATH}/../config.sh"
 
 # install prerequisites
-source "${SCRIPTPATH}/homebrew.sh";
+source "${SCRIPTPATH}/homebrew.sh"
 
 # list vagrant plugins to be installed
-vagrant_plugins=();
+vagrant_plugins=()
 
 # install vagrant
-if ! brew ls vagrant > /dev/null 2>&1; then
-  echo "==> Installing vagrant";
-  brew install --cask vagrant;
+if ! brew ls vagrant >/dev/null 2>&1; then
+  echo "==> Installing vagrant"
+  brew install --cask hashicorp-vagrant
 fi
 
 # install vagrant plugins
 for plugin in "${vagrant_plugins[@]}"; do
   if ! vagrant plugin list | grep -qe "^${plugin}\s+.*$"; then
-    echo "==> Installing ${plugin}";
-    vagrant plugin install "${plugin}";
+    echo "==> Installing ${plugin}"
+    vagrant plugin install "${plugin}"
   fi
 done
 
 # install vagrant-completion
-if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls vagrant-completion > /dev/null 2>&1; then
-  echo "==> Installing vagrant-completion";
-  brew install vagrant-completion;
+if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls vagrant-completion >/dev/null 2>&1; then
+  echo "==> Installing vagrant-completion"
+  brew install vagrant-completion
 fi

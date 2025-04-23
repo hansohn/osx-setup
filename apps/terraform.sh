@@ -10,18 +10,17 @@ source "${SCRIPTPATH}/../config.sh";
 source "${SCRIPTPATH}/homebrew.sh";
 
 taps=(
-  "hashicorp/tap/terraform"
+  "hashicorp/tap"
   "warrensbox/tap"
 )
 
 formulae=(
-  "terraform"
+  "hashicorp/tap/terraform"
   "terraform-docs"
   "terraform-ls"
   "terragrunt"
   "tflint"
   "tfsec"
-  "tfswitch"
 )
 
 # install taps
