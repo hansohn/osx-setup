@@ -4,7 +4,91 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](unreleased)
 
-- no new features in development at this time
+FEATURES:
+
+- macOS defaults rewritten for macOS 26. Settings now address preference
+  domains rather than plist file paths, which cfprefsd can overwrite
+- firewall configured through socketfilterfw instead of the retired
+  com.apple.alf domain
+- battery percentage set via com.apple.controlcenter, the domain that replaced
+  com.apple.menuextra.battery
+- Dock, Finder and menu bar are restarted so settings apply without a logout
+- nvm installed from homebrew
+- renovate scoped to github-actions and moved to the repo root. It had been
+  configured for terraform, which this repo contains none of, so it could
+  never have matched anything
+
+BUG FIXES:
+
+- packer and vagrant no longer install packer-completion and
+  vagrant-completion, both removed from homebrew-core
+- apps/terraform.sh installs tflint as a cask; there is no tflint formula
+- apps/terraform.sh matches installed formulae on the bare token, so
+  tap-qualified names no longer reinstall on every run
+- screenshot directory test used -f against a directory, so mkdir ran every
+  invocation
+- GitHub Actions pinned to releases; two tracked a moving branch
+- shellcheck workflow now runs on pull requests, which pull_request nesting
+  had prevented
+- README tagline and description no longer pinned to the retired OSX name or
+  to a single job title
+- README prose unwrapped to one line per paragraph, matching the rest of the
+  file
+- licence copyright range extended to 2026
+
+APPLICATIONS REMOVED:
+
+- chefdk, docker, hadoop, java, nodejs, ruby and virtualbox helper scripts,
+  none of which bootstrap.sh could reach. The docker and virtualbox casks
+  already cover those two
+
+## [0.8.0](https://github.com/hansohn/osx-setup/compare/0.7.0..0.8.0) (Aug 16, 2026)
+
+First release since 0.7.0 in February 2019.
+
+FEATURES:
+
+- package lists consolidated into brew_formulae, brew_casks and mas_apps
+- neovim replaces vim as the primary editor, with a LazyVim configuration
+- tmux configuration added
+- zshrc rewritten and resolves homebrew through BREW_PREFIX, so it works on
+  Apple Silicon
+- shellcheck GitHub Action added
+
+APPLICATIONS ADDED:
+
+- cloud and kubernetes: argocd, aws-vault, awscli, doctl, helm, istioctl,
+  k9s, kind, kubernetes-cli, kustomize, session-manager-plugin
+- infrastructure as code: ansible, ansible-lint, cfn-lint, terraform-docs,
+  terraform-ls, terragrunt, tflint, tfswitch
+- shell and editors: neovim, tmux, zsh, bat, fd, fzf, gh, lazygit, ripgrep,
+  tree, tree-sitter
+- languages: lua, luajit, luarocks
+- linting: golangci-lint, jsonlint, shellcheck, yamllint
+- utilities: gnupg, grep, ipcalc, mas, nmap
+- applications: 1password, discord, obsidian, raycast, rectangle,
+  visual-studio-code, zoom, font-hack-nerd-font
+- mac app store: Amphetamine, Decompressor, iMazing HEIC Converter, Kindle
+
+APPLICATIONS REMOVED:
+
+- aerial, anaconda, apache-directory-studio, atom, brooklyn, caffeine,
+  chefdk, dropbox, flux, hadoop, intellij-idea-ce, meld, pycharm-ce, sbt,
+  spectacle, transmission
+
+BUG FIXES:
+
+- tflint declared as a formula, which no longer exists, aborting the install
+- terminal colorscheme guard was a double negative and only applied the
+  setting when it was already correct
+- rust nightly toolchain unreachable through a dev/null typo
+- oh-my-zsh never installed while zshrc was linked and sourced it
+- neovim configuration copied but never symlinked, so it never loaded
+- .tmux.conf entries created dangling symlinks
+- install guards for tapped formulae, mas apps, fonts and vagrant could never
+  match, so those packages reinstalled on every run
+- homebrew installer appended to ~/.zprofile even when it was a symlink
+- pubkey alias pointed at a key file that no longer exists
 
 ## [0.7.0](https://github.com/hansohn/osx-setup/compare/0.6.0..0.7.0) (Feb 20, 2019)
 
