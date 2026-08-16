@@ -14,10 +14,19 @@ if ! which brew > /dev/null 2>&1; then
 
     # if apple silicon update path
     if [ -d "/opt/homebrew" ]; then
-      echo "==> Adding HomeBrew to PATH"
-      (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
       eval "$(/opt/homebrew/bin/brew shellenv)"
-      source "${HOME}/.zprofile"
+
+      # Only append to ~/.zprofile when it is a real file we own and does not
+      # already set up brew. If it is a symlink, it is managed by a dotfiles
+      # repo and appending would write through into that repo's working tree.
+      if [ -L "${HOME}/.zprofile" ]; then
+        echo "==> Skipping ~/.zprofile (symlinked; managed elsewhere)"
+      elif grep -qs 'brew shellenv' "${HOME}/.zprofile"; then
+        echo "==> ~/.zprofile already sets up HomeBrew"
+      else
+        echo "==> Adding HomeBrew to PATH"
+        (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> "${HOME}/.zprofile"
+      fi
 
       # fix zsh compaudit warnings
       chmod 755 "/opt/homebrew/share"
