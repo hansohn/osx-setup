@@ -1,6 +1,6 @@
 <div align="center">
   <h1>osx-setup</h1>
-  <p>OSX Setup Utility</p>
+  <p>Opinionated macOS setup for infrastructure and platform engineering</p>
   <p>
     <!-- Build Status -->
     <a href="https://github.com/hansohn/osx-setup/actions/workflows/shellcheck.yml"><img src="https://img.shields.io/github/actions/workflow/status/hansohn/osx-setup/shellcheck.yml?style=for-the-badge"></a>
@@ -13,7 +13,11 @@
 
 ## Description
 
-Welcome to my [osx-setup](https://github.com/hansohn/osx-setup). I am a DevOps Engineer by trade and this repo reflects the various tools I use on a daily basis. As with most osx-setup repos, this is a continuous work in progress and is updated as the systems and applications I work on evolve or my tool preferences change.
+This repo sets up a macOS machine for infrastructure and platform work — the
+Terraform, Ansible, Kubernetes and AWS toolchains, plus the shell, editor and
+terminal configuration I use daily. Like most setup repos it is a continuous
+work in progress, updated as the systems I work on evolve and my tool
+preferences change.
 
 What's Included
 ---------------
