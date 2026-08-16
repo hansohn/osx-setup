@@ -16,8 +16,5 @@ if ! brew ls packer > /dev/null 2>&1; then
     brew install packer;
 fi
 
-# install packer-completions
-if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls | grep -e '^packer-completion$' > /dev/null 2>&1; then
-  echo "==> Installing packer-completion";
-  brew install packer-completion;
-fi
+# NOTE: packer-completion was removed from homebrew-core and has no replacement
+# formula, so no shell completion is installed here.
