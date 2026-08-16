@@ -13,17 +13,12 @@
 
 ## Description
 
-This repo sets up a macOS machine for infrastructure and platform work — the
-Terraform, Ansible, Kubernetes and AWS toolchains, plus the shell, editor and
-terminal configuration I use daily. Like most setup repos it is a continuous
-work in progress, updated as the systems I work on evolve and my tool
-preferences change.
+This repo sets up a macOS machine for infrastructure and platform work — the Terraform, Ansible, Kubernetes and AWS toolchains, plus the shell, editor and terminal configuration I use daily. Like most setup repos it is a continuous work in progress, updated as the systems I work on evolve and my tool preferences change.
 
 What's Included
 ---------------
 
-The authoritative lists live in [`bootstrap.sh`](bootstrap.sh) — `brew_formulae`,
-`brew_casks` and `mas_apps`. What follows is a summary by area, not an inventory.
+The authoritative lists live in [`bootstrap.sh`](bootstrap.sh) — `brew_formulae`, `brew_casks` and `mas_apps`. What follows is a summary by area, not an inventory.
 
 ### Command line
 
@@ -38,23 +33,15 @@ The authoritative lists live in [`bootstrap.sh`](bootstrap.sh) — `brew_formula
 
 ### Applications
 
-1Password, Adobe Acrobat Reader, AppCleaner, Discord, Docker, Firefox,
-Google Chrome, Google Drive, iTerm2, Obsidian, Postman, Raycast, Rectangle,
-Slack, Spotify, Visual Studio Code, VirtualBox, Wireshark and Zoom, plus the
-Hack Nerd Font.
+1Password, Adobe Acrobat Reader, AppCleaner, Discord, Docker, Firefox, Google Chrome, Google Drive, iTerm2, Obsidian, Postman, Raycast, Rectangle, Slack, Spotify, Visual Studio Code, VirtualBox, Wireshark and Zoom, plus the Hack Nerd Font.
 
-From the Mac App Store: Amphetamine, Decompressor, iMazing HEIC Converter and
-Kindle.
+From the Mac App Store: Amphetamine, Decompressor, iMazing HEIC Converter and Kindle.
 
 ### Configured, not just installed
 
-The scripts in [`apps/`](apps) do more than install a package — they configure
-`git`, `bash`, `zsh` with oh-my-zsh, `vim` with vim-plug, Python via `pyenv`,
-Rust via `rustup`, Terraform, iTerm2, the macOS Terminal colorscheme, and
-fonts.
+The scripts in [`apps/`](apps) do more than install a package — they configure `git`, `bash`, `zsh` with oh-my-zsh, `vim` with vim-plug, Python via `pyenv`, Rust via `rustup`, Terraform, iTerm2, the macOS Terminal colorscheme, and fonts.
 
-macOS defaults — Dock, Finder, screenshots, timezone — are applied from
-[`customizations/`](customizations).
+macOS defaults — Dock, Finder, screenshots, timezone — are applied from [`customizations/`](customizations).
 
 ### Color palettes
 
