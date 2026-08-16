@@ -162,7 +162,7 @@ fi
 # populate bash path with anaconda binaries
 if [ "${MINICONDA_SHELL}" = "true" ] && [ -d "${BREW_PREFIX}/Caskroom/miniconda" ]; then
   eval "$(register-python-argcomplete conda)";
-  __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  __conda_setup="$("${BREW_PREFIX}/Caskroom/miniconda/base/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
     eval "$__conda_setup"
   else
@@ -189,12 +189,12 @@ if [ "${CHEF_SHELL}" = "true" ] && brew ls | grep -qe '^chefdk$'; then
 fi
 
 # -- curl --
-if [ -d "/usr/local/opt/curl/bin" ]; then
-  export PATH="/usr/local/opt/curl/bin:${PATH}"
+if [ -d "${BREW_PREFIX}/opt/curl/bin" ]; then
+  export PATH="${BREW_PREFIX}/opt/curl/bin:${PATH}"
 fi
 
 # -- fzf --
-if [ -f "/usr/local/bin/fzf" ]; then
+if [ -f "${BREW_PREFIX}/bin/fzf" ]; then
   source <(fzf --zsh)
   export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/' --sort=path"
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -211,17 +211,17 @@ fi
 
 # -- go_lang --
 # populate path with go_lang binaries
-if [ -d "/usr/local/opt/go/libexec/bin" ] ; then
-  export GOROOT="/usr/local/opt/go/libexec";
+if [ -d "${BREW_PREFIX}/opt/go/libexec/bin" ] ; then
+  export GOROOT="${BREW_PREFIX}/opt/go/libexec";
   export PATH="${PATH}:${GOROOT}/bin";
   export GOPATH="${HOME}/Code/go";
   export GOBIN="${GOPATH}/bin";
 fi
 
 # -- hadoop --
-if [ -d "/usr/local/Cellar/hadoop" ]; then
+if [ -d "${BREW_PREFIX}/Cellar/hadoop" ]; then
   export HADOOP_VERSION="$(brew list --versions hadoop | awk '{ print $2 }')";
-  export HADOOP_HOME="/usr/local/Cellar/hadoop/${HADOOP_VERSION}";
+  export HADOOP_HOME="${BREW_PREFIX}/Cellar/hadoop/${HADOOP_VERSION}";
   export HADOOP_CONF_DIR="${HADOOP_HOME}/libexec/etc/hadoop";
 fi
 
@@ -248,8 +248,8 @@ if [ "${NVM_SHELL}" = "true" ] && [ -f "${BREW_PREFIX}/opt/nvm/nvm.sh" ]; then
 fi
 
 # -- openssl --
-if [ -d "/usr/local/opt/openssl" ]; then
-  export OPENSSL_ROOT_DIR="/usr/local/opt/openssl"
+if [ -d "${BREW_PREFIX}/opt/openssl" ]; then
+  export OPENSSL_ROOT_DIR="${BREW_PREFIX}/opt/openssl"
 fi
 
 # -- pyenv --
@@ -260,14 +260,14 @@ if type pyenv > /dev/null 2>&1; then
 fi
 
 # -- ruby --
-if [ "${RUBY_USE_BREW}" = "true" ] && [ -d "/usr/local/opt/ruby/bin" ]; then
-  export PATH="/usr/local/opt/ruby/bin:${PATH}"
+if [ "${RUBY_USE_BREW}" = "true" ] && [ -d "${BREW_PREFIX}/opt/ruby/bin" ]; then
+  export PATH="${BREW_PREFIX}/opt/ruby/bin:${PATH}"
 fi
 
 # -- gnu-getopt --
 # populate bash path the gnu-getopt
-if [ -d "/usr/local/opt/gnu-getopt" ]; then
-  export PATH="/usr/local/opt/gnu-getopt/bin:${PATH}"
+if [ -d "${BREW_PREFIX}/opt/gnu-getopt" ]; then
+  export PATH="${BREW_PREFIX}/opt/gnu-getopt/bin:${PATH}"
 fi
 
 #------------------------------------------------------------------------------
@@ -275,7 +275,7 @@ fi
 #------------------------------------------------------------------------------
 
 if [ -d ${BREW_PREFIX}/share/zsh-completions ]; then
-  fpath=(/usr/local/share/zsh-completions $fpath)
+  fpath=("${BREW_PREFIX}/share/zsh-completions" $fpath)
 fi
 
 # -- azure cli --
@@ -317,7 +317,7 @@ alias hostfile='sudo vim /etc/hosts'                              # Edit Hostfil
 alias showBlocked='sudo ipfw list'                                # All ipfw rules inc/ blocked IPs
 
 # -- homebrew --
-alias fixbrew='sudo chown -R ${USER}:admin /usr/local'            # OSX constantly brakes file permissions
+alias fixbrew='sudo chown -R ${USER}:admin "$(brew --prefix)"'            # OSX constantly brakes file permissions
 
 # -- networking --
 alias wmip="curl ipinfo.io"                                       # Get external IP (whats my ip)

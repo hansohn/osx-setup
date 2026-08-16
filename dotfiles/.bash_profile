@@ -80,7 +80,10 @@ if [ -f "${HOME}/.iterm2_shell_integration.bash" ]; then
 fi
 
 # -- java --
-if [ -f "/usr/libexec/java_home" ]; then
+# java_home always exists on macOS, so also check that a JDK is actually
+# present -- otherwise this prints "Unable to locate a Java Runtime" on every
+# shell and leaves JAVA_HOME empty, putting a bare /bin on PATH
+if [ -f "/usr/libexec/java_home" ] && java -version > /dev/null 2>&1; then
   export JAVA_HOME=$(/usr/libexec/java_home);
   export JRE_HOME="${JAVA_HOME}/jre";
   export PATH="${JAVA_HOME}/bin:${PATH}";
