@@ -13,15 +13,12 @@ fonts=(
   'font-hack-nerd-font'
 )
 
-# install fonts tap
-if ! brew tap | grep -i -q "homebrew/cask-fonts" ; then
-  echo "==> Installing homebrew/cask-fonts tap";
-  brew tap homebrew/cask-fonts
-fi
+# homebrew/cask-fonts was deprecated and folded into homebrew/cask, so no
+# tap is needed -- tapping it now errors with "this tap is now empty"
 
 # install fonts
 for font in "${fonts[@]}"; do
-  if ! brew ls "^${font}$" > /dev/null 2>&1; then
+  if ! brew ls --cask "${font}" > /dev/null 2>&1; then
     echo "==> Installing ${font}";
     brew install --cask "${font}";
   fi

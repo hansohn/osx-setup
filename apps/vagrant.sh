@@ -13,7 +13,7 @@ source "${SCRIPTPATH}/homebrew.sh"
 vagrant_plugins=()
 
 # install vagrant
-if ! brew ls vagrant >/dev/null 2>&1; then
+if ! brew ls --cask hashicorp-vagrant >/dev/null 2>&1; then
   echo "==> Installing vagrant"
   brew install --cask hashicorp-vagrant
 fi
