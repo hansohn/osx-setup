@@ -7,6 +7,13 @@
 export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
 
 #------------------------------------------------------------------------------
+# LOCALE
+#------------------------------------------------------------------------------
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+#------------------------------------------------------------------------------
 # APPLICATIONS
 #------------------------------------------------------------------------------
 
@@ -23,6 +30,13 @@ if [ -d "/usr/local/anaconda3" ]; then
   #source "${BREW_PREFIX}/anaconda3/etc/profile.d/conda.sh";
 fi
 
+# -- miniconda --
+# populate bash path with anaconda binaries
+if [ -d "${BREW_PREFIX}/Caskroom/miniconda" ]; then
+  eval "$(register-python-argcomplete conda)";
+  source "${BREW_PREFIX}/Caskroom/miniconda/base/etc/profile.d/conda.sh";
+fi
+
 # -- cassandra --
 # populate bash path with cassandra binaries
 if [ -d "/opt/dsc-cassandra/current/bin" ]; then
@@ -31,7 +45,7 @@ fi
 
 # -- chefdk --
 # populate bash path with chefdk binaries
-if [[ $(echo `brew cask list` | grep -i "chefdk") ]]; then
+if brew ls chefdk > /dev/null 2>&1; then
   eval "$(chef shell-init bash)";
   export EDITOR="VIM";
 fi
@@ -57,8 +71,6 @@ if [ -d "/usr/local/Cellar/hadoop" ]; then
 fi
 
 # -- hashicorp --
-#export ATLAS_TOKEN="";
-#export ATLAS_USERNAME="";
 #export PACKER_LOG="DEBUG";
 export VAGRANT_DEFAULT_PROVIDER="virtualbox";
 
@@ -67,10 +79,25 @@ if [ -f "${HOME}/.iterm2_shell_integration.bash" ]; then
   source "${HOME}/.iterm2_shell_integration.bash";
 fi
 
-# -- nodejs --
+# -- java --
+# java_home always exists on macOS, so also check that a JDK is actually
+# present -- otherwise this prints "Unable to locate a Java Runtime" on every
+# shell and leaves JAVA_HOME empty, putting a bare /bin on PATH
+if [ -f "/usr/libexec/java_home" ] && java -version > /dev/null 2>&1; then
+  export JAVA_HOME=$(/usr/libexec/java_home);
+  export JRE_HOME="${JAVA_HOME}/jre";
+  export PATH="${JAVA_HOME}/bin:${PATH}";
+fi
+
+# -- nvm --
 if [ -f "${BREW_PREFIX}/opt/nvm/nvm.sh" ]; then
   export NVM_DIR="${HOME}/.nvm";
   source "${BREW_PREFIX}/opt/nvm/nvm.sh";
+fi
+
+# -- openssl --
+if [ -d "/usr/local/opt/openssl" ]; then
+  export OPENSSL_ROOT_DIR="/usr/local/opt/openssl"
 fi
 
 #------------------------------------------------------------------------------
@@ -78,18 +105,13 @@ fi
 #------------------------------------------------------------------------------
 
 # -- bash_completion --
-if [ -f ${BREW_PREFIX}/etc/bash_completion ]; then
+if [ -f "${BREW_PREFIX}/etc/bash_completion" ]; then
   source "${BREW_PREFIX}/etc/bash_completion";
 fi
 
 # -- git --
-if [ -f ${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash ]; then
+if [ -f "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash" ]; then
   source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-completion.bash";
-fi
-
-# -- git-flow --
-if [ -f ${BREW_PREFIX}/opt/git-flow/etc/bash_completion.d/git-flow-completion.bash ]; then
-  source "${BREW_PREFIX}/opt/git-flow/etc/bash_completion.d/git-flow-completion.bash";
 fi
 
 #------------------------------------------------------------------------------
@@ -98,7 +120,7 @@ fi
 
 # git
 # display git branch info within PS1
-if [ -f ${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh ]; then
+if [ -f "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh" ]; then
   source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh";
   export GIT_PS1_SHOWDIRTYSTATE=true;
   export GIT_PS1_SHOWUPSTREAM="verbose";
@@ -155,13 +177,10 @@ alias mv='mv -iv'                                                 # Preferred �
 alias mkdir='mkdir -pv'                                           # Preferred ‘mkdir’
 
 # -- ssh --
-alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy"                    # Copy my public key to the pasteboard
+alias pubkey="more ~/.ssh/${SSH_KEY:-id_ed25519}.pub | pbcopy"    # Copy my public key to the pasteboard
 
 # -- time --
 alias utc='date -u'                                               # UTC time
 
 # -- trash --
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl" # Empty the Trash on all mounted volumes and the main HDD
-
-# -- voice --
-alias stfu='say -v Zarvox "You shut your mouth when you are talking to me"'

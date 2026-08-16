@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/../config.sh;
+source "${SCRIPTPATH}/../config.sh";
 
 # install prerequisites
-source ${SCRIPTPATH}/homebrew.sh;
+source "${SCRIPTPATH}/homebrew.sh";
 
 # install virtualbox
-if ! brew cask ls | grep "^virtualbox$" > /dev/null 2>&1; then
+if ! brew ls | grep -e "^virtualbox$" > /dev/null 2>&1; then
   echo "==> Installing VirtualBox"
-  brew cask install virtualbox;
+  brew install --cask virtualbox;
   echo "==> Installing VirtualBox Extension Pack"
-  brew cask install virtualbox-extension-pack;
+  brew install --cask virtualbox-extension-pack;
 fi
