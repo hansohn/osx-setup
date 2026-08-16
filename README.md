@@ -3,7 +3,7 @@
   <p>OSX Setup Utility</p>
   <p>
     <!-- Build Status -->
-    <a href="https://actions-badge.atrox.dev/hansohn/osx-setup/goto?ref=main"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fhansohn%2Fosx-setup%2Fbadge%3Fref%3Dmain&style=for-the-badge"></a>
+    <a href="https://github.com/hansohn/osx-setup/actions/workflows/shellcheck.yml"><img src="https://img.shields.io/github/actions/workflow/status/hansohn/osx-setup/shellcheck.yml?style=for-the-badge"></a>
     <!-- Github Tag -->
     <a href="https://gitHub.com/hansohn/osx-setup/tags/"><img src="https://img.shields.io/github/tag/hansohn/osx-setup.svg?style=for-the-badge"></a>
     <!-- License -->
