@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](unreleased)
 
+- no new features in development at this time
+
+## [0.9.0](https://github.com/hansohn/osx-setup/compare/0.8.0..0.9.0) (Aug 16, 2026)
+
 FEATURES:
 
 - macOS defaults rewritten for macOS 26. Settings now address preference
