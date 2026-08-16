@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/../config.sh;
+source "${SCRIPTPATH}/../config.sh";
 
 
 # ----------------------------------------------
@@ -55,7 +55,7 @@ defaults write ~/Library/Preferences/com.apple.finder.plist SidebarPlacesSection
 
 # new finder windows show:
 defaults write ~/Library/Preferences/com.apple.finder.plist NewWindowTarget -string 'PfHm';
-defaults write ~/Library/Preferences/com.apple.finder.plist NewWindowTargetPath -string 'file:///Users/${USER}/';
+defaults write ~/Library/Preferences/com.apple.finder.plist NewWindowTargetPath -string "file:///Users/${USER}/";
 
 # view | show recent tags
 defaults write ~/Library/Preferences/com.apple.finder.plist ShowRecentTags -bool false;
@@ -69,8 +69,8 @@ defaults write ~/Library/Preferences/com.apple.finder.plist ShowPathbar -bool tr
 # ----------------------------------------------
 
 # set screen capture image location
-if [ ! -f ${SCREENSHOT_LOC} ]; then
-  mkdir -p ${SCREENSHOT_LOC};
+if [ ! -f "${SCREENSHOT_LOC}" ]; then
+  mkdir -p "${SCREENSHOT_LOC}";
 fi
 defaults write ~/Library/Preferences/com.apple.screencapture.plist location -string "${SCREENSHOT_LOC}";
 

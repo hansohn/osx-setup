@@ -63,6 +63,18 @@ set softtabstop=2                           " edit as if the tabs are 4 characte
 set shiftwidth=2                            " number of spaces to use for indent and unindent
 set shiftround                              " round indent to a multiple of 'shiftwidth'
 
+" split
+set splitbelow
+set splitright
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Spell-check Markdown files and Git Commit Messages
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+
 
 " ----- Syntax and Color -----
 
@@ -70,34 +82,27 @@ set shiftround                              " round indent to a multiple of 'shi
 syntax on
 
 " set colorscheme
-colorscheme solarized
+colorscheme gruvbox
 set background=dark
 
 " set encoding
 set encoding=utf8
 
-" explicitly tell vim that the terminal supports 256 colors
-set t_Co=256
-
 " python syntax
-let python_highlight_all=1
+autocmd BufRead,BufNewFile *.py let python_highlight_all=1
 
 
 " -----  Plugins -----
 
-" close NERDTree after a file is opened
+" lsp
+nmap <leader>K :LspHover<CR>
+
+" NERDTree
 let g:NERDTreeQuitOnOpen=0
-" show hidden files in NERDTree
-let NERDTreeShowHidden=1
-" remove some files by extension
-let NERDTreeIgnore = ['\.js.map$']
-" Toggle NERDTree
-nmap <silent> <leader>k :NERDTreeToggle<cr>
-" expand to the path of the file in the current buffer
-nmap <silent> <leader>y :NERDTreeFind<cr>
-" vim-nerdtree-tabs
-"let g:nerdtree_tabs_open_on_console_startup=1
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+let g:NERDTreeShowHidden=1
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
 
 " map fuzzyfinder (CtrlP) plugin
 " nmap <silent> <leader>t :CtrlP<cr>
@@ -121,16 +126,9 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_theme='base16'
+let g:airline_theme='gruvbox'
 
 " YouCompleteMe
 "let g:ycm_autoclose_preview_windows_after_completion=1
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<cr>
-
-" split
-set splitbelow
-set splitright
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <silent> <localleader>h <Plug>(YCMToggleInlayHints)

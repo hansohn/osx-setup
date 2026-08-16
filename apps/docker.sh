@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/../config.sh;
+source "${SCRIPTPATH}/../config.sh";
 
 # install prerequisites
-source ${SCRIPTPATH}/homebrew.sh;
+source "${SCRIPTPATH}/homebrew.sh";
 
 # install docker
-if ! brew cask ls | grep "^docker$" > /dev/null 2>&1; then
+if ! brew ls | grep -e '^docker$' > /dev/null 2>&1; then
   echo "==> Installing Docker";
-  brew cask install docker;
+  brew install --cask docker;
 fi
 
 # install docker-completion
-if ! brew ls | grep "^docker-completion$" /dev/null 2>&1; then
+if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls docker-completion > /dev/null 2>&1; then
   echo "==> Install Docker-Completion";
   brew install docker-completion;
 fi

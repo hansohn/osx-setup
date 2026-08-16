@@ -1,4 +1,17 @@
-# osx-setup
+<div align="center">
+  <h1>osx-setup</h1>
+  <p>OSX Setup Utility</p>
+  <p>
+    <!-- Build Status -->
+    <a href="https://github.com/hansohn/osx-setup/actions/workflows/shellcheck.yml"><img src="https://img.shields.io/github/actions/workflow/status/hansohn/osx-setup/shellcheck.yml?style=for-the-badge"></a>
+    <!-- Github Tag -->
+    <a href="https://github.com/hansohn/osx-setup/tags/"><img src="https://img.shields.io/github/v/tag/hansohn/osx-setup?style=for-the-badge&sort=semver"></a>
+    <!-- License -->
+    <a href="https://github.com/hansohn/osx-setup/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/hansohn/osx-setup.svg?style=for-the-badge"></a>
+  </p>
+</div>
+
+## Description
 
 Welcome to my [osx-setup](https://github.com/hansohn/osx-setup). I am a DevOps Engineer by trade and this repo reflects the various tools I use on a daily basis. As with most osx-setup repos, this is a continuous work in progress and is updated as the systems and applications I work on evolve or my tool preferences change.
 

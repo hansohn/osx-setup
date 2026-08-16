@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
 # set vars
-SCRIPTPATH=`dirname "${BASH_SOURCE[0]}"`;
+SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 
 # import config vars
-source ${SCRIPTPATH}/../config.sh;
-
+source "${SCRIPTPATH}/../config.sh";
 
 # ----------------------------------------------
 # Date & Time
@@ -75,6 +74,3 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false;
 
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false;
-
-# set keyboard to to fn keys
-defaults write NSGlobalDomain com.apple.keyboard.fnState -int 1;

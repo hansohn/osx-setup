@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
+#
+# Every variable here is consumed by bootstrap.sh, apps/*.sh or
+# customizations/*.sh after sourcing, which shellcheck cannot follow.
+# shellcheck disable=SC2034
 
 # ----- general information -----
-FULL_NAME="Foo Bar";
 EMAIL_ADDRESS="foo.bar@mail.com";
-PHONE_NUMBER="1 (800) 867-5309";
 
 # ----- osx -----
 SCREENSHOT_LOC="${HOME}/Pictures/Screenshots";
@@ -16,9 +18,11 @@ TIMESERVER="time.nist.gov";
 GIT_USER_NAME="Foo Bar";
 GIT_USER_EMAIL="foo.bar@users.noreply.github.com";
 
-# ----- exports -----
-export HOMEBREW_CASK_OPTS="--appdir=/Applications";
+# ----- app versions -----
+# consumed by apps/java.sh, apps/nodejs.sh and apps/rust.sh
+JAVA_VERSION="21";
+NODE_VERSION="24";
+RUSTUP_INSTALL_NIGHTLY="false";
 
+# ----- exports -----
 # ----- apps -----
-JAVA_VERSION="8";
-NODE_VERSION="stable";
