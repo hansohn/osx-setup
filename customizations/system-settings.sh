@@ -19,17 +19,24 @@ sudo systemsetup -setusingnetworktime "on";
 # Application layer firewall
 # ----------------------------------------------
 
-# Enable ALF
-sudo defaults write /Library/Preferences/com.apple.alf.plist globalstate -int 1;
+# Writing to com.apple.alf.plist directly is the pre-Ventura interface and no
+# longer takes effect -- `defaults read com.apple.alf` reports no such domain
+# on macOS 26. socketfilterfw is the supported tool.
+firewall='/usr/libexec/ApplicationFirewall/socketfilterfw';
 
-# Allow signed apps
-sudo defaults write /Library/Preferences/com.apple.alf.plist allowsignedenabled -bool true;
+if [ -x "${firewall}" ]; then
+  # Enable the firewall
+  sudo "${firewall}" --setglobalstate on;
 
-# Enable logging
-sudo defaults write /Library/Preferences/com.apple.alf.plist loggingenabled -bool true;
+  # Allow signed apps
+  sudo "${firewall}" --setallowsigned on;
 
-# Disable stealth mode
-sudo defaults write /Library/Preferences/com.apple.alf.plist stealthenabled -bool false;
+  # Disable stealth mode
+  sudo "${firewall}" --setstealthmode off;
+
+  # NOTE: the old loggingenabled key has no socketfilterfw equivalent --
+  # macOS 26 exposes no logging flag, so that setting is dropped.
+fi
 
 
 # ----------------------------------------------
