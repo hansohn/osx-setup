@@ -13,7 +13,7 @@ if ! which rustc > /dev/null 2>&1; then
   export PATH="${HOME}/.cargo/bin:${PATH}"
 
   # install rust nightly
-  if [ "${RUSTUP_INSTALL_NIGHTLY}" == "true" ] && which rustup > dev/null 2>&1; then
+  if [ "${RUSTUP_INSTALL_NIGHTLY}" == "true" ] && which rustup > /dev/null 2>&1; then
     rustup toolchain install nightly
     rustup default nightly
   fi
