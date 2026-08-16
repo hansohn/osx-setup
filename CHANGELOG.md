@@ -14,6 +14,9 @@ FEATURES:
   com.apple.menuextra.battery
 - Dock, Finder and menu bar are restarted so settings apply without a logout
 - nvm installed from homebrew
+- renovate scoped to github-actions and moved to the repo root. It had been
+  configured for terraform, which this repo contains none of, so it could
+  never have matched anything
 
 BUG FIXES:
 
@@ -27,6 +30,11 @@ BUG FIXES:
 - GitHub Actions pinned to releases; two tracked a moving branch
 - shellcheck workflow now runs on pull requests, which pull_request nesting
   had prevented
+- README tagline and description no longer pinned to the retired OSX name or
+  to a single job title
+- README prose unwrapped to one line per paragraph, matching the rest of the
+  file
+- licence copyright range extended to 2026
 
 APPLICATIONS REMOVED:
 
