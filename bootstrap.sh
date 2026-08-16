@@ -14,8 +14,7 @@ vim_dir="${HOME}/.vim"
 
 dotfiles=(
   '.bash_profile'
-  '.tmux.conf'
-  '.tmux.conf.local'
+  '.config/tmux/tmux.conf'
   '.vimrc'
   '.vim/plugins.vim'
   '.zshrc'
@@ -35,15 +34,24 @@ rsync -ah "${BOOTSCRIPT_PATH}/dotfiles/" "${dotfile_dir}/"
 
 # manage dotfile
 for dotfile in "${dotfiles[@]}"; do
+  # skip anything the dotfiles directory does not actually provide, rather
+  # than linking it and leaving a dangling symlink behind
+  if [ ! -e "${dotfile_dir}/${dotfile}" ]; then
+    echo "==> Skipping: ${dotfile} (not present in ${dotfile_dir})"
+    continue
+  fi
+
   # backup if not symlink
   if [ -f "${HOME}/${dotfile}" ] && [ ! -L "${HOME}/${dotfile}" ]; then
     echo "==> Archiving: ${HOME}/${dotfile} to ${backup_dir}"
+    mkdir -p "$(dirname "${backup_dir}/${dotfile}")"
     mv "${HOME}/${dotfile}" "${backup_dir}/${dotfile}"
   fi
 
   # symlink
   if [ ! -L "${HOME}/${dotfile}" ]; then
     echo "==> Linking: ${dotfile_dir}/${dotfile} to ${HOME}/${dotfile}"
+    mkdir -p "$(dirname "${HOME}/${dotfile}")"
     ln -s "${dotfile_dir}/${dotfile}" "${HOME}/${dotfile}"
   fi
 done
