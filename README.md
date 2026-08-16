@@ -5,9 +5,9 @@
     <!-- Build Status -->
     <a href="https://github.com/hansohn/osx-setup/actions/workflows/shellcheck.yml"><img src="https://img.shields.io/github/actions/workflow/status/hansohn/osx-setup/shellcheck.yml?style=for-the-badge"></a>
     <!-- Github Tag -->
-    <a href="https://gitHub.com/hansohn/osx-setup/tags/"><img src="https://img.shields.io/github/tag/hansohn/osx-setup.svg?style=for-the-badge"></a>
+    <a href="https://github.com/hansohn/osx-setup/tags/"><img src="https://img.shields.io/github/v/tag/hansohn/osx-setup?style=for-the-badge&sort=semver"></a>
     <!-- License -->
-    <a href="https://github.com/hansohn/osx-setup/blob/main/LICENSE"><img src="https://img.shields.io/github/license/hansohn/osx-setup.svg?style=for-the-badge"></a>
+    <a href="https://github.com/hansohn/osx-setup/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/hansohn/osx-setup.svg?style=for-the-badge"></a>
   </p>
 </div>
 
