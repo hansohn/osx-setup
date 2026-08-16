@@ -14,6 +14,7 @@ vim_dir="${HOME}/.vim"
 
 dotfiles=(
   '.bash_profile'
+  '.config/nvim'
   '.config/tmux/tmux.conf'
   '.vimrc'
   '.vim/plugins.vim'
@@ -41,18 +42,20 @@ for dotfile in "${dotfiles[@]}"; do
     continue
   fi
 
-  # backup if not symlink
-  if [ -f "${HOME}/${dotfile}" ] && [ ! -L "${HOME}/${dotfile}" ]; then
+  # backup if not symlink -- -e rather than -f, so directory entries such as
+  # .config/nvim are archived too instead of being left in place
+  if [ -e "${HOME}/${dotfile}" ] && [ ! -L "${HOME}/${dotfile}" ]; then
     echo "==> Archiving: ${HOME}/${dotfile} to ${backup_dir}"
     mkdir -p "$(dirname "${backup_dir}/${dotfile}")"
     mv "${HOME}/${dotfile}" "${backup_dir}/${dotfile}"
   fi
 
-  # symlink
+  # symlink -- -n so an existing directory is replaced rather than having the
+  # link created inside it
   if [ ! -L "${HOME}/${dotfile}" ]; then
     echo "==> Linking: ${dotfile_dir}/${dotfile} to ${HOME}/${dotfile}"
     mkdir -p "$(dirname "${HOME}/${dotfile}")"
-    ln -s "${dotfile_dir}/${dotfile}" "${HOME}/${dotfile}"
+    ln -sfn "${dotfile_dir}/${dotfile}" "${HOME}/${dotfile}"
   fi
 done
 
@@ -78,6 +81,7 @@ apps=(
   "terraform"
   "vagrant"
   "vim"
+  "zsh"
 )
 
 # list of homebrew taps to add
