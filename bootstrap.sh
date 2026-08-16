@@ -74,7 +74,7 @@ apps=(
   "homebrew"
   "iterm2"
   "openssl"
-  "osx-terminal"
+  "macos-terminal"
   "packer"
   "python"
   "rust"
