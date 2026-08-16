@@ -8,8 +8,6 @@
     <a href="https://gitHub.com/hansohn/osx-setup/tags/"><img src="https://img.shields.io/github/tag/hansohn/osx-setup.svg?style=for-the-badge"></a>
     <!-- License -->
     <a href="https://github.com/hansohn/osx-setup/blob/main/LICENSE"><img src="https://img.shields.io/github/license/hansohn/osx-setup.svg?style=for-the-badge"></a>
-    <!-- LinkedIn -->
-    <a href="https://linkedin.com/in/ryanhansohn"><img src="https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555"></a>
   </p>
 </div>
 
