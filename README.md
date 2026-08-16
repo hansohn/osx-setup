@@ -34,20 +34,20 @@ The authoritative lists live in [`bootstrap.sh`](bootstrap.sh) — `brew_formula
 
 ### Applications
 
-`1Password`, `Docker`, `Firefox`, `Google Chrome`, `Google Drive`, `iTerm2`,
-`Obsidian`, `Postman`, `Raycast`, `Rectangle`, `Slack`, `Spotify`,
-`Visual Studio Code`, `VirtualBox`, `Wireshark`, `Zoom`, `AppCleaner`,
-`Adobe Acrobat Reader`, `Discord`, `Brooklyn`, and the Hack Nerd Font.
+1Password, Adobe Acrobat Reader, AppCleaner, Brooklyn, Discord, Docker,
+Firefox, Google Chrome, Google Drive, iTerm2, Obsidian, Postman, Raycast,
+Rectangle, Slack, Spotify, Visual Studio Code, VirtualBox, Wireshark and Zoom,
+plus the Hack Nerd Font.
 
-From the Mac App Store: `Amphetamine`, `Decompressor`, `iMazing HEIC Converter`,
-`Kindle`.
+From the Mac App Store: Amphetamine, Decompressor, iMazing HEIC Converter and
+Kindle.
 
 ### Configured, not just installed
 
-The scripts in [`apps/`](apps) do more than install a package — they set up
-`git`, `bash`, `zsh` + oh-my-zsh, `vim` + vim-plug, `iterm2`, the macOS
-Terminal colorscheme, fonts, `python` (pyenv), `rust` (rustup), and
-`terraform`.
+The scripts in [`apps/`](apps) do more than install a package — they configure
+`git`, `bash`, `zsh` with oh-my-zsh, `vim` with vim-plug, Python via `pyenv`,
+Rust via `rustup`, Terraform, iTerm2, the macOS Terminal colorscheme, and
+fonts.
 
 macOS defaults — Dock, Finder, screenshots, timezone — are applied from
 [`customizations/`](customizations).
