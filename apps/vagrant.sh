@@ -26,8 +26,5 @@ for plugin in "${vagrant_plugins[@]}"; do
   fi
 done
 
-# install vagrant-completion
-if [[ "${SHELL##*/}" == 'bash' ]] && ! brew ls vagrant-completion >/dev/null 2>&1; then
-  echo "==> Installing vagrant-completion"
-  brew install vagrant-completion
-fi
+# NOTE: vagrant-completion was removed from homebrew-core and has no replacement
+# formula, so no shell completion is installed here.
