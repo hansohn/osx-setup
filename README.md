@@ -15,59 +15,46 @@
 
 Welcome to my [osx-setup](https://github.com/hansohn/osx-setup). I am a DevOps Engineer by trade and this repo reflects the various tools I use on a daily basis. As with most osx-setup repos, this is a continuous work in progress and is updated as the systems and applications I work on evolve or my tool preferences change.
 
-Whats Included
---------------
+What's Included
+---------------
+
+The authoritative lists live in [`bootstrap.sh`](bootstrap.sh) — `brew_formulae`,
+`brew_casks` and `mas_apps`. What follows is a summary by area, not an inventory.
+
+### Command line
+
+| Area | Tools |
+|---|---|
+| Cloud & Kubernetes | `awscli`, `aws-vault`, `doctl`, `helm`, `k9s`, `kind`, `kubernetes-cli`, `kustomize`, `argocd`, `istioctl`, `session-manager-plugin` |
+| Infrastructure as code | `ansible`, `ansible-lint`, `terragrunt`, `terraform-docs`, `terraform-ls`, `tfswitch`, `tflint`, `cfn-lint` |
+| Shell & editors | `zsh` + oh-my-zsh, `neovim`, `tmux`, `fzf`, `ripgrep`, `fd`, `bat`, `tree`, `lazygit`, `gh` |
+| Languages | `go`, `lua`, plus `pyenv`, `nvm` and `rustup` via the scripts in [`apps/`](apps) |
+| Linting | `shellcheck`, `yamllint`, `jsonlint`, `golangci-lint` |
+| Misc | `curl`, `wget`, `jq`, `grep`, `gnupg`, `nmap`, `ipcalc`, `mas` |
 
 ### Applications
 
-This script will install and configure the following applications:
+`1Password`, `Docker`, `Firefox`, `Google Chrome`, `Google Drive`, `iTerm2`,
+`Obsidian`, `Postman`, `Raycast`, `Rectangle`, `Slack`, `Spotify`,
+`Visual Studio Code`, `VirtualBox`, `Wireshark`, `Zoom`, `AppCleaner`,
+`Adobe Acrobat Reader`, `Discord`, `Brooklyn`, and the Hack Nerd Font.
 
-- [adobe reader](https://get.adobe.com/reader/?promoid=KLXME)
-- [aerial](https://github.com/JohnCoates/Aerial)
-- [anaconda](https://www.anaconda.com/)
-- [apache-directory-studio](https://directory.apache.org/studio/)
-- [appcleaner](https://freemacsoft.net/appcleaner/)
-- [atom](https://atom.io/)
-- [awscli](https://aws.amazon.com/cli/)
-- [caffeine](http://lightheadsw.com/caffeine/)
-- [chefdk](https://downloads.chef.io/chef-dk/)
-- [curl](https://curl.haxx.se/)
-- [docker](https://www.docker.com/docker-mac)
-- [dropbox](https://www.dropbox.com/)
-- [firefox](https://www.mozilla.org/en-US/firefox/products/)
-- [flux](https://justgetflux.com/)
-- [git](https://git-scm.com/)
-- [go](https://golang.org/)
-- [google chrome](https://www.google.com/chrome/browser/desktop/index.html)
-- [google drive](https://www.google.com/drive/)
-- [hadoop](http://hadoop.apache.org/)
-- [homebrew](http://brew.sh/)
-- [intellij-idea-ce](https://www.jetbrains.com/idea/)
-- [iterm2](https://www.iterm2.com/)
-- [java](https://java.com/en/download/)
-- [jq](https://stedolan.github.io/jq/)
-- [meld](http://meldmerge.org/)
-- [nodejs](https://nodejs.org/en/)
-- [openssl](https://www.openssl.org/)
-- [packer](https://www.packer.io/)
-- [postman](https://www.getpostman.com/)
-- [pycharm-ce](https://www.jetbrains.com/pycharm/)
-- [python](https://www.python.org/)
-- [ruby](https://www.ruby-lang.org/en/)
-- [sbt](https://www.scala-sbt.org/)
-- [spectacle](https://www.spectacleapp.com/)
-- [spotify](https://www.spotify.com/us/)
-- [slack](https://slack.com/)
-- [transmission](http://www.transmissionbt.com/)
-- [vagrant](https://www.vagrantup.com/)
-- [vim](http://www.vim.org/)
-- [virtualbox](https://www.virtualbox.org/)
-- [wget](http://www.gnu.org/software/wget/)
-- [wireshark](https://www.wireshark.org/)
+From the Mac App Store: `Amphetamine`, `Decompressor`, `iMazing HEIC Converter`,
+`Kindle`.
 
-### Color Palettes
+### Configured, not just installed
 
- - [solarized](http://ethanschoonover.com/solarized)
+The scripts in [`apps/`](apps) do more than install a package — they set up
+`git`, `bash`, `zsh` + oh-my-zsh, `vim` + vim-plug, `iterm2`, the macOS
+Terminal colorscheme, fonts, `python` (pyenv), `rust` (rustup), and
+`terraform`.
+
+macOS defaults — Dock, Finder, screenshots, timezone — are applied from
+[`customizations/`](customizations).
+
+### Color palettes
+
+- [solarized](https://ethanschoonover.com/solarized/)
 
 Prerequisites
 -------------
