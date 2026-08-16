@@ -34,7 +34,7 @@ fi
 
 # set terminal colorscheme
 colorscheme="solarized-dark"
-if [[ ! $(defaults read "${HOME}/Library/Preferences/com.apple.Terminal.plist" "Default Window Settings") != "${colorscheme}" ]] ; then
+if [[ $(defaults read "${HOME}/Library/Preferences/com.apple.Terminal.plist" "Default Window Settings" 2>/dev/null) != "${colorscheme}" ]] ; then
   echo "==> Setting ${colorscheme} as default color profile in osx terminal";
   defaults write "${HOME}/Library/Preferences/com.apple.Terminal.plist" "Default Window Settings" "${colorscheme}";
   defaults write "${HOME}/Library/Preferences/com.apple.Terminal.plist" "Startup Window Settings" "${colorscheme}";
