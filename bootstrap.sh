@@ -80,6 +80,12 @@ apps=(
   "vim"
 )
 
+# list of homebrew taps to add
+brew_taps=(
+  "terraform-linters/tap"
+  "warrensbox/tap"
+)
+
 # list of homebrew formulae to install
 brew_formulae=(
   "ansible"
@@ -119,7 +125,6 @@ brew_formulae=(
   "terraform-docs"
   "terraform-ls"
   "terragrunt"
-  "tflint"
   "tmux"
   "tree"
   "tree-sitter"
@@ -148,6 +153,7 @@ brew_casks=(
   "session-manager-plugin"
   "slack"
   "spotify"
+  "terraform-linters/tap/tflint"
   "virtualbox@beta"
   "visual-studio-code"
   "wireshark"
@@ -166,6 +172,14 @@ mas_apps=(
 # shellcheck disable=SC1090
 for app in "${apps[@]}"; do
   source "${BOOTSCRIPT_PATH}/apps/${app}.sh"
+done
+
+# add taps
+for tap in "${brew_taps[@]}"; do
+  if ! brew tap | grep -q "^${tap}$"; then
+    echo "==> Tapping ${tap}"
+    brew tap "${tap}"
+  fi
 done
 
 # install selected brew apps
