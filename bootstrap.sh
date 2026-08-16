@@ -124,6 +124,7 @@ brew_formulae=(
   "mas"
   "neovim"
   "nmap"
+  "nvm"
   "ripgrep"
   "shellcheck"
   "terraform-docs"
