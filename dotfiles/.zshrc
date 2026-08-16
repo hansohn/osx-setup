@@ -345,7 +345,7 @@ alias mv='mv -iv'                                                 # Preferred �
 alias mkdir='mkdir -pv'                                           # Preferred ‘mkdir’
 
 # -- ssh --
-alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy"                    # Copy my public key to the pasteboard
+alias pubkey="more ~/.ssh/${SSH_KEY:-id_ed25519}.pub | pbcopy"    # Copy my public key to the pasteboard
 
 # -- time --
 alias utc='date -u'                                               # UTC time
