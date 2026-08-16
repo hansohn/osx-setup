@@ -183,8 +183,10 @@ for tap in "${brew_taps[@]}"; do
 done
 
 # install selected brew apps
+# `brew ls` prints the bare name, so strip any user/tap/ prefix before matching
+# or a tapped formula never looks installed and reinstalls on every run
 for formula in "${brew_formulae[@]}"; do
-  if ! brew ls | grep "^${formula}$" >/dev/null 2>&1; then
+  if ! brew ls | grep "^${formula##*/}$" >/dev/null 2>&1; then
     echo "==> Installing ${formula}"
     brew install "${formula}"
   fi
@@ -192,15 +194,17 @@ done
 
 # install selected cask apps
 for cask in "${brew_casks[@]}"; do
-  if ! brew ls | grep "^${cask}$" >/dev/null 2>&1; then
+  if ! brew ls | grep "^${cask##*/}$" >/dev/null 2>&1; then
     echo "==> Installing ${cask}"
     brew install --cask "${cask}"
   fi
 done
 
 # install mas apps
+# `mas list` prints "<id>  <Name>  (<version>)", so anchoring on the id alone
+# never matches and every app is reinstalled on each run
 for app in "${mas_apps[@]}"; do
-  if ! mas list | grep -e "^${app}$" >/dev/null 2>&1; then
+  if ! mas list | grep -qE "^[[:space:]]*${app}[[:space:]]"; then
     mas install "${app}"
   fi
 done
