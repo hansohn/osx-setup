@@ -143,7 +143,6 @@ brew_casks=(
   "1password"
   "adobe-acrobat-reader"
   "appcleaner"
-  "brooklyn"
   "discord"
   "docker"
   "firefox"

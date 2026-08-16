@@ -34,10 +34,10 @@ The authoritative lists live in [`bootstrap.sh`](bootstrap.sh) — `brew_formula
 
 ### Applications
 
-1Password, Adobe Acrobat Reader, AppCleaner, Brooklyn, Discord, Docker,
-Firefox, Google Chrome, Google Drive, iTerm2, Obsidian, Postman, Raycast,
-Rectangle, Slack, Spotify, Visual Studio Code, VirtualBox, Wireshark and Zoom,
-plus the Hack Nerd Font.
+1Password, Adobe Acrobat Reader, AppCleaner, Discord, Docker, Firefox,
+Google Chrome, Google Drive, iTerm2, Obsidian, Postman, Raycast, Rectangle,
+Slack, Spotify, Visual Studio Code, VirtualBox, Wireshark and Zoom, plus the
+Hack Nerd Font.
 
 From the Mac App Store: Amphetamine, Decompressor, iMazing HEIC Converter and
 Kindle.
