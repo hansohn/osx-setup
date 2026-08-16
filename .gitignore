@@ -90,3 +90,8 @@ tags
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,linux,vim,visualstudiocode
+
+### Project ###
+# machine-specific package lists -- never commit these
+Brewfile.local
+Brewfile.work

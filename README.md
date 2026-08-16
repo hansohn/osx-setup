@@ -1,13 +1,13 @@
 <div align="center">
-  <h1>osx-setup</h1>
+  <h1>mac-setup</h1>
   <p>Opinionated macOS setup for infrastructure and platform engineering</p>
   <p>
     <!-- Build Status -->
-    <a href="https://github.com/hansohn/osx-setup/actions/workflows/shellcheck.yml"><img src="https://img.shields.io/github/actions/workflow/status/hansohn/osx-setup/shellcheck.yml?style=for-the-badge"></a>
+    <a href="https://github.com/hansohn/mac-setup/actions/workflows/shellcheck.yml"><img src="https://img.shields.io/github/actions/workflow/status/hansohn/mac-setup/shellcheck.yml?style=for-the-badge"></a>
     <!-- Github Tag -->
-    <a href="https://github.com/hansohn/osx-setup/tags/"><img src="https://img.shields.io/github/v/tag/hansohn/osx-setup?style=for-the-badge&sort=semver"></a>
+    <a href="https://github.com/hansohn/mac-setup/tags/"><img src="https://img.shields.io/github/v/tag/hansohn/mac-setup?style=for-the-badge&sort=semver"></a>
     <!-- License -->
-    <a href="https://github.com/hansohn/osx-setup/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/hansohn/osx-setup.svg?style=for-the-badge"></a>
+    <a href="https://github.com/hansohn/mac-setup/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/hansohn/mac-setup.svg?style=for-the-badge"></a>
   </p>
 </div>
 
@@ -47,6 +47,18 @@ macOS defaults — Dock, Finder, screenshots, timezone — are applied from [`cu
 
 - [solarized](https://ethanschoonover.com/solarized/)
 
+### Package list
+
+`bootstrap.sh` installs from the `brew_formulae`, `brew_casks` and `mas_apps`
+arrays it declares. A `Brewfile` also lives here, generated from a working
+machine and organised by area, along with a `Makefile` exposing
+`brew/install`, `brew/check` and `brew/drift`.
+
+The two are **not yet reconciled** — the Brewfile is a superset that includes
+applications present on one machine rather than wanted on every machine, so
+nothing reads it during bootstrap. `make brew/drift` is useful today for
+spotting packages installed but never declared.
+
 Prerequisites
 -------------
 
@@ -64,8 +76,8 @@ You will need Administrator level permissions to complete this setup. Enjoy!
 
 ```bash
 # clone the repo
-$ git clone https://github.com/hansohn/osx-setup.git
+$ git clone https://github.com/hansohn/mac-setup.git
 
 # execute the installer
-$ osx-setup/bootstrap.sh
+$ mac-setup/bootstrap.sh
 ```
