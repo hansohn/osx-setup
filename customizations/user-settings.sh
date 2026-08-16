@@ -6,100 +6,113 @@ SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 # import config vars
 source "${SCRIPTPATH}/../config.sh";
 
+# NOTE: these all address preference domains rather than plist file paths.
+# cfprefsd caches user preferences in memory and can overwrite a file written
+# behind its back, so `defaults write com.apple.dock autohide` is reliable
+# where `defaults write ~/Library/Preferences/com.apple.dock.plist autohide`
+# is not.
+
 
 # ----------------------------------------------
-# Battery
+# Menu bar
 # ----------------------------------------------
 
-# Menu bar: show battery percentage
-defaults write ~/Library/Preferences/com.apple.menuextra.battery.plist ShowPercent -string 'YES';
+# Show battery percentage. The com.apple.menuextra.battery domain was retired
+# when the menu bar moved into Control Center; that key no longer exists.
+defaults write com.apple.controlcenter BatteryShowPercentage -bool true;
 
 
 # ----------------------------------------------
 # Dock
 # ----------------------------------------------
 
-# Postition on screen: bottom
-defaults write ~/Library/Preferences/com.apple.dock.plist orientation -string 'bottom';
+# Position the Dock on the bottom of the screen
+defaults write com.apple.dock orientation -string 'bottom';
 
-# Minimize windows into application icon
-defaults write ~/Library/Preferences/com.apple.dock.plist minimize-to-application -bool true;
+# Minimize windows into their application icon
+defaults write com.apple.dock minimize-to-application -bool true;
 
-# Automatically hide and show the dock
-defaults write ~/Library/Preferences/com.apple.dock.plist autohide -bool true;
-
-
-# ----------------------------------------------
-# Files and folders
-# ----------------------------------------------
-
-# unhide ~/Library
-chflags nohidden ~/Library/;
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true;
 
 
 # ----------------------------------------------
 # Finder
 # ----------------------------------------------
 
-# Show these items on the Desktop: hard disks
-defaults write ~/Library/Preferences/com.apple.finder.plist ShowHardDrivesOnDesktop -bool true;
+# Show the ~/Library folder
+chflags nohidden "${HOME}/Library";
 
-# Show these items on the Desktop: external disks
-defaults write ~/Library/Preferences/com.apple.finder.plist ShowExternalHardDrivesOnDesktop -bool true;
+# Show hard drives, external drives and removable media on the desktop
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true;
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true;
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true;
 
-# Show these items on the Desktop: cd's, dvd's, and ipods
-defaults write ~/Library/Preferences/com.apple.finder.plist ShowRemovableMediaOnDesktop -bool true;
+# Expand the Places section of the sidebar
+defaults write com.apple.finder SidebarPlacesSectionDisclosedState -bool true;
 
-# Show these items on the Desktop: user
-defaults write ~/Library/Preferences/com.apple.finder.plist SidebarPlacesSectionDisclosedState -bool true;
+# Open new windows in the home directory
+defaults write com.apple.finder NewWindowTarget -string 'PfHm';
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/";
 
-# new finder windows show:
-defaults write ~/Library/Preferences/com.apple.finder.plist NewWindowTarget -string 'PfHm';
-defaults write ~/Library/Preferences/com.apple.finder.plist NewWindowTargetPath -string "file:///Users/${USER}/";
+# Hide recent tags
+defaults write com.apple.finder ShowRecentTags -bool false;
 
-# view | show recent tags
-defaults write ~/Library/Preferences/com.apple.finder.plist ShowRecentTags -bool false;
-
-# view | show path par
-defaults write ~/Library/Preferences/com.apple.finder.plist ShowPathbar -bool true;
+# Show the path bar
+defaults write com.apple.finder ShowPathbar -bool true;
 
 
 # ----------------------------------------------
-# Screen Capture
+# Screenshots
 # ----------------------------------------------
 
-# set screen capture image location
-if [ ! -f "${SCREENSHOT_LOC}" ]; then
+# -d, not -f: SCREENSHOT_LOC is a directory, so `! -f` was always true and the
+# mkdir ran on every invocation
+if [ ! -d "${SCREENSHOT_LOC}" ]; then
   mkdir -p "${SCREENSHOT_LOC}";
 fi
-defaults write ~/Library/Preferences/com.apple.screencapture.plist location -string "${SCREENSHOT_LOC}";
+
+# Save screenshots to the configured location
+defaults write com.apple.screencapture location -string "${SCREENSHOT_LOC}";
 
 
 # ----------------------------------------------
-# Screen Saver
+# Screensaver
 # ----------------------------------------------
 
-# Require password immediately after sleep or screen saver begins
-defaults write ~/Library/Preferences/com.apple.screensaver.plist askForPassword -int 1;
-defaults write ~/Library/Preferences/com.apple.screensaver.plist askForPasswordDelay -int 0;
+# Require a password immediately after sleep or screensaver
+defaults write com.apple.screensaver askForPassword -int 1;
+defaults write com.apple.screensaver askForPasswordDelay -int 0;
 
 
 # ----------------------------------------------
 # TextEdit
 # ----------------------------------------------
 
-# Use plain text mode for new TextEdit documents
-defaults write ~/Library/Preferences/com.apple.TextEdit.plist RichText -int 0;
+# Use plain text mode for new documents
+defaults write com.apple.TextEdit RichText -int 0;
 
-# Open and save files as UTF-8 in TextEdit
-defaults write ~/Library/Preferences/com.apple.TextEdit.plist PlainTextEncoding -int 4;
-defaults write ~/Library/Preferences/com.apple.TextEdit.plist PlainTextEncodingForWrite -int 4;
+# Open and save files as UTF-8
+defaults write com.apple.TextEdit PlainTextEncoding -int 4;
+defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4;
 
 
 # ----------------------------------------------
-# TrackPad & Mouse
+# Trackpad
 # ----------------------------------------------
 
-# Enable Trackpad tap-to-click 
-defaults write ~/Library/Preferences/com.apple.driver.AppleBluetoothMultitouch.trackpad.plist Clicking -bool true;
+# Enable tap to click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true;
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1;
+
+
+# ----------------------------------------------
+# Apply
+# ----------------------------------------------
+
+# Preference changes are not picked up until the owning process restarts.
+# Without this the Dock, Finder and menu bar settings above do nothing until
+# the next logout.
+for app in "ControlCenter" "Dock" "Finder" "SystemUIServer"; do
+  killall "${app}" > /dev/null 2>&1 || true;
+done
