@@ -156,7 +156,15 @@ fi
 
 # add directories to PATH in one place
 path_add() {
-  [ -d "$1" ] && PATH="$1:$PATH"
+  # skip if the directory does not exist, or is already on PATH. The
+  # membership test keeps this idempotent without reordering: an entry that is
+  # already present stays where it is, rather than being promoted to the front
+  # the way `typeset -U path` would do it.
+  [ -d "$1" ] || return
+  case ":${PATH}:" in
+    *":$1:"*) return ;;
+  esac
+  PATH="$1:$PATH"
 }
 
 # anaconda
@@ -344,7 +352,7 @@ if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/home
 if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'; fi
 
 # user-installed executables
-export PATH="$HOME/.local/bin:$PATH"
+path_add "${HOME}/.local/bin"
 
 # aws-vault: cache MFA session token for 12h (reduces MFA prompts)
 export AWS_SESSION_TOKEN_TTL=12h
