@@ -79,6 +79,8 @@ plugins=(
   helm
   kubectl
   terraform
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -114,15 +116,15 @@ source $ZSH/oh-my-zsh.sh
 # assumes that 3rd party applications were installed with
 # homebrew when available.
 
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-  autoload -Uz compinit
-  compinit
+# Add Homebrew completions path if Homebrew is installed
+if command -v brew &>/dev/null; then
+  fpath=("$(brew --prefix)/share/zsh-completions" $fpath)
 fi
 
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
+# Initialize completion system (only once)
+autoload -Uz +X compinit bashcompinit
+compinit
+bashcompinit
 
 export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
 
@@ -137,64 +139,56 @@ export LANG=en_US.UTF-8
 # APPLICATIONS
 #------------------------------------------------------------------------------
 
-# enable/disable applications
+# feature toggles
 ANACONDA_SHELL=false
 CHEF_SHELL=false
 MINICONDA_SHELL=false
-NVM_SHELL=false
+NVM_SHELL=true
 RUBY_USE_BREW=false
 
-
-# -- homebrew --
-# install brew cask application in global /Applications directory
-export HOMEBREW_CASK_OPTS="--appdir=/Applications";
-BREW_PREFIX=$(brew --prefix);
-
-# -- anaconda --
-# populate bash path with anaconda binaries
-if [ "${ANACONDA_SHELL}" = "true" ] && [ -d "/usr/local/anaconda3" ]; then
-  export PATH="${PATH}:/usr/local/anaconda3/bin";
-  eval "$(register-python-argcomplete conda)";
-  # source "${BREW_PREFIX}/anaconda3/etc/profile.d/conda.sh";  # commented out by conda initialize
+# brew prefix only if brew is available
+if command -v brew &>/dev/null; then
+  BREW_PREFIX="$(brew --prefix)"
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications";
+else
+  BREW_PREFIX="/usr/local"
 fi
 
-# -- miniconda --
-# populate bash path with anaconda binaries
-if [ "${MINICONDA_SHELL}" = "true" ] && [ -d "${BREW_PREFIX}/Caskroom/miniconda" ]; then
-  eval "$(register-python-argcomplete conda)";
-  __conda_setup="$("${BREW_PREFIX}/Caskroom/miniconda/base/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-  else
-    if [ -f "${BREW_PREFIX}/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-      . "${BREW_PREFIX}/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-      export PATH="${BREW_PREFIX}/Caskroom/miniconda/base/bin:$PATH"
-    fi
+# add directories to PATH in one place
+path_add() {
+  [ -d "$1" ] && PATH="$1:$PATH"
+}
+
+# anaconda
+if [ "$ANACONDA_SHELL" = true ] && [ -d "/usr/local/anaconda3" ]; then
+  path_add "/usr/local/anaconda3/bin"
+  eval "$(register-python-argcomplete conda)"
+fi
+
+# miniconda
+if [ "$MINICONDA_SHELL" = true ] && [ -d "${BREW_PREFIX}/Caskroom/miniconda" ]; then
+  eval "$(register-python-argcomplete conda)"
+  if [ -x "${BREW_PREFIX}/Caskroom/miniconda/base/bin/conda" ]; then
+    __conda_setup="$("${BREW_PREFIX}/Caskroom/miniconda/base/bin/conda" shell.zsh hook 2>/dev/null)"
+    [ $? -eq 0 ] && eval "$__conda_setup" || path_add "${BREW_PREFIX}/Caskroom/miniconda/base/bin"
+    unset __conda_setup
   fi
-  unset __conda_setup
 fi
 
-# -- cassandra --
-# populate bash path with cassandra binaries
-if [ -d "/opt/dsc-cassandra/current/bin" ]; then
-  export PATH="/opt/dsc-cassandra/current/bin:${PATH}"
+# cassandra
+path_add "/opt/dsc-cassandra/current/bin"
+
+# chef
+if [ "$CHEF_SHELL" = true ] && brew list | grep -q '^chefdk$'; then
+  eval "$(chef shell-init bash)"
+  export EDITOR="VIM"
 fi
 
-# -- chefdk --
-# populate bash path with chefdk binaries
-if [ "${CHEF_SHELL}" = "true" ] && brew ls | grep -qe '^chefdk$'; then
-  eval "$(chef shell-init bash)";
-  export EDITOR="VIM";
-fi
+# curl
+path_add "${BREW_PREFIX}/opt/curl/bin"
 
-# -- curl --
-if [ -d "${BREW_PREFIX}/opt/curl/bin" ]; then
-  export PATH="${BREW_PREFIX}/opt/curl/bin:${PATH}"
-fi
-
-# -- fzf --
-if [ -f "${BREW_PREFIX}/bin/fzf" ]; then
+# fzf
+if command -v fzf &>/dev/null; then
   source <(fzf --zsh)
   export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/' --sort=path"
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -202,150 +196,155 @@ if [ -f "${BREW_PREFIX}/bin/fzf" ]; then
   _fzf_compgen_path() {
     fd --hidden --follow --exclude ".git" . "$1"
   }
-
-  # Use fd to generate the list for directory completion
   _fzf_compgen_dir() {
     fd --type d --hidden --follow --exclude ".git" . "$1"
   }
 fi
 
-# -- go_lang --
-# populate path with go_lang binaries
-if [ -d "${BREW_PREFIX}/opt/go/libexec/bin" ] ; then
-  export GOROOT="${BREW_PREFIX}/opt/go/libexec";
-  export PATH="${PATH}:${GOROOT}/bin";
-  export GOPATH="${HOME}/Code/go";
-  export GOBIN="${GOPATH}/bin";
+# gnu
+path_add "${BREW_PREFIX}/opt/gnu-getopt/bin"
+
+# go
+if [ -d "/usr/local/opt/go/libexec" ]; then
+  export GOROOT="/usr/local/opt/go/libexec"
+  export GOPATH="${HOME}/Code/go"
+  export GOBIN="${GOPATH}/bin"
+  path_add "${GOROOT}/bin"
 fi
 
-# -- hadoop --
-if [ -d "${BREW_PREFIX}/Cellar/hadoop" ]; then
-  export HADOOP_VERSION="$(brew list --versions hadoop | awk '{ print $2 }')";
-  export HADOOP_HOME="${BREW_PREFIX}/Cellar/hadoop/${HADOOP_VERSION}";
-  export HADOOP_CONF_DIR="${HADOOP_HOME}/libexec/etc/hadoop";
+# hadoop
+if [ -d "/usr/local/Cellar/hadoop" ]; then
+  export HADOOP_VERSION="$(brew list --versions hadoop | awk '{ print $2 }')"
+  export HADOOP_HOME="/usr/local/Cellar/hadoop/${HADOOP_VERSION}"
+  export HADOOP_CONF_DIR="${HADOOP_HOME}/libexec/etc/hadoop"
 fi
 
-# -- hashicorp --
-#export PACKER_LOG="DEBUG";
-export VAGRANT_DEFAULT_PROVIDER="virtualbox";
+# hashiCorp
+# export PACKER_LOG="DEBUG"
+export VAGRANT_DEFAULT_PROVIDER="virtualbox"
 
-# -- java --
-if [ -f "/usr/libexec/java_home" ] && java -version > /dev/null 2>&1; then
-  export JAVA_HOME=$(/usr/libexec/java_home);
-  export JRE_HOME="${JAVA_HOME}/jre";
-  export PATH="${JAVA_HOME}/bin:${PATH}";
+# java
+if [ -x "/usr/libexec/java_home" ] && java -version &>/dev/null; then
+  export JAVA_HOME="$("/usr/libexec/java_home")"
+  export JRE_HOME="${JAVA_HOME}/jre"
+  path_add "${JAVA_HOME}/bin"
 fi
 
-# -- nodejs --
-if [ "${NVM_SHELL}" = "true" ] && [ -d "${BREW_PREFIX}/opt/n" ]; then
-  export N_PREFIX="${HOME}/.n";
-  export PATH=${N_PREFIX}/bin:${PATH};
+# node / nvm
+if [ "$NVM_SHELL" = true ]; then
+  if [ -d "${BREW_PREFIX}/opt/n" ]; then
+    export N_PREFIX="${HOME}/.n"
+    path_add ${N_PREFIX}/bin
+  fi
+  if [ -f "${BREW_PREFIX}/opt/nvm/nvm.sh" ]; then
+    export NVM_DIR="${HOME}/.nvm"
+    source "${BREW_PREFIX}/opt/nvm/nvm.sh"
+  fi
 fi
 
-if [ "${NVM_SHELL}" = "true" ] && [ -f "${BREW_PREFIX}/opt/nvm/nvm.sh" ]; then
-  export NVM_DIR="${HOME}/.nvm";
-  source "${BREW_PREFIX}/opt/nvm/nvm.sh";
-fi
+# openssl
+[ -d "/usr/local/opt/openssl" ] && export OPENSSL_ROOT_DIR="/usr/local/opt/openssl"
 
-# -- openssl --
-if [ -d "${BREW_PREFIX}/opt/openssl" ]; then
-  export OPENSSL_ROOT_DIR="${BREW_PREFIX}/opt/openssl"
-fi
-
-# -- pyenv --
-if type pyenv > /dev/null 2>&1; then
+# pyenv
+if command -v pyenv &>/dev/null; then
   export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
+  path_add "$PYENV_ROOT/bin"
   eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
-# -- ruby --
-if [ "${RUBY_USE_BREW}" = "true" ] && [ -d "${BREW_PREFIX}/opt/ruby/bin" ]; then
-  export PATH="${BREW_PREFIX}/opt/ruby/bin:${PATH}"
-fi
+# ruby
+[ "${RUBY_USE_BREW}" = true ] && path_add "/usr/local/opt/ruby/bin"
 
-# -- gnu-getopt --
-# populate bash path the gnu-getopt
-if [ -d "${BREW_PREFIX}/opt/gnu-getopt" ]; then
-  export PATH="${BREW_PREFIX}/opt/gnu-getopt/bin:${PATH}"
-fi
-
-#------------------------------------------------------------------------------
-# BASH COMPLETION
-#------------------------------------------------------------------------------
-
-if [ -d ${BREW_PREFIX}/share/zsh-completions ]; then
-  fpath=("${BREW_PREFIX}/share/zsh-completions" $fpath)
-fi
-
-# -- azure cli --
-if [ -f ${BREW_PREFIX}/opt/azure-cli/etc/bash_completion.d/az ]; then
-  source "${BREW_PREFIX}/opt/azure-cli/etc/bash_completion.d/az";
-fi
+# xdg
+export XDG_CONFIG_HOME="${HOME}/.config"
 
 #------------------------------------------------------------------------------
 # SHELL MODS
 #------------------------------------------------------------------------------
 
+# aws
+SHOW_AWS_PROMPT=true
+RPROMPT="${RPROMPT//\$\(aws_prompt_info\)}"
+
 # git
-# display git branch info within PS1
 if [ -f ${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh ]; then
-  source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh";
-  export GIT_PS1_SHOWDIRTYSTATE=true;
-  export GIT_PS1_SHOWUPSTREAM="verbose";
-  export GIT_PS1_DESCRIBE_STYLE="branch";
-  export GIT_PS1_SHOWCOLORHINTS=true;
+  source "${BREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh"
+
+  export GIT_PS1_SHOWDIRTYSTATE=true
+  export GIT_PS1_SHOWUPSTREAM="verbose"
+  export GIT_PS1_DESCRIBE_STYLE="branch"
+  export GIT_PS1_SHOWCOLORHINTS=true
+
   PROMPT_COMMAND='__git_ps1 "\u@\h[\w]" "\\\$ "';
 fi
+
+# zsh
+prompt_context () {
+  if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    # prompt_segment "$AGNOSTER_CONTEXT_BG" "$AGNOSTER_CONTEXT_FG" "%(!.%{%F{$AGNOSTER_STATUS_ROOT_FG}%}.)%n@%m"
+    prompt_segment "$AGNOSTER_CONTEXT_BG" "$AGNOSTER_CONTEXT_FG" "%(!.%{%F{$AGNOSTER_STATUS_ROOT_FG}%}.)"
+  fi
+}
 
 #------------------------------------------------------------------------------
 # ALIASES
 #------------------------------------------------------------------------------
 
-# -- cache --
-alias flushcache="dscacheutil -flushcache"                        # Flush cache
+# utilities / system
+alias flushcache="dscacheutil -flushcache"
+alias flushdns="dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+alias fixbrew='sudo chown -R "$USER":admin "$(brew --prefix)"'
+alias hostfile='sudo vim /etc/hosts'
+alias pubkey="cat ~/.ssh/${SSH_KEY:-id_ed25519}.pub | pbcopy"
+alias utc='date -u'
 
-# -- disk --
-alias disk='du -hd 1'                                             # Disk usage
-alias fs="stat -f '%z bytes'"                                     # File size
+# disk / filesystem
+alias disk='du -hd 1'
+alias fs="stat -f '%z bytes'"
+alias df='df -h'
 
-# -- dns --
-alias flushdns="dscacheutil -flushcache;sudo killall -HUP mDNSResponder" # Flush DNS cache
-alias hostfile='sudo vim /etc/hosts'                              # Edit Hostfile
+# networking
+alias wmip="curl -w '\n' https://ipinfo.io/what-is-my-ip"
+alias wmip='curl ipinfo.io'
+alias ip="ifconfig | awk '/inet / { print \$2 }'"
+alias netCons='lsof -i'
+alias lsock='sudo lsof -i -P'
+alias lsockU='sudo lsof -nP | grep UDP'
+alias lsockT='sudo lsof -nP | grep TCP'
+alias ipInfo0='ipconfig getpacket en0'
+alias ipInfo1='ipconfig getpacket en1'
+alias openPorts='sudo lsof -i | grep LISTEN'
 
-# -- firewall --
-alias showBlocked='sudo ipfw list'                                # All ipfw rules inc/ blocked IPs
+# clipboard
+clip() {
+  [ -f "$1" ] && cat "$1" | pbcopy
+}
 
-# -- homebrew --
-alias fixbrew='sudo chown -R ${USER}:admin "$(brew --prefix)"'            # OSX constantly brakes file permissions
+# preferred overrides
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias mkdir='mkdir -pv'
+alias grep='grep --color=auto --exclude-dir=.git'
+alias less='less -FSRXc'
+alias ls='ls -G'
+alias ll='ls -Glh'
 
-# -- networking --
-alias wmip="curl ipinfo.io"                                       # Get external IP (whats my ip)
-alias ip="ifconfig | awk '/inet / { print \$2 }'"                 # Get all local IPs
-alias netCons='lsof -i'                                           # Show all open TCP/IP sockets
-alias lsock='sudo /usr/sbin/lsof -i -P'                           # Display open sockets
-alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'                 # Display only open UDP sockets
-alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'                 # Display only open TCP sockets
-alias ipInfo0='ipconfig getpacket en0'                            # Get info on connections for en0
-alias ipInfo1='ipconfig getpacket en1'                            # Get info on connections for en1
-alias openPorts='sudo lsof -i | grep LISTEN'                      # All listening connections
+# vim
+alias vim='nvim'
 
-# -- paste commands --
-fun_clip() { cat $1 | pbcopy; }
-alias clip=fun_clip
+# shortcuts / quick commands
+alias k=kubectl
 
-# -- preferred commands --
-alias cp='cp -iv'                                                 # Preferred 'cp'
-alias df="df -h"                                                  # Preferred ‘df’
-alias grep='grep --color=auto --exclude-dir=\.git'                # Preferred ‘grep’
-alias less='less -FSRXc'                                          # Preferred 'less'
-alias ll='ls -Glh'                                                # Preferred ‘ll’
-alias ls='ls -G'                                                  # Preferred ‘ls’
-alias mv='mv -iv'                                                 # Preferred ‘mv’
-alias mkdir='mkdir -pv'                                           # Preferred ‘mkdir’
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'; fi
 
-# -- ssh --
-alias pubkey="more ~/.ssh/${SSH_KEY:-id_ed25519}.pub | pbcopy"    # Copy my public key to the pasteboard
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'; fi
 
-# -- time --
-alias utc='date -u'                                               # UTC time
+# add ~/.local/bin to PATH (gh-seed-secrets and other local tools)
+export PATH="$HOME/.local/bin:$PATH"
+
+# aws-vault: cache MFA session token for 12h (reduces MFA prompts)
+export AWS_SESSION_TOKEN_TTL=12h
