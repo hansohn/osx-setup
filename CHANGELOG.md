@@ -4,7 +4,55 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](unreleased)
 
-- no new features in development at this time
+FEATURES:
+
+- repository renamed from osx-setup to mac-setup. GitHub keeps a redirect, so
+  existing clones and links continue to work
+- packages are declared in a Brewfile and installed with a single
+  `brew bundle install`. bootstrap.sh drops from 214 lines to 97: the four
+  package arrays and their four install loops are gone, along with the
+  hand-written idempotency guards brew bundle makes unnecessary
+- a Makefile exposes brew/install, brew/check, brew/drift and brew/dump.
+  brew/drift lists packages installed but never declared, which is how the
+  previous hand-maintained list fell years out of date
+- .gitignore expanded from gitignore.io with the macos, linux, vim and
+  visualstudiocode templates
+
+APPLICATIONS ADDED:
+
+- previously installed by apps/ scripts, now declared: bash, bash-completion,
+  git, iterm2, macvim, openssl, packer, pyenv, pyenv-virtualenv, terraform,
+  hashicorp-vagrant
+- required by the dotfiles and neovim configs but never declared: ghostty,
+  gcloud-cli, zulu@21, opencode, selene
+- added during curation: 1password-cli, chatgpt, claude-code, eksctl,
+  goimports, kubectx, maven, microsoft-teams, ollama, signal, speedtest,
+  tfsec, uv, watch
+
+APPLICATIONS REMOVED:
+
+- brooklyn, tfswitch, font-iosevka-nerd-font, font-jetbrains-mono-nerd-font
+  and yamlfmt. The fonts are unused -- ghostty asks only for Hack Nerd Font --
+  and nothing references yamlfmt
+- five apps/ scripts that only installed: openssl, packer, terraform, fonts
+  and python
+
+BUG FIXES:
+
+- apps/iterm2.sh configured only on first install. Its shell integration and
+  six colour schemes sat inside an `if ! brew ls iterm2` guard, so a re-run
+  configured nothing
+- bootstrap.sh ran the apps/ scripts before installing packages, which only
+  worked while each script installed its own. Order is now homebrew, then
+  brew bundle, then configuration
+- two Packers were installed: apps/packer.sh used the core formula while the
+  tap version was also present. HashiCorp moved Packer out of homebrew-core,
+  so the tap is canonical
+- docker, wireshark and virtualbox@beta were renamed upstream to
+  docker-desktop, wireshark-app and virtualbox
+- README named brew_formulae, brew_casks and mas_apps as the authoritative
+  lists after they had been removed, still listed tfswitch, and described
+  Claude Code as a desktop app when it is terminal-based
 
 ## [0.9.0](https://github.com/hansohn/osx-setup/compare/0.8.0..0.9.0) (Aug 16, 2026)
 
