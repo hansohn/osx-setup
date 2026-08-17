@@ -30,11 +30,14 @@ Everything installable is declared in [`Brewfile`](Brewfile) — formulae, casks
 | Search & files | `fzf`, `ripgrep`, `fd`, `bat`, `tree`, `grep`, `jq`, `curl`, `wget`, `1password-cli` |
 | Languages | `go`, `lua`, `maven`, `pyenv`, `nvm`, `uv`; Rust via `rustup`, installed by [`apps/rust.sh`](apps/rust.sh) |
 | Linting | `shellcheck`, `yamllint`, `jsonlint`, `golangci-lint`, `selene` |
-| AI | `opencode`, `ollama`, Claude Code |
+
+### AI
+
+`opencode`, `ollama` and `claude` (Claude Code) on the command line, plus the ChatGPT desktop app.
 
 ### Applications
 
-1Password, Adobe Acrobat Reader, AppCleaner, ChatGPT, Discord, Docker Desktop, Firefox, Ghostty, Google Chrome, Google Drive, iTerm2, Microsoft Teams, Obsidian, Postman, Raycast, Rectangle, Signal, Slack, Spotify, VirtualBox, Visual Studio Code, Wireshark and Zoom, plus the Hack Nerd Font and the Zulu 21 JDK.
+1Password, Adobe Acrobat Reader, AppCleaner, Discord, Docker Desktop, Firefox, Ghostty, Google Chrome, Google Drive, iTerm2, Microsoft Teams, Obsidian, Postman, Raycast, Rectangle, Signal, Slack, Spotify, VirtualBox, Visual Studio Code, Wireshark and Zoom, plus the Hack Nerd Font and the Zulu 21 JDK.
 
 From the Mac App Store: Amphetamine, Decompressor, iMazing HEIC Converter and Kindle.
 
