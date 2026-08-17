@@ -343,7 +343,7 @@ if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/home
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'; fi
 
-# add ~/.local/bin to PATH (gh-seed-secrets and other local tools)
+# user-installed executables
 export PATH="$HOME/.local/bin:$PATH"
 
 # aws-vault: cache MFA session token for 12h (reduces MFA prompts)
