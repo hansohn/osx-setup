@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# set vars
-SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
-
-# import config vars
-source "${SCRIPTPATH}/../config.sh";
 
 # install homebrew
 if ! which brew > /dev/null 2>&1; then
@@ -43,14 +38,4 @@ if ! which brew > /dev/null 2>&1; then
   fi
 fi
 
-taps=()
-
-# install taps
-if which brew > /dev/null 2>&1; then
-  for tap in "${taps[@]}"; do
-    if ! brew tap | grep -q "${tap}" ; then
-      echo "==> Installing ${tap} tap";
-      brew tap "${tap}";
-    fi
-  done
-fi
+# Taps are declared in the Brewfile and installed by `brew bundle`.
