@@ -6,8 +6,6 @@ SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 # import config vars
 source "${SCRIPTPATH}/../config.sh";
 
-# install prerequisites
-source "${SCRIPTPATH}/homebrew.sh";
 
 # install solarized.clr color palette
 if [ ! -f "${HOME}/Library/Colors/solarized.clr" ] ; then

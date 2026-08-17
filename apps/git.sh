@@ -6,8 +6,6 @@ SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 # import config vars
 source "${SCRIPTPATH}/../config.sh";
 
-# install prerequisites
-source "${SCRIPTPATH}/homebrew.sh";
 source "${SCRIPTPATH}/openssl.sh";
 
 # git comes from the Brewfile
