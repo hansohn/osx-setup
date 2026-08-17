@@ -58,9 +58,11 @@ brew "tree-sitter"
 
 brew "go"
 brew "golangci-lint"
+brew "goimports"
 brew "lua"
 brew "luajit"
 brew "luarocks"
+brew "maven"
 brew "nvm"                              # zsh/zshrc sources nvm.sh
 brew "openssl"
 brew "pyenv"                            # zsh/zshrc runs pyenv init
@@ -83,6 +85,7 @@ brew "kind"
 brew "kubectx"
 brew "kubernetes-cli"
 brew "kustomize"
+brew "eksctl"
 
 #-------------------------------------------------------------------------------
 # infrastructure as code
@@ -91,6 +94,7 @@ brew "kustomize"
 brew "ansible"
 brew "ansible-lint"
 brew "hashicorp/tap/terraform"
+brew "hashicorp/tap/packer"
 brew "terraform-docs"
 brew "terraform-ls"
 brew "terragrunt"
@@ -103,7 +107,6 @@ brew "tfsec"
 brew "jsonlint"
 brew "selene"
 brew "shellcheck"
-brew "yamlfmt"
 brew "yamllint"
 
 #-------------------------------------------------------------------------------
@@ -118,8 +121,6 @@ brew "ollama"
 #-------------------------------------------------------------------------------
 
 cask "font-hack-nerd-font"
-cask "font-iosevka-nerd-font"
-cask "font-jetbrains-mono-nerd-font"
 
 #-------------------------------------------------------------------------------
 # casks -- terminal / development
@@ -129,6 +130,7 @@ cask "1password-cli"
 cask "claude-code@latest"
 cask "docker-desktop"                   # renamed upstream from "docker"
 cask "gcloud-cli"                       # zsh/zshrc sources path.zsh.inc
+cask "hashicorp-vagrant"
 cask "ghostty"                          # ghostty/config lives in dotfiles
 cask "iterm2"
 cask "postman"
@@ -151,6 +153,7 @@ cask "discord"
 cask "firefox"
 cask "google-chrome"
 cask "google-drive"
+cask "microsoft-teams"
 cask "obsidian"
 cask "raycast"
 cask "rectangle"
@@ -177,25 +180,17 @@ mas "Kindle", id: 302584613
 # From osx-setup/apps/*.sh:
 # brew "hadoop"                         # the zshrc block for it is dead
 # brew "packer"                         # superseded by hashicorp/tap/packer
-# brew "packer-completion"
 # brew "docker-completion"              # Docker Desktop ships its own
-# brew "vagrant-completion"
 # brew "kitchen-completion"             # chefdk era
-# cask "hashicorp-vagrant"
-# cask "java"                           # zulu@21 covers it
-# cask "virtualbox-extension-pack"
 #
 # Installed on the current machine but not wanted on a fresh one:
-# brew "eksctl"
-# brew "goimports"
-# brew "maven"
-# brew "hashicorp/tap/packer"
 # cask "google-gemini"
-# cask "microsoft-teams"
 # cask "tor-browser"
 # cask "ubiquiti-unifi-controller"
 #
 # Dropped during review:
+# cask "font-iosevka-nerd-font"        # ghostty asks only for Hack Nerd Font
+# cask "font-jetbrains-mono-nerd-font" # same
+# brew "yamlfmt"                       # nothing references it; yamllint covers linting
 # tap "warrensbox/tap"                  # tfswitch removed
-# brew "tfswitch"
 # cask "brooklyn"
