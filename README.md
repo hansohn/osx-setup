@@ -18,55 +18,48 @@ This repo sets up a macOS machine for infrastructure and platform work — the T
 What's Included
 ---------------
 
-The authoritative lists live in [`bootstrap.sh`](bootstrap.sh) — `brew_formulae`, `brew_casks` and `mas_apps`. What follows is a summary by area, not an inventory.
+Everything installable is declared in [`Brewfile`](Brewfile) — formulae, casks, Mac App Store apps and taps — and installed by `bootstrap.sh` with a single `brew bundle install`. What follows is a summary by area, not an inventory.
 
 ### Command line
 
 | Area | Tools |
 |---|---|
-| Cloud & Kubernetes | `awscli`, `aws-vault`, `doctl`, `helm`, `k9s`, `kind`, `kubernetes-cli`, `kustomize`, `argocd`, `istioctl`, `session-manager-plugin` |
-| Infrastructure as code | `ansible`, `ansible-lint`, `terragrunt`, `terraform-docs`, `terraform-ls`, `tfswitch`, `tflint`, `cfn-lint` |
-| Shell & editors | `zsh` + oh-my-zsh, `neovim`, `tmux`, `fzf`, `ripgrep`, `fd`, `bat`, `tree`, `lazygit`, `gh` |
-| Languages | `go`, `lua`, plus `pyenv`, `nvm` and `rustup` via the scripts in [`apps/`](apps) |
-| Linting | `shellcheck`, `yamllint`, `jsonlint`, `golangci-lint` |
-| Misc | `curl`, `wget`, `jq`, `grep`, `gnupg`, `nmap`, `ipcalc`, `mas` |
+| Cloud & Kubernetes | `awscli`, `aws-vault`, `doctl`, `gcloud-cli`, `helm`, `k9s`, `kind`, `kubernetes-cli`, `kubectx`, `kustomize`, `argocd`, `istioctl`, `eksctl`, `cfn-lint`, `session-manager-plugin` |
+| Infrastructure as code | `terraform`, `terragrunt`, `terraform-docs`, `terraform-ls`, `tflint`, `tfsec`, `packer`, `vagrant`, `ansible`, `ansible-lint` |
+| Shell & editors | `zsh` with oh-my-zsh, `bash`, `neovim`, `macvim`, `tmux`, `git`, `lazygit`, `gh`, `tree-sitter` |
+| Search & files | `fzf`, `ripgrep`, `fd`, `bat`, `tree`, `grep`, `jq`, `curl`, `wget`, `1password-cli` |
+| Languages | `go`, `lua`, `maven`, `pyenv`, `nvm`, `uv`; Rust via `rustup`, installed by [`apps/rust.sh`](apps/rust.sh) |
+| Linting | `shellcheck`, `yamllint`, `jsonlint`, `golangci-lint`, `selene` |
+| AI | `opencode`, `ollama`, Claude Code |
 
 ### Applications
 
-1Password, Adobe Acrobat Reader, AppCleaner, Discord, Docker, Firefox, Google Chrome, Google Drive, iTerm2, Obsidian, Postman, Raycast, Rectangle, Slack, Spotify, Visual Studio Code, VirtualBox, Wireshark and Zoom, plus the Hack Nerd Font.
+1Password, Adobe Acrobat Reader, AppCleaner, ChatGPT, Discord, Docker Desktop, Firefox, Ghostty, Google Chrome, Google Drive, iTerm2, Microsoft Teams, Obsidian, Postman, Raycast, Rectangle, Signal, Slack, Spotify, VirtualBox, Visual Studio Code, Wireshark and Zoom, plus the Hack Nerd Font and the Zulu 21 JDK.
 
 From the Mac App Store: Amphetamine, Decompressor, iMazing HEIC Converter and Kindle.
 
-### Configured, not just installed
+### Configured, not installed
 
-The scripts in [`apps/`](apps) do more than install a package — they configure `git`, `bash`, `zsh` with oh-my-zsh, `vim` with vim-plug, Python via `pyenv`, Rust via `rustup`, Terraform, iTerm2, the macOS Terminal colorscheme, and fonts.
+The scripts in [`apps/`](apps) install nothing. They run after `brew bundle` and only configure: `git` identity and defaults, `bash`, `zsh` with oh-my-zsh, `vim` with vim-plug and its plugins, Rust via `rustup`, iTerm2 shell integration and colour schemes, the macOS Terminal colorscheme, and vagrant plugins.
 
-macOS defaults — Dock, Finder, screenshots, timezone — are applied from [`customizations/`](customizations).
+`apps/homebrew.sh` is the exception — it installs Homebrew itself, which is the one thing that cannot come from a Brewfile.
+
+macOS defaults — Dock, Finder, screenshots, firewall, timezone — are applied from [`customizations/`](customizations).
+
+### Keeping it honest
+
+```sh
+make brew/check     # declared but missing or outdated
+make brew/drift     # installed but NOT declared
+make brew/dump      # regenerate the Brewfile from this machine
+```
+
+`make brew/drift` is the one worth running periodically. It answers "what did I install months ago and never write down" — which is how the previous hand-maintained list fell years out of date.
 
 ### Color palettes
 
 - [solarized](https://ethanschoonover.com/solarized/)
-
-### Package list
-
-Everything installable is declared in [`Brewfile`](Brewfile) — formulae, casks,
-Mac App Store apps and taps. `bootstrap.sh` installs it with a single
-`brew bundle install`.
-
-```sh
-make brew/check     # what is declared but missing or outdated
-make brew/drift     # what is installed but NOT declared
-make brew/dump      # regenerate the Brewfile from this machine
-```
-
-`make brew/drift` is the one worth running periodically — it answers "what did
-I install months ago and never write down", which is how the previous
-array-based list fell out of date.
-
-The scripts in [`apps/`](apps) no longer install anything. They run after
-`brew bundle` and only configure: git, bash, zsh with oh-my-zsh, vim with
-vim-plug, rust via rustup, iTerm2 themes and shell integration, the macOS
-Terminal colorscheme, and vagrant plugins.
+- [tokyonight](https://github.com/folke/tokyonight.nvim)
 
 Prerequisites
 -------------
