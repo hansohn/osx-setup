@@ -69,146 +69,29 @@ source "${BOOTSCRIPT_PATH}/customizations/user-settings.sh"
 # list apps for customized install
 apps=(
   "bash"
-  "fonts"
   "git"
-  "homebrew"
   "iterm2"
-  "openssl"
   "macos-terminal"
-  "packer"
-  "python"
   "rust"
-  "terraform"
   "vagrant"
   "vim"
   "zsh"
 )
 
-# list of homebrew taps to add
-brew_taps=(
-  "terraform-linters/tap"
-  "warrensbox/tap"
-)
+# install homebrew first -- everything below it depends on brew being present
+# shellcheck disable=SC1090
+source "${BOOTSCRIPT_PATH}/apps/homebrew.sh"
 
-# list of homebrew formulae to install
-brew_formulae=(
-  "ansible"
-  "ansible-lint"
-  "argocd"
-  "aws-vault"
-  "awscli"
-  "bat"
-  "cfn-lint"
-  "curl"
-  "doctl"
-  "fd"
-  "fzf"
-  "gh"
-  "gnupg"
-  "go"
-  "golangci-lint"
-  "grep"
-  "helm"
-  "ipcalc"
-  "istioctl"
-  "jq"
-  "jsonlint"
-  "k9s"
-  "kind"
-  "kubernetes-cli"
-  "kustomize"
-  "lazygit"
-  "lua"
-  "luajit"
-  "luarocks"
-  "mas"
-  "neovim"
-  "nmap"
-  "nvm"
-  "ripgrep"
-  "shellcheck"
-  "terraform-docs"
-  "terraform-ls"
-  "terragrunt"
-  "tmux"
-  "tree"
-  "tree-sitter"
-  "warrensbox/tap/tfswitch"
-  "wget"
-  "yamllint"
-  "zsh"
-)
+# install packages
+# brew bundle handles taps, formulae, casks and mas entries, and is idempotent,
+# so no per-package guards are needed here
+echo "==> Installing packages from Brewfile"
+brew bundle install --file="${BOOTSCRIPT_PATH}/Brewfile"
 
-# list of homebrew casks to install
-brew_casks=(
-  "1password"
-  "adobe-acrobat-reader"
-  "appcleaner"
-  "discord"
-  "docker"
-  "firefox"
-  "font-hack-nerd-font"
-  "google-chrome"
-  "google-drive"
-  "obsidian"
-  "postman"
-  "raycast"
-  "rectangle"
-  "session-manager-plugin"
-  "slack"
-  "spotify"
-  "terraform-linters/tap/tflint"
-  "virtualbox@beta"
-  "visual-studio-code"
-  "wireshark"
-  "zoom"
-)
-
-# mas apps
-mas_apps=(
-  "1033480833" # Decompressor
-  "1292198261" # iMazing HEIC Converter
-  "302584613"  # Kindle
-  "937984704"  # Amphetamine
-)
-
-# install selected custom apps
+# configure applications
+# these run after brew bundle because several of them configure an application
+# that brew bundle is what installs
 # shellcheck disable=SC1090
 for app in "${apps[@]}"; do
   source "${BOOTSCRIPT_PATH}/apps/${app}.sh"
-done
-
-# add taps
-for tap in "${brew_taps[@]}"; do
-  if ! brew tap | grep -q "^${tap}$"; then
-    echo "==> Tapping ${tap}"
-    brew tap "${tap}"
-  fi
-done
-
-# install selected brew apps
-# `brew ls` prints the bare name, so strip any user/tap/ prefix before matching
-# or a tapped formula never looks installed and reinstalls on every run
-for formula in "${brew_formulae[@]}"; do
-  if ! brew ls | grep "^${formula##*/}$" >/dev/null 2>&1; then
-    echo "==> Installing ${formula}"
-    brew install "${formula}"
-  fi
-done
-
-# install selected cask apps
-for cask in "${brew_casks[@]}"; do
-  if ! brew ls | grep "^${cask##*/}$" >/dev/null 2>&1; then
-    echo "==> Installing ${cask}"
-    brew install --cask "${cask}"
-  fi
-done
-
-# install mas apps
-# `mas list` prints "<id>  <Name>  (<version>)", so anchoring on the id alone
-# never matches and every app is reinstalled on each run
-for app in "${mas_apps[@]}"; do
-  if ! mas list | grep -qE "^[[:space:]]*${app}[[:space:]]"; then
-    mas install "${app}"
-  fi
 done
