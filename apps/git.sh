@@ -6,15 +6,9 @@ SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 # import config vars
 source "${SCRIPTPATH}/../config.sh";
 
-# install prerequisites
-source "${SCRIPTPATH}/homebrew.sh";
 source "${SCRIPTPATH}/openssl.sh";
 
-# install git
-if ! brew ls | grep -e '^git$' > /dev/null 2>&1; then
-  echo "==> Installing Git";
-  brew install git;
-fi
+# git comes from the Brewfile
 
 # setup gitconfig
 if [ ! -f ~/.gitconfig ] > /dev/null 2>&1; then

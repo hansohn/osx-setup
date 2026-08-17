@@ -6,14 +6,8 @@ SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 # import config vars
 source "${SCRIPTPATH}/../config.sh";
 
-# install prerequisites
-source "${SCRIPTPATH}/homebrew.sh";
 
-# install zsh
-if ! brew ls | grep -e '^zsh$' > /dev/null 2>&1; then
-  echo "==> Installing Zsh";
-  brew install zsh;
-fi
+# zsh comes from the Brewfile
 
 # install oh-my-zsh
 if [ ! -d "${HOME}/.oh-my-zsh" ]; then

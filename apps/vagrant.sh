@@ -6,17 +6,11 @@ SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}")
 # import config vars
 source "${SCRIPTPATH}/../config.sh"
 
-# install prerequisites
-source "${SCRIPTPATH}/homebrew.sh"
 
 # list vagrant plugins to be installed
 vagrant_plugins=()
 
-# install vagrant
-if ! brew ls --cask hashicorp-vagrant >/dev/null 2>&1; then
-  echo "==> Installing vagrant"
-  brew install --cask hashicorp-vagrant
-fi
+# hashicorp-vagrant comes from the Brewfile
 
 # install vagrant plugins
 for plugin in "${vagrant_plugins[@]}"; do

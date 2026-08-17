@@ -6,22 +6,12 @@ SCRIPTPATH=$(dirname "${BASH_SOURCE[0]}");
 # import config vars
 source "${SCRIPTPATH}/../config.sh";
 
-# install prerequisites
-source "${SCRIPTPATH}/homebrew.sh";
 
-# install bash
-if ! brew ls | grep -e '^bash$' > /dev/null 2>&1; then
-  echo "==> Installing Bash";
-  brew install bash;
-fi
+# bash comes from the Brewfile
 
 # if shell is bash
 if [[ "${SHELL##*/}" == 'bash' ]]; then
-  # install bash-completions
-  if ! brew ls bash-completion > /dev/null 2>&1; then
-    echo "==> Installing Bash-Completion";
-    brew install bash-completion;
-  fi
+  # bash-completion comes from the Brewfile
 
   # source bash_profile
   # shellcheck disable=SC1091
