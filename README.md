@@ -54,10 +54,13 @@ arrays it declares. A `Brewfile` also lives here, generated from a working
 machine and organised by area, along with a `Makefile` exposing
 `brew/install`, `brew/check` and `brew/drift`.
 
-The two are **not yet reconciled** — the Brewfile is a superset that includes
-applications present on one machine rather than wanted on every machine, so
-nothing reads it during bootstrap. `make brew/drift` is useful today for
-spotting packages installed but never declared.
+The two are **not yet wired together** — nothing reads the Brewfile during
+bootstrap. Its contents have been curated, so it is now the more accurate of
+the two: it carries the config dependencies the arrays omit (ghostty,
+gcloud-cli, zulu@21, pyenv, nvm, opencode) and the upstream renames they miss
+(`docker`→`docker-desktop`, `wireshark`→`wireshark-app`).
+
+`make brew/drift` lists packages installed but never declared.
 
 Prerequisites
 -------------
