@@ -49,18 +49,24 @@ macOS defaults — Dock, Finder, screenshots, timezone — are applied from [`cu
 
 ### Package list
 
-`bootstrap.sh` installs from the `brew_formulae`, `brew_casks` and `mas_apps`
-arrays it declares. A `Brewfile` also lives here, generated from a working
-machine and organised by area, along with a `Makefile` exposing
-`brew/install`, `brew/check` and `brew/drift`.
+Everything installable is declared in [`Brewfile`](Brewfile) — formulae, casks,
+Mac App Store apps and taps. `bootstrap.sh` installs it with a single
+`brew bundle install`.
 
-The two are **not yet wired together** — nothing reads the Brewfile during
-bootstrap. Its contents have been curated, so it is now the more accurate of
-the two: it carries the config dependencies the arrays omit (ghostty,
-gcloud-cli, zulu@21, pyenv, nvm, opencode) and the upstream renames they miss
-(`docker`→`docker-desktop`, `wireshark`→`wireshark-app`).
+```sh
+make brew/check     # what is declared but missing or outdated
+make brew/drift     # what is installed but NOT declared
+make brew/dump      # regenerate the Brewfile from this machine
+```
 
-`make brew/drift` lists packages installed but never declared.
+`make brew/drift` is the one worth running periodically — it answers "what did
+I install months ago and never write down", which is how the previous
+array-based list fell out of date.
+
+The scripts in [`apps/`](apps) no longer install anything. They run after
+`brew bundle` and only configure: git, bash, zsh with oh-my-zsh, vim with
+vim-plug, rust via rustup, iTerm2 themes and shell integration, the macOS
+Terminal colorscheme, and vagrant plugins.
 
 Prerequisites
 -------------
