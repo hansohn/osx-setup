@@ -59,6 +59,21 @@ make brew/dump      # regenerate the Brewfile from this machine
 
 `make brew/drift` is the one worth running periodically. It answers "what did I install months ago and never write down" — which is how the previous hand-maintained list fell years out of date.
 
+### Dotfiles
+
+`bootstrap.sh` copies [`dotfiles/`](dotfiles) into `~/.dotfiles` and symlinks these into `$HOME`:
+
+| Path | |
+|---|---|
+| `~/.zshrc` | shell |
+| `~/.bash_profile` | shell |
+| `~/.vimrc` | editor |
+| `~/.vim/plugins.vim` | vim-plug plugin list |
+| `~/.config/nvim` | LazyVim configuration |
+| `~/.config/tmux/tmux.conf` | tmux |
+
+This is not optional and runs on every invocation. **Anything already at those paths is moved**, not merged, to `~/.dotfiles/bak/<YYYYMMDD>/` — so if you want a previous config back, that is where it is. Paths already symlinked are left alone, and anything the repo does not provide is skipped rather than linked to nothing.
+
 ### Color palettes
 
 - [solarized](https://ethanschoonover.com/solarized/)
@@ -77,7 +92,9 @@ $ xcode-select --install
 Installation
 ------------
 
-You will need Administrator level permissions to complete this setup. Enjoy!
+You will need Administrator level permissions to complete this setup.
+
+Note that this replaces your shell and editor configuration — see [Dotfiles](#dotfiles) for exactly which paths are affected and where the originals are archived. Enjoy!
 
 ```bash
 # clone the repo
