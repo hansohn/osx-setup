@@ -45,7 +45,7 @@ From the Mac App Store: Amphetamine, Decompressor, iMazing HEIC Converter and Ki
 
 The scripts in [`apps/`](apps) install nothing. They run after `brew bundle` and only configure: `git` identity and defaults, `bash`, `zsh` with oh-my-zsh, `vim` with vim-plug and its plugins, Rust via `rustup`, iTerm2 shell integration and colour schemes, the macOS Terminal colorscheme, and vagrant plugins.
 
-`apps/homebrew.sh` is the exception — it installs Homebrew itself, which is the one thing that cannot come from a Brewfile.
+Two exceptions. [`apps/homebrew.sh`](apps/homebrew.sh) installs Homebrew itself, the one thing that cannot come from a Brewfile. [`apps/nvim.sh`](apps/nvim.sh) clones [hansohn/nvim](https://github.com/hansohn/nvim) — the Neovim config is its own repo rather than vendored here, so it can be updated without a change to this one — and links it to `~/.config/nvim`.
 
 macOS defaults — Dock, Finder, screenshots, firewall, timezone — are applied from [`customizations/`](customizations).
 

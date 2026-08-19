@@ -12,9 +12,10 @@ dotfile_dir="${HOME}/.dotfiles"
 backup_dir="${dotfile_dir}/bak/$(date +%Y%m%d)"
 vim_dir="${HOME}/.vim"
 
+# .config/nvim is deliberately absent -- it is its own repo (hansohn/nvim) and
+# is cloned and linked by apps/nvim.sh
 dotfiles=(
   '.bash_profile'
-  '.config/nvim'
   '.config/tmux/tmux.conf'
   '.vimrc'
   '.vim/plugins.vim'
@@ -72,6 +73,7 @@ apps=(
   "git"
   "iterm2"
   "macos-terminal"
+  "nvim"
   "rust"
   "vagrant"
   "vim"

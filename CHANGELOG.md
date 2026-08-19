@@ -17,6 +17,11 @@ FEATURES:
   previous hand-maintained list fell years out of date
 - .gitignore expanded from gitignore.io with the macos, linux, vim and
   visualstudiocode templates
+- the neovim config moved out to hansohn/nvim and is cloned by apps/nvim.sh
+  rather than vendored here. The copy in dotfiles/ was the bare LazyVim
+  starter and had fallen behind; the repo carries a pinned lazy-lock.json, so
+  a fresh clone reproduces a known-good setup and updates no longer need a
+  change to this repo
 
 APPLICATIONS ADDED:
 
