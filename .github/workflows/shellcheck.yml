@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - '*'
+      # '*' stops at '/', so it never matches branches like 'fix/thing'.
+      - '**'
     tags:
       - 'v?[0-9]+.[0-9]+.[0-9]+'
   pull_request:
