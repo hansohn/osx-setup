@@ -107,6 +107,7 @@ brew "tfsec"
 brew "jsonlint"
 brew "selene"
 brew "shellcheck"
+brew "stylua"
 brew "yamllint"
 
 #-------------------------------------------------------------------------------
