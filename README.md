@@ -18,7 +18,7 @@ This repo sets up a macOS machine for infrastructure and platform work — the T
 What's Included
 ---------------
 
-Everything installable is declared in [`Brewfile`](Brewfile) — formulae, casks, Mac App Store apps and taps — and installed by `bootstrap.sh` with a single `brew bundle install`. What follows is a summary by area, not an inventory.
+Everything installable is declared in [`Brewfile`](Brewfile) — formulae, casks, Mac App Store apps and taps — and installed by `install.sh` with a single `brew bundle install`. What follows is a summary by area, not an inventory.
 
 ### Command line
 
@@ -82,24 +82,43 @@ This is not optional and runs on every invocation. **Anything already at those p
 Prerequisites
 -------------
 
-[Command line Tools for Xcode](https://developer.apple.com/xcode/) are required by [Homebrew](https://brew.sh/) and various other applications. You can install them using the commands below or let Homebrew install them for you during its installation process.
+[`preflight.sh`](preflight.sh) handles the host prerequisites and is sourced by the installer, so there is nothing to run by hand. It installs the [Command line Tools for Xcode](https://developer.apple.com/xcode/) if they are absent — Homebrew and several other tools require them — waiting for the GUI installer to finish rather than racing it, and caches sudo for the length of the run so `customizations/` does not stop for a password an hour in.
 
-```bash
-# install xcode tools
-$ xcode-select --install
-```
+Rosetta 2 is opt-in. No cask in the [`Brewfile`](Brewfile) needs it; it is worth installing only for Docker Desktop's *"Use Rosetta for x86/amd64 emulation"* setting, which speeds up `linux/amd64` containers on Apple Silicon. Enable it with `ROSETTA_ENABLED="true"` in `config.sh`.
+
+Two things still have to happen by hand before you start. Sign into the **App Store**, or the four `mas` entries in the Brewfile will fail — `mas signin` has not worked since macOS 10.13. And you will need **Administrator permissions** throughout.
 
 Installation
 ------------
 
-You will need Administrator level permissions to complete this setup.
-
-Note that this replaces your shell and editor configuration — see [Dotfiles](#dotfiles) for exactly which paths are affected and where the originals are archived. Enjoy!
+Note that this replaces your shell and editor configuration — see [Dotfiles](#dotfiles) for exactly which paths are affected and where the originals are archived.
 
 ```bash
 # clone the repo
 $ git clone https://github.com/hansohn/mac-setup.git
+$ cd mac-setup
+
+# create your config -- config.sh is gitignored, so this repo never carries a
+# real name or address. the installer refuses to run without it.
+$ cp config.sh.example config.sh && vi config.sh
 
 # execute the installer
-$ mac-setup/bootstrap.sh
+$ ./install.sh
 ```
+
+`install.sh` is safe to re-run. Every step is guarded, so running it again updates an existing machine rather than reinstalling it. Enjoy!
+
+### Naming conventions
+
+Settings in `config.sh` follow four rules, so a new one has an obvious name:
+
+| Rule | |
+|---|---|
+| Case marks scope | `UPPER_SNAKE` for config and constants, `lower_snake` for a script's internal working variables |
+| Domain first | `<DOMAIN>_<ATTRIBUTE>`, e.g. `GIT_USER_NAME`, `GIT_USER_EMAIL`. Group by subject, not by verb, so everything about one tool sorts together |
+| Booleans end in `_ENABLED` | `ROSETTA_ENABLED`, `RUST_NIGHTLY_ENABLED`. Read through `is_enabled()` in [`lib.sh`](lib.sh), which accepts `true`/`yes`/`on`/`1` in any case |
+| Paths carry a type suffix | `_DIR` for a directory, `_FILE` for one file, `_PATH` for a colon-separated list. No abbreviations — `_LOC` is ambiguous |
+
+One exception: a variable another tool defines keeps that tool's name. `SHOW_AWS_PROMPT` and `DEFAULT_USER` are read by oh-my-zsh, so renaming them to fit the table would silently disable what they control.
+
+Anything early in the run must stay **bash 3.2 compatible** — `/bin/bash` on a factory Mac is 3.2.57, and [`preflight.sh`](preflight.sh) executes before Homebrew installs bash 5. No `${var,,}`, `mapfile`, or associative arrays there.

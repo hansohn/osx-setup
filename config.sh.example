@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#
+# Copy to config.sh and fill in. config.sh is gitignored and never committed,
+# so this repo can stay public without carrying a real name or address.
+#
+#   cp config.sh.example config.sh
+#
+# Every variable here is consumed by install.sh, apps/*.sh or
+# customizations/*.sh after sourcing, which shellcheck cannot follow.
+# shellcheck disable=SC2034
+
+# ----- general information -----
+# written to the login window by customizations/system-settings.sh
+CONTACT_EMAIL="foo.bar@mail.com";
+
+# ----- osx -----
+SCREENSHOT_DIR="${HOME}/Pictures/Screenshots";
+
+# ----- time -----
+TIMEZONE="America/Los_Angeles";
+TIMESERVER="time.nist.gov";
+
+# ----- git config -----
+GIT_USER_NAME="Foo Bar";
+GIT_USER_EMAIL="foo.bar@users.noreply.github.com";
+
+# ----- feature flags -----
+# Opt-in toggles. Parsed by is_enabled() in lib.sh, so true/yes/on/1 all enable,
+# in any case. Anything else is off.
+
+# Rosetta 2, consumed by preflight.sh. No cask in the Brewfile requires it --
+# this is only for Docker Desktop's "Use Rosetta for x86/amd64 emulation"
+# setting, which speeds up linux/amd64 containers on Apple Silicon. Ignored
+# entirely on Intel hardware.
+ROSETTA_ENABLED="false";
+
+# Rust nightly toolchain, consumed by apps/rust.sh. Off means the stable
+# toolchain rustup installs by default is left as-is.
+RUST_NIGHTLY_ENABLED="false";
+
+# ----- exports -----
+# ----- apps -----

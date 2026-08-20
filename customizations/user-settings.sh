@@ -66,14 +66,14 @@ defaults write com.apple.finder ShowPathbar -bool true;
 # Screenshots
 # ----------------------------------------------
 
-# -d, not -f: SCREENSHOT_LOC is a directory, so `! -f` was always true and the
+# -d, not -f: SCREENSHOT_DIR is a directory, so `! -f` was always true and the
 # mkdir ran on every invocation
-if [ ! -d "${SCREENSHOT_LOC}" ]; then
-  mkdir -p "${SCREENSHOT_LOC}";
+if [ ! -d "${SCREENSHOT_DIR}" ]; then
+  mkdir -p "${SCREENSHOT_DIR}";
 fi
 
 # Save screenshots to the configured location
-defaults write com.apple.screencapture location -string "${SCREENSHOT_LOC}";
+defaults write com.apple.screencapture location -string "${SCREENSHOT_DIR}";
 
 
 # ----------------------------------------------

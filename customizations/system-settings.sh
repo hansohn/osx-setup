@@ -51,7 +51,7 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow.plist GuestEnable
 
 # Show a message when the screen is locked
 sudo defaults write /Library/Preferences/com.apple.loginwindow.plist LoginwindowText \
-  -string "If found please contact ${EMAIL_ADDRESS}. Thank you!";
+  -string "If found please contact ${CONTACT_EMAIL}. Thank you!";
 
 # Display login window as: Name and password
 sudo defaults write /Library/Preferences/com.apple.loginwindow.plist SHOWFULLNAME -bool true;

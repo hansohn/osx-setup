@@ -13,6 +13,6 @@ source "${SCRIPTPATH}/../config.sh";
 if [ ! -d "${HOME}/.oh-my-zsh" ]; then
   echo "==> Installing Oh-my-zsh";
   # RUNZSH=no: the installer ends with `exec zsh -l`, which would replace the
-  # shell sourcing bootstrap.sh and silently abort the rest of the run
+  # shell sourcing install.sh and silently abort the rest of the run
   RUNZSH=no CHSH=no curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
 fi
