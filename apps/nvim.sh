@@ -11,8 +11,8 @@ source "${SCRIPTPATH}/../config.sh";
 
 # the config is its own repo rather than vendored here, so it can be updated
 # without a mac-setup release. it is cloned into the dotfile directory and
-# symlinked from there, matching how bootstrap.sh handles everything else --
-# but bootstrap.sh rsyncs that directory, which would strip a submodule's git
+# symlinked from there, matching how install.sh handles everything else --
+# but install.sh rsyncs that directory, which would strip a submodule's git
 # linkage, so the clone happens here instead of in the dotfiles array.
 NVIM_REPO="https://github.com/hansohn/nvim"
 dotfile_dir="${HOME}/.dotfiles"

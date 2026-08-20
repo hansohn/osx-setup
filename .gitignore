@@ -92,6 +92,10 @@ tags
 # End of https://www.toptal.com/developers/gitignore/api/macos,linux,vim,visualstudiocode
 
 ### Project ###
+# identity and machine-specific settings -- never commit these.
+# config.sh.example is the tracked template; copy it to config.sh and edit that.
+config.sh
+
 # machine-specific package lists -- never commit these
 Brewfile.local
 Brewfile.work
