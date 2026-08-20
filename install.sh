@@ -31,7 +31,9 @@ vim_dir="${HOME}/.vim"
 # is cloned and linked by apps/nvim.sh
 dotfiles=(
   '.bash_profile'
+  '.config/git/ignore'
   '.config/tmux/tmux.conf'
+  '.gitconfig'
   '.vimrc'
   '.vim/plugins.vim'
   '.zshrc'
